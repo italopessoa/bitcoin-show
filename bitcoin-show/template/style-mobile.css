@@ -64,6 +64,24 @@ h6.h6Valor {
     border-radius: 50%;
     box-shadow: 0 0 1px #333;
 }
+.badge-toolbar {
+    position: relative;
+}
+.badge-toolbar[data-badge]:after {
+    content: attr(data-badge);
+    position: absolute;
+    top: 8px;  
+    right: 18px;
+    font-size: .7em;
+    background: #1e88e5;
+    color: white;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 0 1px #333;
+}
 .selected-answer {
   display: block;/*necessario para manter o tamanho do panel quando utilizar o waves-effect !important*/
   background-color:#8c1010 !important;
@@ -74,4 +92,26 @@ h6.h6Valor {
 .selected-answer > h6{
     font-weight: 500;
     font-style: italic;
+}
+.local-toolbar{
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    transition: transform 0.2s cubic-bezier(0.55,
+    0.085,
+    0.68,
+    0.53),
+    background-color 0s linear 0.2s;
+    overflow: hidden;
+    background-color: rgb(244,67,54);
+}
+
+.fixed-action-btn:not(.toolbar){
+    position: inherit;
+}
+/*customizacao do fixed float button*/
+.fixed-action-btn.horizontal ul {
+    top: 68% !important;
+    right: 180px !important;
 }
