@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
       <!-- Your custom styles -->
       <link rel="stylesheet" href="style.css">
+      
       <!-- Used as an example only to position the footer at the end of the page.
          You can delete these styles or move it to your custom css file -->
       <style>         
@@ -147,7 +148,7 @@
                               <h5 class="white-text">Quem é o autor do manifesto comunista?</h5>
                            </div>
                            <div style="float: right">
-                              <a class="btn-floating btn-large waves-effect waves-light green pulse scale-out scale-transition" id="btnResponder">
+                              <a class="btn-floating btn-large waves-effect waves-light green scale-out scale-transition" id="btnResponder">
                                <i class="material-icons">done</i>
                               </a>
                            </div>
@@ -226,6 +227,7 @@
          </footer>-->
       <!-- jQuery CDN -->
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
       <!-- Materialize JS CDN -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
       <script>
@@ -239,6 +241,9 @@
           if(!btnResponderVisivel){
             $(btnResponder).addClass('scale-in');
             btnResponderVisivel= true;
+            $(btnResponder).click(()=>{
+              blinkRightAnswer($('.selected-answer')[0]);
+            });
           }
           selectAnswer(element);
         };
@@ -248,6 +253,27 @@
           });
           $(element).addClass('selected-answer');
         };
+        
+      var blink = 0;    
+      var blinkInterval = undefined;
+      function blinkRightAnswer(item){
+        $(item).toggleClass('selected-answer');
+        interval = setInterval(function(){blinkEffect(item)}, 100);
+        
+      }
+      function blinkEffect(item) {
+            blink++;
+          if(blink == 4) {
+            clearInterval(interval);
+            blink = 0;
+            //$(item).toggleClass('selected-answer');
+            return;
+          }else{
+            $(item).fadeTo(100, 0.0).fadeTo(200, 1.0);
+          }
+      }
+
+          
       </script>
    </body>
 </html>
