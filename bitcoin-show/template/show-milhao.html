@@ -147,26 +147,27 @@
                               <h5 class="white-text">Quem é o autor do manifesto comunista?</h5>
                            </div>
                            <div style="float: right">
-                              <a class="btn-floating btn-large waves-effect waves-light teal">
-                              <i class="material-icons">done</i>
+                              <a class="btn-floating btn-large waves-effect waves-light green pulse scale-out scale-transition" id="btnResponder">
+                               <i class="material-icons">done</i>
                               </a>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="row zero-padding-left">
+                    
                      <div class="col m9">
-                        <div class="card-panel red white-text touchable">
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
                            <h6>Karl Marx</h6>
                         </div>
-                        <div class="card-panel red white-text touchable">
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
                            <h6>Tio patinhas</h6>
                         </div>
-                        <div class="card-panel red white-text touchable">
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
                            <h6>
                            Chapolin colorado</h5>
                         </div>
-                        <div class="card-panel red white-text touchable">
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
                            <h6>Chespirito</h6>
                         </div>
                      </div>
@@ -228,9 +229,25 @@
       <!-- Materialize JS CDN -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
       <script>
+        var btnResponder = undefined;
+        var btnResponderVisivel = false;
          $("document").ready(function(){
            $(".button-collapse").sideNav();
+           btnResponder = $('#btnResponder');
          });
+        var showBtnResponder = (element) => {
+          if(!btnResponderVisivel){
+            $(btnResponder).addClass('scale-in');
+            btnResponderVisivel= true;
+          }
+          selectAnswer(element);
+        };
+        var selectAnswer = (element) => {
+          $('.selected-answer').each((index,item) => {
+            $(item).removeClass('selected-answer');
+          });
+          $(element).addClass('selected-answer');
+        };
       </script>
    </body>
 </html>
