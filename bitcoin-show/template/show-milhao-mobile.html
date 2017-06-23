@@ -23,6 +23,7 @@
             <div class="nav-wrapper">
                <div class="container">
                   <a href="#" class="brand-logo"><img src="logo-milhao.png" width="20%" alt=""></a>
+                  <a class="right hide-on-med-and-up" id="timer"><span>30<span></a>
                   <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
                   <ul class="right hide-on-med-and-down">
                      <li><a href="#" class="badge1" data-badge="1"><i class="material-icons"> view_carousel</i></a></li>
@@ -70,7 +71,7 @@
                            <div style="float: right" class="hide-on-small-only hide-on-large-only">
                              <div class="fixed-action-btn horizontal click-to-toggle">
                                  <a class="btn-floating btn-large green">
-                                 <i class="material-icons">menu</i>
+                                 <span id="timer">30<span>
                                  </a>
                                  <ul>
                                     <li><a class="btn-floating red"><i class="material-icons">view_carousel</i></a></li>
@@ -88,6 +89,7 @@
                         <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
                            <h6>Karl Marx</h6>
                         </div>
+                           
                         <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
                            <h6>Tio patinhas</h6>
                         </div>
@@ -98,6 +100,13 @@
                         <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
                            <h6>Chespirito</h6>
                         </div>
+                     </div>
+                     <div class="row hide-on-small-only">
+                       <div class="col m3 s2">
+                        <div class="card-panel teal center">
+                          <span class="white-text"><h1 id="timer">30</h1></span>
+                        </div>
+                       </div>
                      </div>
                   </div>
                   <div class="row ">

@@ -6,6 +6,14 @@ body {
 main {
     flex: 1 0 auto;
 }
+@font-face{
+ font-family:'digital-clock-font';
+ src: url('fonts/digital-7/digital-7.ttf');
+}
+#timer{
+    font-family: digital-clock-font;
+    font-size: 40px;
+}
 .card-panel {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
