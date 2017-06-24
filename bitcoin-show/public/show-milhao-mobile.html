@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="theme-color" content="#1565c0">
+      <title>Bitcoin do milhão</title>
+      <!-- Material Icon CDN -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <!-- Materialize CSS CDN -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <!-- Your custom styles -->
+      <link rel="stylesheet" href="style-mobile.css">
+      <!-- Used as an example only to position the footer at the end of the page.
+         You can delete these styles or move it to your custom css file -->
+      <style>         
+      </style>
+   </head>
+   <body>
+      <header>
+         <nav class="blue darken-3">
+            <div class="nav-wrapper">
+               <div class="container">
+                  <a href="#" class="brand-logo"><img src="logo-milhao.png" width="20%" alt=""></a>
+                  <a class="right hide-on-med-and-up" id="timer"><span>30<span></a>
+                  <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+                  <ul class="right hide-on-med-and-down">
+                     <li><a href="#" class="badge1" data-badge="1"><i class="material-icons"> view_carousel</i></a></li>
+                     <li><a href="#" class="badge1" data-badge="1"><i class="fa fa fa-graduation-cap" aria-hidden="true"></i></a></li>
+                     <li><a href="#" class="badge1" data-badge="1"><i class="fa fa-users" aria-hidden="true"></i></a></li>
+                     <li><a href="#" class="badge1" data-badge="3"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                  </ul>
+                  <ul class="side-nav" id="mobile-menu">
+                     <li>
+                        <div class="userView">
+                           <div class="background">
+                              <img src="http://lorempixel.com/output/abstract-q-c-640-480-10.jpg" alt="Background Sidenav">
+                           </div>
+                           <a href="#!user"><img class="circle" src="http://lorempixel.com/output/people-q-c-640-480-9.jpg" alt="User Image Sidenav"></a>
+                           <a href="#!name"><span class="white-text name">John Doe</span></a>
+                           <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                        </div>
+                     </li>
+                     <li><a href="#">item1</a></li>
+                     <li><a href="#">item2</a></li>
+                     <li><a href="#">item3</a></li>
+                     <li><a href="#">item4</a></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <main>
+         <div class="row">
+            <div class="col l8 push-l2">
+               <!-- pergunta-->
+               <div class="card-panel blue darken-3 zero-padding-left">
+                  <div class="row">
+                     <div class="col m12 zero-padding-left">
+                        <div class="card-panel red" id="tituloPergunta">
+                           <div >
+                              <h5 class="white-text">Quem é o autor do manifesto comunista?</h5>
+                           </div>
+                           <div style="float: right" class="hide-on-med-and-down">
+                              <a class="btn-floating btn-large waves-effect waves-light green scale-out scale-transition hide-on-med-and-down" id="btnResponder">
+                              <i class="material-icons">done</i>
+                              </a>
+                             
+                           </div>
+                           <div style="float: right" class="hide-on-small-only hide-on-large-only">
+                             <div class="fixed-action-btn horizontal click-to-toggle">
+                                 <a class="btn-floating btn-large green">
+                                 <span id="timer">30<span>
+                                 </a>
+                                 <ul>
+                                    <li><a class="btn-floating red"><i class="material-icons">view_carousel</i></a></li>
+                                    <li><a class="btn-floating yellow darken-1"><i class="fa fa fa-graduation-cap" aria-hidden="true"></i></a></li>
+                                    <li><a class="btn-floating green"><i class="fa fa-users" aria-hidden="true"></i></a></li>
+                                    <li><a class="btn-floating blue"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                                 </ul>
+                              </div> 
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row ">
+                     <div class="col m9 s11">
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
+                           <h6>Karl Marx</h6>
+                        </div>
+                           
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
+                           <h6>Tio patinhas</h6>
+                        </div>
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
+                           <h6>
+                           Chapolin colorado</h5>
+                        </div>
+                        <div class="card-panel red white-text touchable waves-effect waves-light" onclick="showBtnResponder(this);">
+                           <h6>Chespirito</h6>
+                        </div>
+                     </div>
+                     <div class="row hide-on-small-only">
+                       <div class="col m3 s2">
+                        <div class="card-panel teal center">
+                          <span class="white-text"><h1 id="timer">30</h1></span>
+                        </div>
+                       </div>
+                     </div>
+                  </div>
+                  <div class="row ">
+                     <div class="col l3 s4">
+                        <div class="card-panel yellow accent-2 center">
+                           <span class="">
+                           <i class="fa fa-btc hide-on-small-only" aria-hidden="true"></i> 107,050
+                           </span>
+                        </div>
+                     </div>
+                     <div class="col l3 s4">
+                        <div class="card-panel yellow accent-2 center">
+                           <span class="">
+                           <i class="fa fa-btc hide-on-small-only" aria-hidden="true"></i> 107,050
+                           </span>
+                        </div>
+                     </div>
+                     <div class="col l3 s4">
+                        <div class="card-panel yellow accent-2 center">
+                           <span class="">
+                           <i class="fa fa-btc hide-on-small-only" aria-hidden="true"></i> 107,050
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row hide-on-med-and-up">
+                     <div class="col m12">
+                        <div class="fixed-action-btn toolbar active local-toolbar hide-on-large-only">
+                           <ul>
+                              <li class="waves-effect waves-light"><a href="#!" class="badge-toolbar" data-badge="1"><i class="material-icons">view_carousel</i></a></li>
+                              <li class="waves-effect waves-light"><a href="#!" class="badge-toolbar" data-badge="1"><i class="fa fa fa-graduation-cap" aria-hidden="true"></i></a></li>
+                              <li class="waves-effect waves-light"><a href="#!" class="badge-toolbar" data-badge="1"><i class="fa fa-users" aria-hidden="true"></i></a></li>
+                              <li class="waves-effect waves-light"><a href="#!" class="badge-toolbar" data-badge="1"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                              <li class="waves-effect waves-light green"><a href="#!" ><i class="material-icons">done</i></a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+      <!--<footer class="page-footer cyan">
+         <div class="container">
+           <div class="row">
+             <div class="col s12 m8 l6">
+               <h5 class="white-text">First Footer Content</h5>
+               <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+             </div>
+             <div class="col s12 m4 l6">
+               <h5 class="white-text">Second Footer Content</h5>
+               <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+             </div>
+           </div>
+         </div>
+         <div class="footer-copyright">
+           <div class="container">
+             © 2017 Copyright Text
+             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+           </div>
+         </div>
+         </footer>-->
+      <!-- jQuery CDN -->
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+      <!-- Materialize JS CDN -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+      <script>
+         var btnResponder = undefined;
+         var btnResponderVisivel = false;
+          $("document").ready(function(){
+            $(".button-collapse").sideNav();
+            btnResponder = $('#btnResponder');
+          });
+         var showBtnResponder = (element) => {
+           if(!btnResponderVisivel){
+             $(btnResponder).addClass('scale-in');
+             btnResponderVisivel= true;
+             $(btnResponder).click(()=>{
+               blinkRightAnswer($('.selected-answer')[0]);
+             });
+           }
+           selectAnswer(element);
+         };
+         var selectAnswer = (element) => {
+           $('.selected-answer').each((index,item) => {
+             $(item).removeClass('selected-answer');
+           });
+           $(element).addClass('selected-answer');
+         };
+         
+         var blink = 0;    
+         var blinkInterval = undefined;
+         function blinkRightAnswer(item){
+         $(item).toggleClass('selected-answer');
+         interval = setInterval(function(){blinkEffect(item)}, 100);
+         
+         }
+         function blinkEffect(item) {
+             blink++;
+           if(blink == 4) {
+             clearInterval(interval);
+             blink = 0;
+             //$(item).toggleClass('selected-answer');
+             return;
+           }else{
+             $(item).fadeTo(100, 0.0).fadeTo(200, 1.0);
+           }
+         }
+         
+           
+      </script>
+   </body>
+</html>
