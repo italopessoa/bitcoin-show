@@ -4,8 +4,8 @@ const QuestionOptionsPanel = (props) =>{
     return (
         <div>
          {
-             props.questions.map((question,index) =>{
-                 return(<CardPanel key={index} className="red white-text touchable" content={question} />);
+             props.options.map((option,index) =>{
+                 return(<CardPanel key={index} className="red white-text touchable selected-answer waves-effect waves-light" content={option} />);
              })
          }
         </div>

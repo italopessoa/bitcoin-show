@@ -9,7 +9,7 @@ const QuestionPanel = () =>{
       <QuestionTitlePanel />
         <div className="row ">
           <div className="col m9 s11">
-            <QuestionOptionsPanel questions={['Karl Marx','Tio Patinhas','Chapolin Colorado','Chespirito']} />
+            <QuestionOptionsPanel options={['Karl Marx','Tio Patinhas','Chapolin Colorado','Chespirito']} />
           </div>
         </div>
     </div>
