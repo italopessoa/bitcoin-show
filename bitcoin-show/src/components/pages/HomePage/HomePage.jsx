@@ -3,11 +3,10 @@ import React from 'react'
 import Navbar from '../../organisms/Navbar/Navbar.jsx'
 const HomePage = () => {
   return (
-    <div>Hello World
-
-    <Navbar />
-    </div>
-  )
+    <header>
+      <Navbar />
+    </header>
+  );
 }
 
 export default HomePage
