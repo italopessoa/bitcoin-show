@@ -3,7 +3,7 @@ import React from 'react'
 const CardPanel = (props) =>{
     return(
         <div className= {"card-panel "+props.className}>
-            {props.content}
+            <h6>{props.content}</h6>
         </div>
     );
 }
