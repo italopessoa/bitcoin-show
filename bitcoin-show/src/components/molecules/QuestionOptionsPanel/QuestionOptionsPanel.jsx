@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-
-import CardPanel from '../../atoms/CardPanel/CardPanel.jsx'
+import AnswerCardPanel from '../../atoms/AnswerCardPanel/AnswerCardPanel.jsx'
+import './QuestionOptionsPanel.css'
 
 class QuestionOptionsPanel extends Component{
   constructor(props){
@@ -15,8 +15,9 @@ class QuestionOptionsPanel extends Component{
         <div>
           {
             this.props.options.map((option,index) =>{
-              return(<CardPanel key={index} onSelectHandler={this.selectCardHandler} itemIndex={index} 
-                    className={'red white-text touchable waves-effect waves-light ' + (this.state.selectedIndex === index ? 'selected-answer' : '')} content={option} />);
+              return(<AnswerCardPanel key={index} onSelectHandler={this.selectCardHandler} itemIndex={index} 
+                    className={'red white-text touchable waves-effect waves-light ' + (this.state.selectedIndex === index ? 'selected-answer' : '')} 
+                    content={<h6>{option}</h6>} />);
             })
           }
         </div>

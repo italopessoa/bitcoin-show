@@ -1,3 +1,9 @@
+html{
+    line-height: 1.5 !important;
+    font-family: "Roboto", sans-serif !important;
+    font-weight: normal !important;
+    color: rgba(0,0,0,0.87) !important;
+}
 body {
     display: flex;
     min-height: 100vh;
@@ -5,28 +11,4 @@ body {
 }
 main {
     flex: 1 0 auto;
-}
-
-.card-panel {
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    display: block !important;
-    margin-bottom: 0px !important;
-}
-#questionTitle {
-    padding-bottom: 24px !important;
-    padding-top: 24px !important;
-}
-.zero-padding-left {
-    padding-left: 0px !important;
-}
-.touchable {
-    cursor: pointer;
-}
-.selected-answer {
-  display: block;/*necessario para manter o tamanho do panel quando utilizar o waves-effect !important*/
-  background-color:#8c1010 !important;
-  box-shadow: 0 2px 2px 0 rgb(0, 0, 0), 
-              0 1px 5px 0 rgba(0,0,0,0.12), 
-              0 3px 1px -2px rgba(0,0,0,0.2);
 }
