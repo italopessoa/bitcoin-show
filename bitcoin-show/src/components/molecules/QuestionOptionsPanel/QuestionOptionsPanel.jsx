@@ -6,11 +6,14 @@ class QuestionOptionsPanel extends Component{
   constructor(props){
     super(props);
     this.state = {selectedIndex: -1}
+    
   }
   selectCardHandler = (index) =>{
     this.setState({selectedIndex : index});
+    this.props.funcaoTeste(index);
   }
   render(){
+    console.log('renderizando QuestionOptionsPanel');
     return (
         <div>
           {
