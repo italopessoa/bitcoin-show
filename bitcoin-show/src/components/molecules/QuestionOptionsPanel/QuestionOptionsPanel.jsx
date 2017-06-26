@@ -21,7 +21,7 @@ class QuestionOptionsPanel extends Component{
             })
           }
         </div>
-      )
+    )
   }
 }
 
