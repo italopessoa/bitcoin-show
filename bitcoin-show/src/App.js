@@ -5,8 +5,8 @@ import HomePage from './components/pages/HomePage/HomePage.jsx'
 
 class App extends Component {
   render() {
-    return (     
-       <HomePage />
+    return (
+      <HomePage />
     );
   }
 }

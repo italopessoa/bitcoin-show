@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Icon = (props) => {
-    return(
+    return (
         <i className={props.className}>{props.icon}</i>
 
     )

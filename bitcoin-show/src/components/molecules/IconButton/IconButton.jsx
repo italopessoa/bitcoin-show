@@ -2,9 +2,9 @@ import React from 'react'
 import Icon from '../../atoms/Icon/Icon.jsx'
 
 const IconButton = (props) => {
-    return(
+    return (
         <a>
-            <Icon className={props.className} icon={props.icon}/>
+            <Icon className={props.className} icon={props.icon} />
         </a>
     );
 }
