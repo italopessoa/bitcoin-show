@@ -8,15 +8,16 @@ class QuestionPanel extends Component {
   constructor(props){
     super(props);
     this.state={ selectedAnswer : -1}
-    console.log('constructor QuestionPanel')
   }
   funcaoTeste = (selectedAnswerIndex) =>{
     if(selectedAnswerIndex != null && selectedAnswerIndex > -1){
       this.setState({selectedAnswer : selectedAnswerIndex});
     }
   }
-  render(){
+  componentWillUpdate = (nextProps, nextState) =>{
     console.log('renderizando QuestionPanel: ' + (this.state.selectedAnswer > -1));
+  }
+  render(){
     return(
       <CardPanel className="card-panel blue darken-3 zero-padding-left"
         content={

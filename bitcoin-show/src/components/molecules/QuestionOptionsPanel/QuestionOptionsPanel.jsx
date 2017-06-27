@@ -15,9 +15,10 @@ class QuestionOptionsPanel extends Component{
   shouldComponentUpdate = (nextProps, nextState) =>{
     return (nextState.selectedIndex !== this.state.selectedIndex)
   }
-
+  componentWillUpdate = (nextProps, nextState) => {
+    console.log('renderizando QuestionOptionsPanel')
+  }
   render(){
-    console.log('renderizando QuestionOptionsPanel');
     return (
         <div>
           {

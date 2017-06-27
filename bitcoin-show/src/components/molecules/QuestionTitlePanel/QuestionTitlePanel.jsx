@@ -5,12 +5,21 @@ import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton.jsx
 
 import './QuestionTitlePanel.css' 
 class QuestionTitlePanel extends Component {
+  // constructor(props){
+  //   super(props);
+  //   this.state = {questionTitle : 'Quem é foi autor do manifesto comunista?'}
+  // }
+  // shouldComponentUpdate = (nexProps, prevState) => {
+  //   return prevState.questionTitle === 'Essa é a nova pergunta?'
+  // }
+  componentWillUpdate = (nextProps, nextState)=>{
+    console.log('renderizando QuestionTitlePanel');
+  }
   render(){
-      console.log('renderizando QuestionTitlePanel');
     return (
     <CardPanel className="red" id="questionTitle" content={
       <div>
-        <h5 className="white-text">Quem é o autor do manifesto comunista?</h5>
+        <h5 className="white-text">Quem é foi autor do manifesto comunista?</h5>
         <div style={{'float':'right'}}  /*className="hide-on-med-and-down"*/>
           <ScaleIconButton 
             className="btn-floating btn-large waves-effect waves-light green" 
