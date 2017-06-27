@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Icon from '../../atoms/Icon/Icon';
-
+import './ScaleIconButton.css'
 class ScaleIconButton extends Component {
   constructor(props) {
     super(props);
@@ -12,9 +12,15 @@ class ScaleIconButton extends Component {
   componentWillUpdate() {
     console.log('renderizando ScaleIconButton');
   }
+  getClassName() {
+    return `${this.props.className} ${(this.props.scaleIn ? ' scale-transition scale-in' : ' scale-transition scale-out')}`;
+  }
   render() {
     return (
-      <a className={this.props.className + (this.props.scaleIn ? ' scale-transition scale-in' : ' scale-transition scale-out')}>
+      <a
+        onClick={() => this.props.onClick()}
+        id="btnCheckAnswer" 
+        className={this.getClassName()}>
         <Icon
           className={this.props.iconClassName}
           icon={this.props.icon}

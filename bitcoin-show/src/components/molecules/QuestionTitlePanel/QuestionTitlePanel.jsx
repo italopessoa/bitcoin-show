@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CardPanel from '../../atoms/CardPanel/CardPanel';
 // import IconButton from '../../molecules/IconButton/IconButton.jsx'
-import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton';
 import './QuestionTitlePanel.css';
 
 class QuestionTitlePanel extends Component {
@@ -20,14 +19,6 @@ class QuestionTitlePanel extends Component {
     return (
       <div>
         <h5 className="white-text">Quem é foi autor do manifesto comunista?</h5>
-        <div style={{ float: 'right' }}/* className="hide-on-med-and-down"*/>
-          <ScaleIconButton
-            className="btn-floating btn-large waves-effect waves-light green"
-            iconClassName="material-icons"
-            scaleIn={this.props.scaleIn}
-            icon="done"
-          />
-        </div>
       </div>
     );
   }
