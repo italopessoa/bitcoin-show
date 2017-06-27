@@ -36,7 +36,7 @@ class QuestionPanel extends Component {
   }
   render() {
     return (
-      <CardPanel className="card-panel blue darken-3 zero-padding-left"
+      <CardPanel className="blue darken-3 zero-padding-left"
         content={this.getContent()}
       />
     );
