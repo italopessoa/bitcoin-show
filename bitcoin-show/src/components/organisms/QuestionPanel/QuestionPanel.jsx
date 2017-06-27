@@ -2,21 +2,19 @@ import React, { Component } from 'react';
 import QuestionTitlePanel from '../../molecules/QuestionTitlePanel/QuestionTitlePanel';
 import QuestionOptionsPanel from '../../molecules/QuestionOptionsPanel/QuestionOptionsPanel';
 import CardPanel from '../../atoms/CardPanel/CardPanel';
+import Timer from '../../atoms/Timer/Timer';
 import './QuestionPanel.css';
 
 class QuestionPanel extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedAnswer: -1 }
+    this.state = { selectedAnswer: -1, time: 30 };
     this.getContent = this.getContent.bind(this);
+    this.funcaoTeste = this.funcaoTeste.bind(this);
+    this.checkAnswer = this.checkAnswer;
   }
-  funcaoTeste = (selectedAnswerIndex) => {
-    if (selectedAnswerIndex != null && selectedAnswerIndex > -1) {
-      this.setState({ selectedAnswer: selectedAnswerIndex });
-    }
-  }
-  componentWillUpdate = (nextProps, nextState) => {
-    console.log('renderizando QuestionPanel: ' + (this.state.selectedAnswer > -1));
+  componentWillUpdate() {
+    console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} time= ${this.state.time}`);
   }
   getContent() {
     return (
@@ -28,15 +26,28 @@ class QuestionPanel extends Component {
         </div>
         <div className="row ">
           <div className="col m9 s11">
-            <QuestionOptionsPanel funcaoTeste={this.funcaoTeste} options={['Karl Marx', 'Tio patinhas', 'Chapolin colorado', 'Chespirito']} />
+            <QuestionOptionsPanel
+              funcaoTeste={this.funcaoTeste}
+              options={['Karl Marx', 'Tio patinhas', 'Chapolin colorado', 'Chespirito']}
+            />
+            <Timer onComplete={this.checkAnswer} time={this.state.time} />
           </div>
         </div>
       </div>
-    )
+    );
+  }
+  funcaoTeste(selectedAnswerIndex) {
+    if (selectedAnswerIndex != null && selectedAnswerIndex > -1) {
+      this.setState({ selectedAnswer: selectedAnswerIndex});
+    }
+  }
+  checkAnswer() {
+    console.log('verificando resposta');
   }
   render() {
     return (
-      <CardPanel className="blue darken-3 zero-padding-left"
+      <CardPanel
+        className="blue darken-3 zero-padding-left"
         content={this.getContent()}
       />
     );

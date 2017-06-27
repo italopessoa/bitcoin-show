@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import CardPanel from '../../atoms/CardPanel/CardPanel.jsx';
+import CardPanel from '../../atoms/CardPanel/CardPanel';
 // import IconButton from '../../molecules/IconButton/IconButton.jsx'
-import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton.jsx';
-
+import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton';
 import './QuestionTitlePanel.css';
+
 class QuestionTitlePanel extends Component {
   constructor(props) {
     super(props);
