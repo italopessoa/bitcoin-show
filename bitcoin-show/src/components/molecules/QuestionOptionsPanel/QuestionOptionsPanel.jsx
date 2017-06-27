@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import AnswerCardPanel from '../../atoms/AnswerCardPanel/AnswerCardPanel.jsx'
+import CardPanel from '../../atoms/CardPanel/CardPanel.jsx'
 import './QuestionOptionsPanel.css'
 
 class QuestionOptionsPanel extends Component{
@@ -12,13 +12,17 @@ class QuestionOptionsPanel extends Component{
     this.setState({selectedIndex : index});
     this.props.funcaoTeste(index);
   }
+  shouldComponentUpdate = (nextProps, nextState) =>{
+    return (nextState.selectedIndex !== this.state.selectedIndex)
+  }
+
   render(){
     console.log('renderizando QuestionOptionsPanel');
     return (
         <div>
           {
             this.props.options.map((option,index) =>{
-              return(<AnswerCardPanel key={index} onSelectHandler={this.selectCardHandler} itemIndex={index} 
+              return(<CardPanel key={index} onClickHandler={this.selectCardHandler} onClickArgs={index} 
                     className={'red white-text touchable waves-effect waves-light ' + (this.state.selectedIndex === index ? 'selected-answer' : '')} 
                     content={<h6>{option}</h6>} />);
             })
