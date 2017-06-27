@@ -1,15 +1,24 @@
-import React from 'react'
-import './CardPanel.css'
+import React, { Component } from 'react';
+import './CardPanel.css';
 
-const CardPanel = (props) => {
+class CardPanel extends Component {
+  constructor(props) {
+    super(props);
+    this.onClickEvent = this.onClickEvent.bind(this);
+  }
+  onClickEvent() {
+    return this.props.onClickHandler ? this.props.onClickHandler(this.props.onClickArgs) : null;
+  }
+  render() {
     return (
-        <div className={"card-panel " + props.className} id={props.id}
-            onClick={() =>
-                props.onClickHandler ? props.onClickHandler(props.onClickArgs)
-                    : null}>
-            {props.content}
-        </div>
-    );
+      <div
+        className={`card-panel  ${this.props.className}`}
+        id={this.props.id}
+        onClick={this.onClickEvent}
+      >
+        {this.props.content}
+      </div>);
+  }
 }
 
 export default CardPanel;

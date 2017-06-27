@@ -1,14 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import HomePage from './components/pages/HomePage/HomePage.jsx'
+import HomePage from './components/pages/HomePage/HomePage';
 
-class App extends Component {
-  render() {
-    return (
-      <HomePage />
-    );
-  }
-}
+const App = () => (<HomePage />);
 
 export default App;
