@@ -7,6 +7,53 @@ import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton';
 import Timer from '../../atoms/Timer/Timer';
 import './QuestionPanel.css';
 
+class Loading extends Component {
+  render() {
+    return (<div className="center" style={{ width: '100%', height: '100%', backgroundColor: '#ecdede', opacity: '0.8', position: 'absolute', zIndex: '1000' }}>
+      <div style={{ zIndex: '10000', top: '40%' }} className="preloader-wrapper big active">
+        <div className="spinner-layer spinner-green">
+          <div className="circle-clipper left">
+            <div className="circle" />
+          </div><div className="gap-patch">
+            <div className="circle" />
+          </div><div className="circle-clipper right">
+            <div className="circle" />
+          </div>
+        </div>
+
+        <div className="spinner-layer spinner-black">
+          <div className="circle-clipper left">
+            <div className="circle" />
+          </div><div className="gap-patch">
+            <div className="circle" />
+          </div><div className="circle-clipper right">
+            <div className="circle" />
+          </div>
+        </div>
+
+        <div className="spinner-layer spinner-green">
+          <div className="circle-clipper left">
+            <div className="circle" />
+          </div><div className="gap-patch">
+            <div className="circle" />
+          </div><div className="circle-clipper right">
+            <div className="circle" />
+          </div>
+        </div>
+
+        <div className="spinner-layer spinner-black">
+          <div className="circle-clipper left">
+            <div className="circle" />
+          </div><div className="gap-patch">
+            <div className="circle" />
+          </div><div className="circle-clipper right">
+            <div className="circle" />
+          </div>
+        </div>
+      </div>
+    </div>);
+  }
+}
 class QuestionPanel extends Component {
   constructor(props) {
     super(props);
@@ -17,15 +64,11 @@ class QuestionPanel extends Component {
     this.updateBitcoinPrice = this.updateBitcoinPrice;
     this.newQuestion = this.newQuestion.bind(this);
     this.updateBitcoinPrice();
+    this.getTimer = this.getTimer.bind(this);
     this.resetTime = false;
-  }
-  newQuestion() {
-    this.resetTime = true;
-    this.setState({ selectedAnswer: -1, question: this.getQuestion() });
   }
   componentDidMount() {
     this.bitcoinTimerID = setInterval(() => this.updateBitcoinPrice(), (60000));
-    console.log('MOUNT');
   }
   componentWillUpdate() {
     console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} time= ${this.state.time}`);
@@ -66,44 +109,11 @@ class QuestionPanel extends Component {
             {this.state.bitcoinPrice}
           </div>
           <div className="col m3">
-            <CardPanel
-              className="yellow darken-3 center"
-              content={<Timer onComplete={this.checkAnswer} time={this.state.time} reset={this.resetTime} />}
-            />
+            <CardPanel className="yellow darken-3 center" content={this.getTimer()} />
           </div>
         </div>
       </div>
     );
-  }
-  funcaoTeste(selectedAnswerIndex) {
-    if (selectedAnswerIndex != null && selectedAnswerIndex > -1) {
-      this.setState({ selectedAnswer: selectedAnswerIndex });
-    }
-  }
-  checkAnswer() {
-    //console.log(`${this.bitcoinTimerID}interval id`);
-    clearInterval(this.bitcoinTimerID);
-    //console.log('verificando resposta');
-    if (this.state.selectedAnswer === this.state.question.correct) {
-      console.log('E a resposta está... correta');
-      this.newQuestion();
-    } else {
-      console.log('E a resposta está... erradaaaa');
-      this.setState({ time: 0 });
-    }
-  }
-  updateBitcoinPrice() {
-    axios.get('http://api.coindesk.com/v1/bpi/currentprice/BRL.json')
-      .then((response) => {
-        // console.log(response.data.bpi.BRL.rate_float + " - " + new Date().toLocaleTimeString());
-        // console.log(new Date().toLocaleTimeString());
-        this.setState({
-          bitcoinPrice: ((1.0000 / response.data.bpi.BRL.rate_float) * 1000000).toFixed(3),
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
   getQuestion() {
     const questions = [
@@ -198,14 +208,59 @@ class QuestionPanel extends Component {
         correct: 3,
       },
     ];
+    // setTimeout(() => {
+       this.setState({ loading: false });
+    // }
+    // , 2000);
     return (questions[Math.floor((Math.random() * questions.length))]);
+  }
+  getTimer() {
+    return (<Timer onComplete={this.checkAnswer} time={this.state.time} reset={this.resetTime} />);
+  }
+  newQuestion() {
+    this.resetTime = true;
+    this.setState({ selectedAnswer: -1, question: this.getQuestion() });
+  }
+  funcaoTeste(selectedAnswerIndex) {
+    if (selectedAnswerIndex != null && selectedAnswerIndex > -1) {
+      this.setState({ selectedAnswer: selectedAnswerIndex });
+    }
+  }
+  checkAnswer() {
+    this.setState({ loading: true });
+    clearInterval(this.bitcoinTimerID);
+    if (this.state.selectedAnswer === this.state.question.correct) {
+      console.log('E a resposta está... correta');
+      setTimeout(() => {
+        this.newQuestion();
+      }, 2000);
+    } else {
+      console.log('E a resposta está... erradaaaa');
+      this.setState({ time: 0 });
+    }
+  }
+  updateBitcoinPrice() {
+    axios.get('http://api.coindesk.com/v1/bpi/currentprice/BRL.json')
+      .then((response) => {
+        // console.log(response.data.bpi.BRL.rate_float + " - " + new Date().toLocaleTimeString());
+        // console.log(new Date().toLocaleTimeString());
+        this.setState({
+          bitcoinPrice: ((1.0000 / response.data.bpi.BRL.rate_float) * 1000000).toFixed(3),
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   render() {
     return (
-      <CardPanel
-        className="blue darken-3 zero-padding-left"
-        content={this.getContent()}
-      />
+      <div>
+        {this.state.loading && <Loading />}
+        <CardPanel
+          className="blue darken-3 zero-padding-left"
+          content={this.getContent()}
+        />
+      </div>
     );
   }
 }
