@@ -49,9 +49,15 @@ class QuestionPanel extends Component {
               funcaoTeste={this.funcaoTeste}
               options={['Karl Marx', 'Tio patinhas', 'Chapolin colorado', 'Chespirito']}
             />
-            <Timer onComplete={this.checkAnswer} time={this.state.time} />
+            
             {this.state.bitcoinPrice}
             
+          </div>
+          <div className="col m3">
+            <CardPanel
+              className="yellow darken-3 center"
+              content={<Timer onComplete={this.checkAnswer} time={this.state.time} />}
+            />
           </div>
         </div>
       </div>
