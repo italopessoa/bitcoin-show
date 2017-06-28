@@ -10,13 +10,21 @@ import './QuestionPanel.css';
 class QuestionPanel extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedAnswer: -1, time: 30 };
+    this.state = { selectedAnswer: -1, time: 30, bitcoinPrice: 0 };
     this.getContent = this.getContent.bind(this);
     this.funcaoTeste = this.funcaoTeste.bind(this);
-    this.checkAnswer = this.checkAnswer;
+    this.checkAnswer = this.checkAnswer.bind(this);
+    this.updateBitcoinPrice = this.updateBitcoinPrice;
+    this.updateBitcoinPrice();
+  }
+  componentDidMount() {
+    this.bitcoinTimerID = setInterval(()=> this.updateBitcoinPrice(),(1000));
   }
   componentWillUpdate() {
     console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} time= ${this.state.time}`);
+  }
+  componentWillUnmount() {
+    clearInterval(this.bitcoinTimerID);
   }
   getContent() {
     return (
@@ -42,6 +50,8 @@ class QuestionPanel extends Component {
               options={['Karl Marx', 'Tio patinhas', 'Chapolin colorado', 'Chespirito']}
             />
             <Timer onComplete={this.checkAnswer} time={this.state.time} />
+            {this.state.bitcoinPrice}
+            
           </div>
         </div>
       </div>
@@ -53,7 +63,23 @@ class QuestionPanel extends Component {
     }
   }
   checkAnswer() {
+    console.log(this.bitcoinTimerID + 'interval id')
+    clearInterval(this.bitcoinTimerID);
     console.log('verificando resposta');
+    this.setState({ time: 0});
+  }
+  updateBitcoinPrice() {
+    axios.get('http://api.coindesk.com/v1/bpi/currentprice/BRL.json')
+      .then((response) => {
+        // console.log(response.data.bpi.BRL.rate_float + " - " + new Date().toLocaleTimeString());
+        console.log(new Date().toLocaleTimeString());
+        this.setState({
+          bitcoinPrice:((1.0000/response.data.bpi.BRL.rate_float)*1000000).toFixed(3)
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   render() {
     return (
