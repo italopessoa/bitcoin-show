@@ -18,7 +18,7 @@ class QuestionTitlePanel extends Component {
   getContent() {
     return (
       <div>
-        <h5 className="white-text">Quem é foi autor do manifesto comunista?</h5>
+        <h5 className="white-text">{this.props.question}</h5>
       </div>
     );
   }

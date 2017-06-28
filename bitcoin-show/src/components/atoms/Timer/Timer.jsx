@@ -7,20 +7,21 @@ class Timer extends Component {
     this.state = { time: props.time };
     this.tick = this.tick.bind(this);
     this.initialTime = props.time;
+    this.startTimer = this.startTimer.bind(this);
   }
-  componentDidMount() {
-    console.log('timer mount');
+  startTimer() {
     this.timerID = setInterval(() => this.tick(), 1000);
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.time !== this.initialTime && this.timerID)
-      clearInterval(this.timerID);
-
-    console.log('componentWillReceiveProps');
+  componentDidMount() {
+    this.startTimer();
   }
-  componentWillUpdate() {
-    //console.log('renderizando Timer');
-    return this.state.time > 0;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.reset) {
+      this.setState({ time: this.initialTime });
+    } else if (nextProps.time !== this.initialTime && this.timerID) {
+      console.log('STOP');
+      clearInterval(this.timerID);
+    }
   }
   tick() {
     if (this.state.time > 0) {

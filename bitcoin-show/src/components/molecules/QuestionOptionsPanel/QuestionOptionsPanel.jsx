@@ -9,8 +9,13 @@ class QuestionOptionsPanel extends Component {
     this.getClassName = this.getClassName;
     this.selectCardHandler = this.selectCardHandler.bind(this);
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.questionId !== this.props.questionId)
+    this.setState({selectedIndex: -1});
+  }
   shouldComponentUpdate(nextProps, nextState) {
     return (nextState.selectedIndex !== this.state.selectedIndex);
+      //|| (nextProps.questionId === this.props.questionId));
   }
   componentWillUpdate() {
     console.log('renderizando QuestionOptionsPanel');
