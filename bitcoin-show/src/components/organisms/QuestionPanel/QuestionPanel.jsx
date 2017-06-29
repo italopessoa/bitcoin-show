@@ -5,59 +5,13 @@ import QuestionOptionsPanel from '../../molecules/QuestionOptionsPanel/QuestionO
 import CardPanel from '../../atoms/CardPanel/CardPanel';
 import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton';
 import Timer from '../../atoms/Timer/Timer';
+import Loading from '../../atoms/Loading/Loading'
 import './QuestionPanel.css';
 
-class Loading extends Component {
-  render() {
-    return (<div className="center" style={{ width: '100%', height: '100%', backgroundColor: '#ecdede', opacity: '0.8', position: 'absolute', zIndex: '1000' }}>
-      <div style={{ zIndex: '10000', top: '40%' }} className="preloader-wrapper big active">
-        <div className="spinner-layer spinner-green">
-          <div className="circle-clipper left">
-            <div className="circle" />
-          </div><div className="gap-patch">
-            <div className="circle" />
-          </div><div className="circle-clipper right">
-            <div className="circle" />
-          </div>
-        </div>
-
-        <div className="spinner-layer spinner-black">
-          <div className="circle-clipper left">
-            <div className="circle" />
-          </div><div className="gap-patch">
-            <div className="circle" />
-          </div><div className="circle-clipper right">
-            <div className="circle" />
-          </div>
-        </div>
-
-        <div className="spinner-layer spinner-green">
-          <div className="circle-clipper left">
-            <div className="circle" />
-          </div><div className="gap-patch">
-            <div className="circle" />
-          </div><div className="circle-clipper right">
-            <div className="circle" />
-          </div>
-        </div>
-
-        <div className="spinner-layer spinner-black">
-          <div className="circle-clipper left">
-            <div className="circle" />
-          </div><div className="gap-patch">
-            <div className="circle" />
-          </div><div className="circle-clipper right">
-            <div className="circle" />
-          </div>
-        </div>
-      </div>
-    </div>);
-  }
-}
 class QuestionPanel extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedAnswer: -1, time: 30, bitcoinPrice: 0, question: this.getQuestion() };
+    this.state = { selectedAnswer: -1, time: 10, bitcoinPrice: 0, loading: false, question: null };
     this.getContent = this.getContent.bind(this);
     this.funcaoTeste = this.funcaoTeste.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -66,6 +20,12 @@ class QuestionPanel extends Component {
     this.updateBitcoinPrice();
     this.getTimer = this.getTimer.bind(this);
     this.resetTime = false;
+  }
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps.shoudSkipQuestion);
+  }
+  componentWillMount() {
+    this.setState({ question: this.getQuestion() });
   }
   componentDidMount() {
     this.bitcoinTimerID = setInterval(() => this.updateBitcoinPrice(), (60000));
@@ -209,7 +169,7 @@ class QuestionPanel extends Component {
       },
     ];
     // setTimeout(() => {
-       this.setState({ loading: false });
+    this.setState({ loading: false });
     // }
     // , 2000);
     return (questions[Math.floor((Math.random() * questions.length))]);
@@ -233,10 +193,12 @@ class QuestionPanel extends Component {
       console.log('E a resposta está... correta');
       setTimeout(() => {
         this.newQuestion();
-      }, 2000);
+      }, 1000);
     } else {
       console.log('E a resposta está... erradaaaa');
-      this.setState({ time: 0 });
+      setTimeout(() => {
+        this.setState({ loading: false, selectedAnswer: -1});
+      }, 1000);
     }
   }
   updateBitcoinPrice() {

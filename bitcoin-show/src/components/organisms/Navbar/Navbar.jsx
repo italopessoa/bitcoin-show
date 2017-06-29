@@ -2,11 +2,15 @@
 import React from 'react';
 import Toolbar from '../../molecules/Toolbar/Toolbar';
 
-const Navbar = () => (
+const Navbar = props => (
   <nav className="blue darken-3">
     <div className="nav-wrapper">
       <div className="container">
-        <Toolbar />
+        <Toolbar
+          cardsOnClick={props.cardsOnClick}
+          crowdOnClick={props.crowdOnClick}
+          passOnClick={props.passOnClick}
+        />
       </div>
     </div>
   </nav>
