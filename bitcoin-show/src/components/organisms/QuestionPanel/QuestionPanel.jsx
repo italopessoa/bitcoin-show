@@ -5,13 +5,13 @@ import QuestionOptionsPanel from '../../molecules/QuestionOptionsPanel/QuestionO
 import CardPanel from '../../atoms/CardPanel/CardPanel';
 import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton';
 import Timer from '../../atoms/Timer/Timer';
-import Loading from '../../atoms/Loading/Loading'
+import Loading from '../../atoms/Loading/Loading';
 import './QuestionPanel.css';
 
 class QuestionPanel extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedAnswer: -1, time: 10, bitcoinPrice: 0, loading: false, question: null };
+    this.state = { selectedAnswer: -1, time: 30, bitcoinPrice: 0, loading: false, question: null };
     this.getContent = this.getContent.bind(this);
     this.funcaoTeste = this.funcaoTeste.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -22,21 +22,32 @@ class QuestionPanel extends Component {
     this.resetTime = false;
   }
   componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.shoudSkipQuestion);
+    console.log('CARDPANEL: componentWillReceiveProps');
+    { nextProps.shouldSkipQuestion && this.newQuestion(); }
   }
   componentWillMount() {
+    console.log('CARDPANEL: componentWillMount');
     this.setState({ question: this.getQuestion() });
   }
   componentDidMount() {
+    console.log('CARDPANEL: componentDidMount');
     this.bitcoinTimerID = setInterval(() => this.updateBitcoinPrice(), (60000));
   }
   componentWillUpdate() {
-    console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} time= ${this.state.time}`);
+    console.log('CARDPANEL: componentWillUpdate');
+    // console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} time= ${this.state.time}`);
+  }
+  shouldComponentUpdate() {
+    console.log('CARDPANEL: shouldComponentUpdate');
+
+    return true;
   }
   componentDidUpdate() {
+    console.log('CARDPANEL: componentDidUpdate');
     this.resetTime = false;
   }
   componentWillUnmount() {
+    console.log('CARDPANEL: componentWillUnmount');
     clearInterval(this.bitcoinTimerID);
   }
   getContent() {
@@ -197,7 +208,7 @@ class QuestionPanel extends Component {
     } else {
       console.log('E a resposta está... erradaaaa');
       setTimeout(() => {
-        this.setState({ loading: false, selectedAnswer: -1});
+        this.setState({ loading: false, selectedAnswer: -1 });
       }, 1000);
     }
   }

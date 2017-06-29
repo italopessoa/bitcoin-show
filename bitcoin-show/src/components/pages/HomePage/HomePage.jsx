@@ -13,14 +13,17 @@ class HomePage extends Component {
     console.log('mostrar cartas');
   }
   pass() {
-    console.log('pular pergunta');
-    //this.setState({ skipQuestion: true });
+    console.log(' HOMEPAGE: pass');
+    this.setState({ skipQuestion: true });
   }
   crowd() {
     console.log('opiniao do povo');
   }
-  componentDidUpdate() {
-    this.setState({ skipQuestion: false });
+  componentDidUpdate(prevState) {
+    console.log(' HOMEPAGE: componentDidUpdate');
+    if (prevState.skipQuestion) {
+      this.setState({ skipQuestion: false });
+    }
   }
   render() {
     return (
@@ -35,7 +38,7 @@ class HomePage extends Component {
         <main>
           <div className="row">
             <div className="col l8 push-l2">
-              <QuestionPanel />
+              <QuestionPanel shouldSkipQuestion={this.state.skipQuestion} />
             </div>
           </div>
         </main>
@@ -44,4 +47,4 @@ class HomePage extends Component {
   }
 }
 
-  export default HomePage;
+export default HomePage;
