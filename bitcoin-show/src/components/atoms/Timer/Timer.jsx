@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Timer.css';
 
 class Timer extends Component {
@@ -8,9 +9,6 @@ class Timer extends Component {
     this.tick = this.tick.bind(this);
     this.initialTime = props.time;
     this.startTimer = this.startTimer.bind(this);
-  }
-  startTimer() {
-    this.timerID = setInterval(() => this.tick(), 1000);
   }
   componentDidMount() {
     this.startTimer();
@@ -22,6 +20,9 @@ class Timer extends Component {
       console.log('STOP');
       clearInterval(this.timerID);
     }
+  }
+  startTimer() {
+    this.timerID = setInterval(() => this.tick(), 1000);
   }
   tick() {
     if (this.state.time > 0) {
@@ -41,3 +42,13 @@ class Timer extends Component {
 }
 
 export default Timer;
+
+Timer.propTypes = {
+  reset: PropTypes.bool,
+  onComplete: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
+};
+
+Timer.defaultProps = {
+  reset: false,
+};

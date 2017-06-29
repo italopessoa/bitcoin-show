@@ -6,33 +6,33 @@ import QuestionPanel from '../../organisms/QuestionPanel/QuestionPanel';
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { pass: 3, cards: 1, crowd: 1, skipQuestion: false };
-    this.pass = this.pass.bind(this);
-  }
-  cards() {
-    console.log('mostrar cartas');
-  }
-  pass() {
-    console.log(' HOMEPAGE: pass');
-    this.setState({ skipQuestion: true });
-  }
-  crowd() {
-    console.log('opiniao do povo');
+    this.state = { skip: 3, cards: 1, help: 1, shouldSkipQuestion: false };
+    this.skipQuestion = this.skipQuestion.bind(this);
   }
   componentDidUpdate(prevState) {
     console.log(' HOMEPAGE: componentDidUpdate');
-    if (prevState.skipQuestion) {
-      this.setState({ skipQuestion: false });
+    if (prevState.shouldSkipQuestion) {
+      this.setState({ shouldSkipQuestion: false });
     }
+  }
+  skipQuestion() {
+    console.log(' HOMEPAGE: skipQuestion()');
+    this.setState({ shouldSkipQuestion: true });
+  }
+  showCards() {
+    console.log('mostrar cartas');
+  }
+  showHelp() {
+    console.log('opiniao do povo');
   }
   render() {
     return (
       <div>
         <header>
           <Navbar
-            cardsOnClick={this.cards}
-            crowdOnClick={this.crowd}
-            passOnClick={this.pass}
+            showCardsOnClick={this.showCards}
+            showHelpOnClick={this.showHelp}
+            skipQuestionOnClick={this.skipQuestion}
           />
         </header>
         <main>

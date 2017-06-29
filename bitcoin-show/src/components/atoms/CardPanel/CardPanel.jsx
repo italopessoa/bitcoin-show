@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './CardPanel.css';
 
 class CardPanel extends Component {
@@ -7,7 +8,7 @@ class CardPanel extends Component {
     this.onClickEvent = this.onClickEvent.bind(this);
   }
   onClickEvent() {
-    return this.props.onClickHandler ? this.props.onClickHandler(this.props.onClickArgs) : null;
+    return this.props.onClickHandler ? this.props.onClickHandler(this.props.onClickArgs) : {};
   }
   render() {
     return (
@@ -22,3 +23,18 @@ class CardPanel extends Component {
 }
 
 export default CardPanel;
+
+CardPanel.propTypes = {
+  id: PropTypes.string,
+  content: PropTypes.element.isRequired,
+  className: PropTypes.string,
+  onClickHandler: PropTypes.func,
+  // onClickArgs: PropTypes.any,
+};
+
+CardPanel.defaultProps = {
+  id: '',
+  className: '',
+  onClickHandler: null,
+  onClickArgs: {},
+};

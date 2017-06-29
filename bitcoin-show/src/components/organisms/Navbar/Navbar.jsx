@@ -7,13 +7,12 @@ const Navbar = props => (
     <div className="nav-wrapper">
       <div className="container">
         <Toolbar
-          cardsOnClick={props.cardsOnClick}
-          crowdOnClick={props.crowdOnClick}
-          passOnClick={props.passOnClick}
+          cardsOnClick={props.showCardsOnClick}
+          crowdOnClick={props.showHelpOnClick}
+          passOnClick={props.skipQuestionOnClick}
         />
       </div>
     </div>
-  </nav>
-);
+  </nav>);
 
 export default Navbar;

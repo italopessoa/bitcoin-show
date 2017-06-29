@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import QuestionTitlePanel from '../../molecules/QuestionTitlePanel/QuestionTitlePanel';
 import QuestionOptionsPanel from '../../molecules/QuestionOptionsPanel/QuestionOptionsPanel';
 import CardPanel from '../../atoms/CardPanel/CardPanel';
@@ -13,17 +14,13 @@ class QuestionPanel extends Component {
     super(props);
     this.state = { selectedAnswer: -1, time: 30, bitcoinPrice: 0, loading: false, question: null };
     this.getContent = this.getContent.bind(this);
-    this.funcaoTeste = this.funcaoTeste.bind(this);
+    this.onCardSelected = this.onCardSelected.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
     this.updateBitcoinPrice = this.updateBitcoinPrice;
     this.newQuestion = this.newQuestion.bind(this);
     this.updateBitcoinPrice();
     this.getTimer = this.getTimer.bind(this);
     this.resetTime = false;
-  }
-  componentWillReceiveProps(nextProps) {
-    console.log('CARDPANEL: componentWillReceiveProps');
-    { nextProps.shouldSkipQuestion && this.newQuestion(); }
   }
   componentWillMount() {
     console.log('CARDPANEL: componentWillMount');
@@ -33,14 +30,20 @@ class QuestionPanel extends Component {
     console.log('CARDPANEL: componentDidMount');
     this.bitcoinTimerID = setInterval(() => this.updateBitcoinPrice(), (60000));
   }
-  componentWillUpdate() {
-    console.log('CARDPANEL: componentWillUpdate');
-    // console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} time= ${this.state.time}`);
+  componentWillReceiveProps(nextProps) {
+    console.log('CARDPANEL: componentWillReceiveProps');
+    if (nextProps.shouldSkipQuestion) {
+      this.newQuestion();
+    }
   }
   shouldComponentUpdate() {
     console.log('CARDPANEL: shouldComponentUpdate');
-
     return true;
+  }
+  componentWillUpdate() {
+    console.log('CARDPANEL: componentWillUpdate');
+    // console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} 
+    // time= ${this.state.time}`);
   }
   componentDidUpdate() {
     console.log('CARDPANEL: componentDidUpdate');
@@ -49,6 +52,11 @@ class QuestionPanel extends Component {
   componentWillUnmount() {
     console.log('CARDPANEL: componentWillUnmount');
     clearInterval(this.bitcoinTimerID);
+  }
+  onCardSelected(selectedAnswerIndex) {
+    if (selectedAnswerIndex != null && selectedAnswerIndex > -1) {
+      this.setState({ selectedAnswer: selectedAnswerIndex });
+    }
   }
   getContent() {
     return (
@@ -73,7 +81,7 @@ class QuestionPanel extends Component {
         <div className="row ">
           <div className="col m9 s11">
             <QuestionOptionsPanel
-              funcaoTeste={this.funcaoTeste}
+              onCardSelected={this.onCardSelected}
               options={this.state.question.options}
               questionId={this.state.question.id}
             />
@@ -89,91 +97,91 @@ class QuestionPanel extends Component {
   getQuestion() {
     const questions = [
       {
-        id: '1',
+        id: 1,
         question: 'Qual das siglas significa quilômetro?',
         options: ['KO', 'KM', 'KK', 'KG'],
         correct: 1,
       },
       {
-        id: '2',
+        id: 2,
         question: 'Quem foi autor do manifesto comunista?',
         options: ['Lenin', 'Gorbatchov', 'Karl Marx', 'Allan Kardec'],
         correct: 2,
       },
       {
-        id: '3',
+        id: 3,
         question: 'Que compositora brasileira fez sucesso com a sua marcinha \'Abre alas\'?',
         options: ['Chiquita Bacana', 'Chiquinha Gonzaga', 'Chica da Silva', 'Chiquititas'],
         correct: 0,
       },
       {
-        id: '4',
+        id: 4,
         question: 'Qual é o animal que representao signo de touro?',
         options: ['Hipopótamo', 'Cavalo', 'Touro', 'Galo'],
         correct: 2,
       },
       {
-        id: '5',
+        id: 5,
         question: 'Como é chamada a doença que está clareando a pele de Michael Jackson?',
         options: ['Astigmatismo', 'Pedofilia', 'Vitiligo', 'Bruxismo'],
         correct: 2,
       },
       {
-        id: '6',
+        id: 6,
         question: 'Quem é o parceiro de aventuras de Dom Quixote?',
         options: ['Sancho Pança', 'Guilherme Tell', 'Sigmund Freud', 'Lancelot'],
         correct: 0,
       },
       {
-        id: '7',
+        id: 7,
         question: 'Violoncelo é um instrumento de:',
         options: ['Sopro', 'Cordas', 'Percussão', 'Repercussão'],
         correct: 1,
       },
       {
-        id: '8',
+        id: 8,
         question: 'Que médico realizou a primeira cirgurgia de pont de safena no Brasil?',
         options: ['Dr. Zerbini', 'Dr. Fritz', 'Dr. Jatene', 'Dr. Calligari'],
         correct: 2,
       },
       {
-        id: '9',
+        id: 9,
         question: 'Quem é a mulher do Tarzan?',
         options: ['Diana', 'Louis Lane', 'Jane', 'Chita'],
         correct: 2,
       },
       {
-        id: '10',
+        id: 10,
         question: 'Que profissional conduz o elevador?',
         options: ['Condutor', 'Elevadorista', 'Ascensorista', 'Botonista'],
         correct: 2,
       },
       {
-        id: '11',
+        id: 11,
         question: 'Como é chamado o homem sedutor o conquistador irresistível:',
         options: ['Dom Juan', 'Dom Dóca', 'Dom Galã', 'Dom Divino'],
         correct: 0,
       },
       {
-        id: '12',
+        id: 12,
         question: 'Que fruta é ressecada para se tornar ameixa seca?',
         options: ['Ameixa', 'Uva', 'Pêssego', 'Melão'],
         correct: 0,
       },
       {
-        id: '13',
+        id: 13,
         question: 'O que têm em comum rosa lilás e azul?',
         options: ['São vinhos', 'São flores', 'São cores', 'Sâo ilhas'],
         correct: 2,
       },
       {
-        id: '14',
+        id: 14,
         question: 'Fôrma baguete e francês são:',
         options: ['Tipos de pão', 'Provas olímpicas', 'Línguas românticas', 'Queijos'],
         correct: 0,
       },
       {
-        id: '15',
+        id: 15,
         question: 'O que é ornitorrinco?',
         options: ['Vulcão', 'Rio', 'Legume', 'Animal'],
         correct: 3,
@@ -191,11 +199,6 @@ class QuestionPanel extends Component {
   newQuestion() {
     this.resetTime = true;
     this.setState({ selectedAnswer: -1, question: this.getQuestion() });
-  }
-  funcaoTeste(selectedAnswerIndex) {
-    if (selectedAnswerIndex != null && selectedAnswerIndex > -1) {
-      this.setState({ selectedAnswer: selectedAnswerIndex });
-    }
   }
   checkAnswer() {
     this.setState({ loading: true });
@@ -239,3 +242,11 @@ class QuestionPanel extends Component {
 }
 
 export default QuestionPanel;
+
+QuestionPanel.propTypes = {
+  shouldSkipQuestion: PropTypes.bool,
+};
+
+QuestionPanel.defaultProps = {
+  shouldSkipQuestion: false,
+};

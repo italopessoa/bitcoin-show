@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CardPanel from '../../atoms/CardPanel/CardPanel';
 // import IconButton from '../../molecules/IconButton/IconButton.jsx'
 import './QuestionTitlePanel.css';
@@ -34,3 +35,7 @@ class QuestionTitlePanel extends Component {
 }
 
 export default QuestionTitlePanel;
+
+QuestionTitlePanel.propTypes = {
+  question: PropTypes.string.isRequired,
+};

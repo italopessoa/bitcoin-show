@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import CardPanel from '../../atoms/CardPanel/CardPanel.jsx';
+import PropTypes from 'prop-types';
+import CardPanel from '../../atoms/CardPanel/CardPanel';
 import './QuestionOptionsPanel.css';
 
 class QuestionOptionsPanel extends Component {
@@ -10,8 +11,9 @@ class QuestionOptionsPanel extends Component {
     this.selectCardHandler = this.selectCardHandler.bind(this);
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.questionId !== this.props.questionId)
-    this.setState({selectedIndex: -1});
+    if (nextProps.questionId !== this.props.questionId) {
+      this.setState({ selectedIndex: -1 });
+    }
   }
   shouldComponentUpdate(nextProps, nextState) {
     console.log(`${nextState.selectedIndex}  e  ${this.state.selectedIndex}`);
@@ -25,7 +27,7 @@ class QuestionOptionsPanel extends Component {
   }
   selectCardHandler(index) {
     this.setState({ selectedIndex: index });
-    this.props.funcaoTeste(index);
+    this.props.onCardSelected(index);
   }
   render() {
     return (
@@ -48,3 +50,9 @@ class QuestionOptionsPanel extends Component {
 }
 
 export default QuestionOptionsPanel;
+
+QuestionOptionsPanel.propTypes = {
+  questionId: PropTypes.number.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onCardSelected: PropTypes.func.isRequired,
+};
