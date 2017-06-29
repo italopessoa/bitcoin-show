@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Log from '../../utils/Log';
 import './Timer.css';
 
 class Timer extends Component {
   constructor(props) {
     super(props);
+    this.log = new Log(this.constructor.name);
     this.state = { time: props.time };
     this.tick = this.tick.bind(this);
     this.initialTime = props.time;
@@ -17,7 +19,7 @@ class Timer extends Component {
     if (nextProps.reset) {
       this.setState({ time: this.initialTime });
     } else if (nextProps.time !== this.initialTime && this.timerID) {
-      console.log('STOP');
+      this.log.info('STOP');
       clearInterval(this.timerID);
     }
   }

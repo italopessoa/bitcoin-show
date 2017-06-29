@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../../atoms/Icon/Icon';
+import Log from '../../utils/Log';
 import './ScaleIconButton.css';
 
 class ScaleIconButton extends Component {
+  constructor(props) {
+    super(props);
+    this.log = new Log(this.constructor.name);
+  }
   shouldComponentUpdate(nextProps) {
     return nextProps.scaleIn !== this.props.scaleIn;
   }
   componentWillUpdate() {
-    console.log('renderizando ScaleIconButton');
+    this.log.info('renderizando ScaleIconButton');
   }
   getClassName() {
     return `${this.props.className} ${(this.props.scaleIn ? ' scale-transition scale-in' : ' scale-transition scale-out')}`;

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CardPanel from '../../atoms/CardPanel/CardPanel';
+import Log from '../../utils/Log';
 import './QuestionOptionsPanel.css';
 
 class QuestionOptionsPanel extends Component {
   constructor(props) {
     super(props);
+    this.log = new Log(this.constructor.name);
     this.state = { selectedIndex: -1 };
     this.getClassName = this.getClassName;
     this.selectCardHandler = this.selectCardHandler.bind(this);
@@ -19,7 +21,7 @@ class QuestionOptionsPanel extends Component {
     return (nextState.selectedIndex !== this.state.selectedIndex) || nextState.selectedIndex === -1;
   }
   componentWillUpdate() {
-    console.log('renderizando QuestionOptionsPanel');
+    this.log.info('renderizando QuestionOptionsPanel');
   }
   getClassName(index) {
     return `red white-text touchable waves-effect waves-light  ${this.state.selectedIndex === index ? 'selected-answer' : ''}`;

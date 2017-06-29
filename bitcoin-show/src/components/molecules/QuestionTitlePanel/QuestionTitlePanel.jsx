@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CardPanel from '../../atoms/CardPanel/CardPanel';
-// import IconButton from '../../molecules/IconButton/IconButton.jsx'
+import Log from '../../utils/Log';
 import './QuestionTitlePanel.css';
 
 class QuestionTitlePanel extends Component {
   constructor(props) {
     super(props);
-  //   this.state = {questionTitle : 'Quem é foi autor do manifesto comunista?'}
+    this.log = new Log(this.constructor.name);
     this.getContent = this.getContent.bind(this);
   }
   // shouldComponentUpdate = (nexProps, prevState) => {
   //   return prevState.questionTitle === 'Essa é a nova pergunta?'
   // }
   componentWillUpdate() {
-    console.log('renderizando QuestionTitlePanel');
+    this.log.info('renderizando QuestionTitlePanel');
   }
   getContent() {
     return (

@@ -7,11 +7,14 @@ import CardPanel from '../../atoms/CardPanel/CardPanel';
 import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton';
 import Timer from '../../atoms/Timer/Timer';
 import Loading from '../../atoms/Loading/Loading';
+import Log from '../../utils/Log';
+
 import './QuestionPanel.css';
 
 class QuestionPanel extends Component {
   constructor(props) {
     super(props);
+    this.log = new Log(this.constructor.name);
     this.state = { selectedAnswer: -1, time: 30, bitcoinPrice: 0, loading: false, question: null };
     this.getContent = this.getContent.bind(this);
     this.onCardSelected = this.onCardSelected.bind(this);
@@ -23,34 +26,34 @@ class QuestionPanel extends Component {
     this.resetTime = false;
   }
   componentWillMount() {
-    console.log('CARDPANEL: componentWillMount');
+    this.log.info('componentWillMount');
     this.setState({ question: this.getQuestion() });
   }
   componentDidMount() {
-    console.log('CARDPANEL: componentDidMount');
+    this.log.info('componentDidMount');
     this.bitcoinTimerID = setInterval(() => this.updateBitcoinPrice(), (60000));
   }
   componentWillReceiveProps(nextProps) {
-    console.log('CARDPANEL: componentWillReceiveProps');
+    this.log.info('componentWillReceiveProps');
     if (nextProps.shouldSkipQuestion) {
       this.newQuestion();
     }
   }
   shouldComponentUpdate() {
-    console.log('CARDPANEL: shouldComponentUpdate');
+    this.log.info('shouldComponentUpdate');
     return true;
   }
   componentWillUpdate() {
-    console.log('CARDPANEL: componentWillUpdate');
+    this.log.info('componentWillUpdate');
     // console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} 
     // time= ${this.state.time}`);
   }
   componentDidUpdate() {
-    console.log('CARDPANEL: componentDidUpdate');
+    this.log.info('componentDidUpdate');
     this.resetTime = false;
   }
   componentWillUnmount() {
-    console.log('CARDPANEL: componentWillUnmount');
+    this.log.info('componentWillUnmount');
     clearInterval(this.bitcoinTimerID);
   }
   onCardSelected(selectedAnswerIndex) {
@@ -204,12 +207,12 @@ class QuestionPanel extends Component {
     this.setState({ loading: true });
     clearInterval(this.bitcoinTimerID);
     if (this.state.selectedAnswer === this.state.question.correct) {
-      console.log('E a resposta está... correta');
+      this.log.info('E a resposta está... correta');
       setTimeout(() => {
         this.newQuestion();
       }, 1000);
     } else {
-      console.log('E a resposta está... erradaaaa');
+      this.log.info('E a resposta está... erradaaaa');
       setTimeout(() => {
         this.setState({ loading: false, selectedAnswer: -1 });
       }, 1000);
@@ -226,7 +229,7 @@ class QuestionPanel extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        this.log.error(error);
       });
   }
   render() {
