@@ -16,8 +16,12 @@ class Timer extends Component {
     this.startTimer();
   }
   componentWillReceiveProps(nextProps) {
+    this.log.error(nextProps.reset);
     if (nextProps.reset) {
+      this.log.info('set statee **********************');
       this.setState({ time: this.initialTime });
+      clearInterval(this.timerID);
+      this.startTimer();
     } else if (nextProps.time !== this.initialTime && this.timerID) {
       this.log.info('STOP');
       clearInterval(this.timerID);
@@ -32,6 +36,7 @@ class Timer extends Component {
         time: prevState.time - 1,
       }));
     } else {
+      this.log.error('stop'+this.state.time);
       clearInterval(this.timerID);
       this.props.onComplete();
     }

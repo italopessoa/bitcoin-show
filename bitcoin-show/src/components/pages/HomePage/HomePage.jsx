@@ -10,6 +10,9 @@ class HomePage extends Component {
     this.log = new Log(this.constructor.name);
     this.state = { skip: 3, cards: 1, help: 1, shouldSkipQuestion: false };
     this.skipQuestion = this.skipQuestion.bind(this);
+    this.skipQuestion = this.skipQuestion.bind(this);
+    this.showCards = this.showCards.bind(this);
+    this.showHelp = this.showHelp.bind(this);
   }
   componentDidUpdate(prevState) {
     this.log.info(' HOMEPAGE: componentDidUpdate');
@@ -23,6 +26,7 @@ class HomePage extends Component {
   }
   showCards() {
     this.log.info('mostrar cartas');
+    this.setState({ shouldShowCards: true });
   }
   showHelp() {
     this.log.info('opiniao do povo');
@@ -40,7 +44,10 @@ class HomePage extends Component {
         <main>
           <div className="row">
             <div className="col l8 push-l2">
-              <QuestionPanel shouldSkipQuestion={this.state.skipQuestion} />
+              <QuestionPanel
+                shouldSkipQuestion={this.state.shouldSkipQuestion}
+                shouldShowCards={this.state.shouldShowCards}
+              />
             </div>
           </div>
         </main>

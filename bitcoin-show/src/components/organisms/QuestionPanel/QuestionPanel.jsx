@@ -7,6 +7,7 @@ import CardPanel from '../../atoms/CardPanel/CardPanel';
 import ScaleIconButton from '../../molecules/ScaleIconButton/ScaleIconButton';
 import Timer from '../../atoms/Timer/Timer';
 import Loading from '../../atoms/Loading/Loading';
+import Cards from '../../atoms/Cards/Cards';
 import Log from '../../utils/Log';
 
 import './QuestionPanel.css';
@@ -15,7 +16,7 @@ class QuestionPanel extends Component {
   constructor(props) {
     super(props);
     this.log = new Log(this.constructor.name);
-    this.state = { selectedAnswer: -1, time: 30, bitcoinPrice: 0, loading: false, question: null };
+    this.state = { selectedAnswer: -1, time: 10, bitcoinPrice: 0, loading: false, question: null };
     this.getContent = this.getContent.bind(this);
     this.onCardSelected = this.onCardSelected.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -55,6 +56,7 @@ class QuestionPanel extends Component {
   componentWillUnmount() {
     this.log.info('componentWillUnmount');
     clearInterval(this.bitcoinTimerID);
+    this.log.error('clearInterval');
   }
   onCardSelected(selectedAnswerIndex) {
     if (selectedAnswerIndex != null && selectedAnswerIndex > -1) {
@@ -236,6 +238,7 @@ class QuestionPanel extends Component {
     return (
       <div>
         {this.state.loading && <Loading />}
+        {this.props.shouldShowCards && <Cards />}
         <CardPanel
           className="blue darken-3 zero-padding-left"
           content={this.getContent()}
@@ -249,8 +252,10 @@ export default QuestionPanel;
 
 QuestionPanel.propTypes = {
   shouldSkipQuestion: PropTypes.bool,
+  shouldShowCards: PropTypes.bool,
 };
 
 QuestionPanel.defaultProps = {
   shouldSkipQuestion: false,
+  shouldShowCards: false,
 };
