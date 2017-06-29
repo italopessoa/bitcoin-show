@@ -216,12 +216,13 @@ class QuestionPanel extends Component {
     }
   }
   updateBitcoinPrice() {
-    axios.get('http://api.coindesk.com/v1/bpi/currentprice/BRL.json')
+    //https://www.cryptocompare.com/api/#introduction
+    axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=USD,BRL')
       .then((response) => {
         // console.log(response.data.bpi.BRL.rate_float + " - " + new Date().toLocaleTimeString());
         // console.log(new Date().toLocaleTimeString());
         this.setState({
-          bitcoinPrice: ((1.0000 / response.data.bpi.BRL.rate_float) * 1000000).toFixed(3),
+          bitcoinPrice: ((1.0000 / response.data.BTC.BRL) * 1000000).toFixed(3),
         });
       })
       .catch((error) => {

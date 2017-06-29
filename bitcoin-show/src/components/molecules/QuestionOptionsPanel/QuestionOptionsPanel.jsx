@@ -16,7 +16,6 @@ class QuestionOptionsPanel extends Component {
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(`${nextState.selectedIndex}  e  ${this.state.selectedIndex}`);
     return (nextState.selectedIndex !== this.state.selectedIndex) || nextState.selectedIndex === -1;
   }
   componentWillUpdate() {
