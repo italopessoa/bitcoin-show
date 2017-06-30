@@ -38,15 +38,21 @@ class HomePage extends Component {
     }
   }
   showHelp() {
-    this.log.info('opiniao do povo');
+    if (this.state.help > 0) {
+      this.log.info('opiniao do povo');
+      this.setState(prevState => ({ help: prevState.help - 1 }));
+    }
   }
   render() {
     return (
       <div>
         <header>
           <Navbar
+            cardsDataBadge={this.state.cards}
             showCardsOnClick={this.showCards}
+            crowdDataBadge={this.state.help}
             showHelpOnClick={this.showHelp}
+            skipDataBadge={this.state.skip}
             skipQuestionOnClick={this.skipQuestion}
           />
         </header>

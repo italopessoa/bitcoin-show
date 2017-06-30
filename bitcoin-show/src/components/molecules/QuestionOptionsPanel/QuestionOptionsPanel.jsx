@@ -18,7 +18,7 @@ class QuestionOptionsPanel extends Component {
     } else if (nextProps.removeWrongOptions > 0) {
       this.wrongOptions = [];
       let x = nextProps.removeWrongOptions;
-      while (x > -1) {
+      while (x > 0) {
         if (x !== nextProps.correctAnswer) {
           this.wrongOptions.push(x);
         }

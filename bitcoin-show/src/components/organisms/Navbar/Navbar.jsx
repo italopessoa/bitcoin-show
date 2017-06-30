@@ -7,8 +7,13 @@ const Navbar = props => (
     <div className="nav-wrapper">
       <div className="container">
         <Toolbar
+          cardsDataBadge={props.cardsDataBadge}
           cardsOnClick={props.showCardsOnClick}
+
+          crowdDataBadge={props.crowdDataBadge}
           crowdOnClick={props.showHelpOnClick}
+          
+          skipDataBadge={props.skipDataBadge}
           passOnClick={props.skipQuestionOnClick}
         />
       </div>
