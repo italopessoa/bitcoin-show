@@ -21,8 +21,12 @@ class HomePage extends Component {
     }
   }
   skipQuestion() {
-    this.log.info(' HOMEPAGE: skipQuestion()');
-    this.setState({ shouldSkipQuestion: true });
+    if (this.state.skip > 0) {
+      this.log.info(' HOMEPAGE: skipQuestion()');
+      this.setState(prevState => (
+        { shouldSkipQuestion: true, skip: prevState.skip - 1 }
+      ));
+    }
   }
   showCards() {
     if (this.state.cards > 0) {
