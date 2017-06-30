@@ -22,6 +22,7 @@ class QuestionPanel extends Component {
     this.checkAnswer = this.checkAnswer.bind(this);
     this.updateBitcoinPrice = this.updateBitcoinPrice;
     this.newQuestion = this.newQuestion.bind(this);
+    this.cardNumberSelected = this.cardNumberSelected.bind(this);
     this.updateBitcoinPrice();
     this.getTimer = this.getTimer.bind(this);
     this.resetTime = false;
@@ -234,11 +235,14 @@ class QuestionPanel extends Component {
         this.log.error(error);
       });
   }
+  cardNumberSelected(number) {
+    this.log.info('carta selecionada ' + number);
+  }
   render() {
     return (
       <div>
         {this.state.loading && <Loading />}
-        {this.props.shouldShowCards && <Cards />}
+        {this.props.shouldShowCards && <Cards onComplete={this.cardNumberSelected} />}
         <CardPanel
           className="blue darken-3 zero-padding-left"
           content={this.getContent()}

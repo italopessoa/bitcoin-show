@@ -8,11 +8,12 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.log = new Log(this.constructor.name);
-    this.state = { skip: 3, cards: 1, help: 1, shouldSkipQuestion: false };
+    this.state = { skip: 3, cards: 1, help: 1, shouldSkipQuestion: false, isCardsAvailable: true };
     this.skipQuestion = this.skipQuestion.bind(this);
     this.skipQuestion = this.skipQuestion.bind(this);
     this.showCards = this.showCards.bind(this);
     this.showHelp = this.showHelp.bind(this);
+
   }
   componentDidUpdate(prevState) {
     this.log.info(' HOMEPAGE: componentDidUpdate');
@@ -26,7 +27,7 @@ class HomePage extends Component {
   }
   showCards() {
     this.log.info('mostrar cartas');
-    this.setState({ shouldShowCards: true });
+    this.setState({ shouldShowCards: true, isCardsAvailable: false });
   }
   showHelp() {
     this.log.info('opiniao do povo');
@@ -36,7 +37,7 @@ class HomePage extends Component {
       <div>
         <header>
           <Navbar
-            showCardsOnClick={this.showCards}
+            showCardsOnClick={this.showCards} isCardsAvailable={this.state.isCardsAvailable}
             showHelpOnClick={this.showHelp}
             skipQuestionOnClick={this.skipQuestion}
           />

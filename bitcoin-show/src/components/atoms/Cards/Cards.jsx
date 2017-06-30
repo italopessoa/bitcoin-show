@@ -6,13 +6,22 @@ class Cards extends Component {
     super(props);
     this.state = { cards: [-1, -1, -1, -1] };
     this.getRandomNumber = this.getRandomNumber.bind(this);
+    this.cardIdSelected = false;
+    this.number = -1;
+  }
+  componentWillUpdate() {
+    setTimeout(() => this.props.onComplete(this.number),700);
   }
   getRandomNumber(x) {
-    const c = [];
-    for (let index = 0; index < this.state.cards.length; index++) {
-      c.push((index === x ? (Math.floor((Math.random() * 4))) : -1));
+    if (!this.cardIdSelected) {
+      const c = [];
+      this.number =(Math.floor((Math.random() * 4)));
+      for (let index = 0; index < this.state.cards.length; index++) {
+        c.push((index === x ? this.number : -1));
+      }
+      this.setState({ cards: c });
+      this.cardIdSelected = true;
     }
-    this.setState({ cards: c });
   }
   createCard(index) {
     return (<div key={index} className="col s5 m5 l5" onClick={() => this.getRandomNumber(index)}>
