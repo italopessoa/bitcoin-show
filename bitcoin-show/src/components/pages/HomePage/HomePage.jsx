@@ -13,7 +13,6 @@ class HomePage extends Component {
     this.skipQuestion = this.skipQuestion.bind(this);
     this.showCards = this.showCards.bind(this);
     this.showHelp = this.showHelp.bind(this);
-
   }
   componentDidUpdate(prevState) {
     this.log.info(' HOMEPAGE: componentDidUpdate');
@@ -26,8 +25,13 @@ class HomePage extends Component {
     this.setState({ shouldSkipQuestion: true });
   }
   showCards() {
-    this.log.info('mostrar cartas');
-    this.setState({ shouldShowCards: true, isCardsAvailable: false });
+    if (this.state.cards > 0) {
+      this.log.info('mostrar cartas');
+      this.setState(prevState => ({ shouldShowCards: true, cards: prevState.cards - 1 }));
+    } else if (this.state.shouldShowCards) {
+      this.log.info('CARTAS ZERADAS');
+      this.setState({ shouldShowCards: false });
+    }
   }
   showHelp() {
     this.log.info('opiniao do povo');
@@ -37,7 +41,7 @@ class HomePage extends Component {
       <div>
         <header>
           <Navbar
-            showCardsOnClick={this.showCards} isCardsAvailable={this.state.isCardsAvailable}
+            showCardsOnClick={this.showCards}
             showHelpOnClick={this.showHelp}
             skipQuestionOnClick={this.skipQuestion}
           />
@@ -48,6 +52,8 @@ class HomePage extends Component {
               <QuestionPanel
                 shouldSkipQuestion={this.state.shouldSkipQuestion}
                 shouldShowCards={this.state.shouldShowCards}
+                cardsCallback={this.showCards}
+                removeWrongOptions={this.state.cards}
               />
             </div>
           </div>

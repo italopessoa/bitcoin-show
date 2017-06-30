@@ -9,9 +9,8 @@ class Toolbar extends Component {
   }
   getItems() {
     const items = [];
-    {
-      this.props.isCardsAvailable && items.push(<IconButton onClick={this.props.cardsOnClick} className="material-icons" icon="view_carousel" />);
-    }
+
+    items.push(<IconButton onClick={this.props.cardsOnClick} className="material-icons" icon="view_carousel" />);
     items.push(<IconButton className="fa fa fa-graduation-cap" />);
     items.push(<IconButton onClick={this.props.crowdOnClick} className="fa fa-users" />);
     items.push(<IconButton onClick={this.props.passOnClick} className="fa fa-arrow-right" />);

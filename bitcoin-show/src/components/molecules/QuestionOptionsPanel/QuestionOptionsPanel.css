@@ -13,3 +13,6 @@
 .touchable {
     cursor: pointer;
 }
+.hide-wrong-answer {
+  visibility: hidden;
+}

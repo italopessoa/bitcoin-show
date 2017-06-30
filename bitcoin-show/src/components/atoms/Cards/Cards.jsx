@@ -10,12 +10,13 @@ class Cards extends Component {
     this.number = -1;
   }
   componentWillUpdate() {
-    setTimeout(() => this.props.onComplete(this.number),700);
+    setTimeout(() => this.props.onComplete(this.number), 700);
   }
+  /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }]*/
   getRandomNumber(x) {
     if (!this.cardIdSelected) {
       const c = [];
-      this.number =(Math.floor((Math.random() * 4)));
+      this.number = (Math.floor((Math.random() * 4)));
       for (let index = 0; index < this.state.cards.length; index++) {
         c.push((index === x ? this.number : -1));
       }
@@ -26,7 +27,7 @@ class Cards extends Component {
   createCard(index) {
     return (<div key={index} className="col s5 m5 l5" onClick={() => this.getRandomNumber(index)}>
       <div className="touchable card-panel light-blue darken-4 center">
-        <h1>{this.state.cards[index] > -1 ? this.state.cards[index] : <i className="fa fa-question" aria-hidden="true"></i>}</h1>
+        <h1>{this.state.cards[index] > -1 ? this.state.cards[index] : <i className="fa fa-question" aria-hidden="true" />}</h1>
       </div>
     </div>);
   }
@@ -35,9 +36,7 @@ class Cards extends Component {
       <div id="divCartas" className="white-text blue lighten-3">
         <div className="row" id="divCartasRow">
           {
-            this.state.cards.map((card, index) => {
-              return (this.createCard(index));
-            })
+            this.state.cards.map((card, index) => (this.createCard(index)))
           }
         </div>
       </div>

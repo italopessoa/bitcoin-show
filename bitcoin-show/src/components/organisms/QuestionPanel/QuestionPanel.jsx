@@ -16,7 +16,7 @@ class QuestionPanel extends Component {
   constructor(props) {
     super(props);
     this.log = new Log(this.constructor.name);
-    this.state = { selectedAnswer: -1, time: 10, bitcoinPrice: 0, loading: false, question: null };
+    this.state = { selectedAnswer: -1, time: 30, bitcoinPrice: 0, loading: false, question: null };
     this.getContent = this.getContent.bind(this);
     this.onCardSelected = this.onCardSelected.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -47,6 +47,7 @@ class QuestionPanel extends Component {
   }
   componentWillUpdate() {
     this.log.info('componentWillUpdate');
+    this.log.info('WRONG ' + this.wrong);
     // console.log(`renderizando QuestionPanel: ${(this.state.selectedAnswer > -1)} 
     // time= ${this.state.time}`);
   }
@@ -90,6 +91,8 @@ class QuestionPanel extends Component {
               onCardSelected={this.onCardSelected}
               options={this.state.question.options}
               questionId={this.state.question.id}
+              removeWrongOptions={this.wrong}
+              correctAnswer={this.state.question.correct}
             />
             {this.state.bitcoinPrice}
           </div>
@@ -204,6 +207,7 @@ class QuestionPanel extends Component {
   }
   newQuestion() {
     this.resetTime = true;
+    this.wrong = 0;
     this.setState({ selectedAnswer: -1, question: this.getQuestion() });
   }
   checkAnswer() {
@@ -217,6 +221,7 @@ class QuestionPanel extends Component {
     } else {
       this.log.info('E a resposta está... erradaaaa');
       setTimeout(() => {
+        this.wrong = 0;
         this.setState({ loading: false, selectedAnswer: -1 });
       }, 1000);
     }
@@ -237,6 +242,8 @@ class QuestionPanel extends Component {
   }
   cardNumberSelected(number) {
     this.log.info('carta selecionada ' + number);
+    this.wrong = number;
+    { this.props.cardsCallback && this.props.cardsCallback(); }
   }
   render() {
     return (

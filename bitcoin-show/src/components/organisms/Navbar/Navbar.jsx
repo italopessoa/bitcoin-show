@@ -7,7 +7,7 @@ const Navbar = props => (
     <div className="nav-wrapper">
       <div className="container">
         <Toolbar
-          cardsOnClick={props.showCardsOnClick} isCardsAvailable={props.isCardsAvailable}
+          cardsOnClick={props.showCardsOnClick}
           crowdOnClick={props.showHelpOnClick}
           passOnClick={props.skipQuestionOnClick}
         />
