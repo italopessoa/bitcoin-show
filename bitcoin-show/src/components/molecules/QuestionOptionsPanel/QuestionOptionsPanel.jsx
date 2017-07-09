@@ -17,12 +17,8 @@ class QuestionOptionsPanel extends Component {
       this.setState({ selectedIndex: -1 });
     } else if (nextProps.removeWrongOptions > 0) {
       this.wrongOptions = [];
-      let x = nextProps.removeWrongOptions;
-      while (x > 0) {
-        if (x !== nextProps.correctAnswer) {
-          this.wrongOptions.push(x);
-        }
-        x -= 1;
+      for (let index = 0; index <= nextProps.removeWrongOptions; index += 1) {
+        { (index !== nextProps.correctAnswer) && this.wrongOptions.push(index); }
       }
     } else {
       this.wrongOptions = [];
@@ -34,15 +30,15 @@ class QuestionOptionsPanel extends Component {
   componentWillUpdate() {
     this.log.info('renderizando QuestionOptionsPanel');
   }
+  componentDidUpdate() {
+    this.wrongOptions = [];
+  }
   getClassName(index) {
     let defaultClassName = 'red white-text touchable waves-effect waves-light';
-
     if (this.wrongOptions && (this.wrongOptions.indexOf(index) >= 0)) {
       defaultClassName = defaultClassName.concat(' hide-wrong-answer');
     }
-
     { (this.state.selectedIndex === index) && (defaultClassName = defaultClassName.concat(' selected-answer')); }
-
     return defaultClassName;
   }
   selectCardHandler(index) {
