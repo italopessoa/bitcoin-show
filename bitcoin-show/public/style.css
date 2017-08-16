@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+.card-panel {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    display: block !important;
+}
+#tituloPergunta {
+    padding-bottom: 24px !important;
+    padding-top: 24px !important;
+}
+h6.h6Valor {
+    font-size: 14px;
+}
+.zero-padding-left {
+    padding-left: 0px !important;
+}
+.numberCircle {
+    border-radius: 50%;
+    width: 50%;
+    height: auto;
+    padding-top: 50%;
+    background: #ef8913;
+}
+.touchable {
+    cursor: pointer;
+}
+.notification-badge {
+    position: relative;
+    right: 5px;
+    top: -20px;
+    color: #ffffff;
+    background-color: #FF4081;
+    margin: 0 -.8em;
+    border-radius: 50%;
+    padding: 4px 5px
+}
+.card-panel {
+    margin-bottom: 0px !important;
+}
+/*http://www.cssportal.com/blog/create-css-notification-badge/*/
+
+.badge1 {
+    position: relative;
+}
+.badge1[data-badge]:after {
+    content: attr(data-badge);
+    position: absolute;
+    top: 11px;
+    right: 0px;
+    font-size: .7em;
+    background: #1e88e5;
+    color: white;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 50%;
+    box-shadow: 0 0 1px #333;
+}
+.selected-answer {
+  display: block;/*necessario para manter o tamanho do panel quando utilizar o waves-effect !important*/
+  background-color:#8c1010 !important;
+  box-shadow: 0 2px 2px 0 rgb(0, 0, 0), 
+              0 1px 5px 0 rgba(0,0,0,0.12), 
+              0 3px 1px -2px rgba(0,0,0,0.2);
+}
+.selected-answer > h6{
+    font-weight: 500;
+    font-style: italic;
+}
