@@ -1,0 +1,10 @@
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\bin\Release\netcoreapp2.0\WebAPI.deps.json
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\bin\Release\netcoreapp2.0\WebAPI.runtimeconfig.json
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\bin\Release\netcoreapp2.0\WebAPI.runtimeconfig.dev.json
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\bin\Release\netcoreapp2.0\WebAPI.dll
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\bin\Release\netcoreapp2.0\WebAPI.pdb
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\obj\Release\netcoreapp2.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\obj\Release\netcoreapp2.0\WebAPI.AssemblyInfoInputs.cache
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\obj\Release\netcoreapp2.0\WebAPI.AssemblyInfo.cs
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\obj\Release\netcoreapp2.0\WebAPI.dll
+C:\Users\italo\Documents\react-bitcoin-show\bitcoin-show\api\BS.Web\WebAPI\obj\Release\netcoreapp2.0\WebAPI.pdb

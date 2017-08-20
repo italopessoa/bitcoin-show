@@ -27,6 +27,11 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(o=> o.AddPolicy("MP",builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+
             services.AddMvc().AddJsonOptions(options =>
             {
 #if DEBUG
@@ -53,21 +58,23 @@ namespace WebAPI
                 c.IncludeXmlComments(xmlPath);
             });
 
-
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                //routes.MapRoute("blog", "questions/*",
+                //   defaults: new { controller = "Questions", action = "Get", level = 1 });
+                //"default", "{controller=Questions}/{action=Get}/easy");
+            });
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
