@@ -17,9 +17,10 @@ export function getQuestionSuccess(data) {
   };
 }
 
-export function getQuestionFailure() {
+export function getQuestionFailure(err) {
   return {
     type: FETCHING_DATA_QUESTION_FAILURE,
+    error: err,
   };
 }
 
@@ -29,6 +30,6 @@ export function fetchQuestion() {
     fetch('http://localhost:51203/api/questions')
       .then(response => response.json())
       .then(result => dispatch(getQuestionSuccess(result)))
-      .catch(() => dispatch(getQuestionFailure()));
+      .catch(err => dispatch(getQuestionFailure(err)));
   };
 }

@@ -9,6 +9,7 @@ const initialState = {
   dataFetched: false,
   isFetching: false,
   error: false,
+  question: undefined,
 };
 
 
@@ -17,20 +18,21 @@ export default function questionReducer(state = initialState, action) {
     case FETCHING_DATA_QUESTION:
       return {
         ...state,
-        data: [],
+        question: undefined,
         isFetching: true,
       };
     case FETCHING_DATA_QUESTION_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        data: action.data,
+        question: action.data.question,
       };
     case FETCHING_DATA_QUESTION_FAILURE:
       return {
         ...state,
         isFetching: false,
         error: true,
+        question: undefined,
       };
     default:
       return state;

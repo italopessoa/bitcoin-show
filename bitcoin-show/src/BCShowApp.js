@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchQuestion } from './actions/questionActions';
+import Options from './containers/OptionsPanel';
 
 const App = (props) => {
   return (
-    <button onClick={() => props.teste()}>botao</button>
+    <div>
+      <button onClick={() => props.teste()}>Carregar</button>
+      <Options />
+    </div>
   );
 };
-
 
 function mapStateToProps(state) {
   return {
