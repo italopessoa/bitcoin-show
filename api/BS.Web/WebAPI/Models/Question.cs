@@ -18,7 +18,8 @@
         ///     }
         /// ]
         /// </summary>
-        public string Options { get; set; }
+        public Option[] Options { get; set; }
+        // public string Options { get; set; }
 
         /// <summary>
         /// { "number": "n" }
