@@ -7,4 +7,8 @@ const Option = props => (
   </div>
 );
 
+Option.propTypes = {
+  number: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+}
 export default Option;

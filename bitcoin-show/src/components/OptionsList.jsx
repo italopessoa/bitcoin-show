@@ -14,4 +14,11 @@ const OptionsList = (props) => {
   );
 };
 
-export default OptionsList;
+OptionsList.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.shape({
+    number: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  })).isRequired,
+}
+
+export default OptionsList
