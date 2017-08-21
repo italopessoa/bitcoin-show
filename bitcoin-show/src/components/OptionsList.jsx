@@ -7,7 +7,7 @@ const OptionsList = (props) => {
     <ul>
       {
         props.options.map(o => (
-          <li key={o.number} ><Option number={o.number} text={o.text} /></li>
+          <li key={o.number} ><Option onSelected={props.selectOption} number={o.number} text={o.text} /></li>
         ))
       }
     </ul>
