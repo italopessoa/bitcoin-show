@@ -1,12 +1,19 @@
-import { connect } from 'react-redux'
-import Question from '../components/Question.jsx'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Question from '../components/Question';
+import checkAnswer from '../actions/questionActions';
 
 const mapStateToProps = state => ({
-  text: state.questionReducer.question ?
-    state.questionReducer.question.text : "",
-  }
-)
+  question: state.questionReducer.question,
+  selectedOption: state.questionReducer.selectedOption,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    checkAnswer,
+  }, dispatch);
 
 export default connect(
   mapStateToProps,
-)(Question)
+  mapDispatchToProps,
+)(Question);

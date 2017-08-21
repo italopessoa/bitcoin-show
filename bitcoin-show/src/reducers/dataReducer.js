@@ -3,6 +3,9 @@ import {
   FETCHING_DATA_QUESTION_SUCCESS,
   FETCHING_DATA_QUESTION_FAILURE,
   SELECT_OPTION,
+  CHECKING_ANSWER,
+  CHECKING_ANSWER_SUCCESS,
+  CHECKING_ANSWER_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -14,7 +17,7 @@ const initialState = {
   selectedOption: undefined,
 };
 
-export default function questionReducer(state = initialState, action) {
+function questionReducer(state = initialState, action) {
   switch (action.type) {
     case FETCHING_DATA_QUESTION:
       return {
@@ -36,11 +39,23 @@ export default function questionReducer(state = initialState, action) {
         question: undefined,
       };
     case SELECT_OPTION:
+    case CHECKING_ANSWER:
       return {
         ...state,
-        selectedOption: action.data,
+      };
+    case CHECKING_ANSWER_SUCCESS:
+      console.log('certa resposta');
+      return {
+        ...state,
+      };
+    case CHECKING_ANSWER_FAILURE:
+      console.log('resposta errada');
+      return {
+        ...state,
       };
     default:
       return state;
   }
 }
+
+export default questionReducer;

@@ -4,5 +4,5 @@ export function selectOption(optionNumber) {
   return {
     type: SELECT_OPTION,
     data: optionNumber,
-  }
+  };
 }

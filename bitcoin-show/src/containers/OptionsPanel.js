@@ -8,10 +8,10 @@ const mapStateToProps = state => ({
     state.questionReducer.question.options : [],
 });
 
-const mapDispatchToProps = dispatch => 
+const mapDispatchToProps = dispatch =>
   bindActionCreators({
     selectOption,
-  }, dispatch)
+  }, dispatch);
 
 export default connect(
   mapStateToProps,
