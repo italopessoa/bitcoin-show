@@ -7,8 +7,8 @@ import {
   CHECKING_ANSWER_FAIL,
   CHECKING_ANSWER_ERROR,
 } from './actionTypes';
+import checkAnswerService from '../services/QuestionServices';
 
-import { checkAnswerService } from '../services/QuestionServices';
 function getQuestion() {
   return {
     type: FETCHING_DATA_QUESTION,
@@ -64,28 +64,15 @@ function checkingAnswer() {
   };
 }
 
-const checkAnsertService = function(correctOption, selectedOption) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      if(selectedOption === undefined || selectedOption < 1) {
-        reject('Select an option!');
-      }
-      let isAnswerCorrect = (selectedOption === correctOption)
-      resolve(isAnswerCorrect);
-    }, 400);
-  });
-}
-
 export default function checkAnswer(question, selectedOption) {
-  console.log(selectedOption)
   return (dispatch) => {
     dispatch(checkingAnswer());
     checkAnswerService(question.answer.number, selectedOption)
-    .then(isAnswerCorrect => {
-      if(isAnswerCorrect) {
-        dispatch(checkAnswerSuccess())
+    .then((isAnswerCorrect) => {
+      if (isAnswerCorrect) {
+        dispatch(checkAnswerSuccess());
       } else {
-        dispatch(checkAnswerFail())
+        dispatch(checkAnswerFail());
       }
     })
     .catch(error => dispatch(checkAnswerError(error)));

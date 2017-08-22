@@ -1,11 +1,11 @@
-export function checkAnswerService(correctOption, selectedOption) {
-    return new Promise(function(resolve, reject) {
-      setTimeout(function() {
-        if(selectedOption === undefined || selectedOption < 1) {
-          reject('Select an option!');
-        }
-        let isAnswerCorrect = (selectedOption === correctOption)
-        resolve(isAnswerCorrect);
-      }, 400);
-    });
-  }
+export default function checkAnswerService(correctOption, selectedOption) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (selectedOption === undefined || selectedOption < 1) {
+        reject('Select an option!');
+      }
+      const isAnswerCorrect = (selectedOption === correctOption);
+      resolve(isAnswerCorrect);
+    }, 400);
+  });
+}

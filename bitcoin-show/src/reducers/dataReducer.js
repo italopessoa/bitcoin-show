@@ -45,7 +45,7 @@ function questionReducer(state = initialState, action) {
         selectedOption: action.data,
       };
     case CHECKING_ANSWER:
-      console.log('verificando a reposta')
+      console.log('verificando a reposta');
       return {
         ...state,
       };

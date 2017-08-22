@@ -5,5 +5,11 @@ module.exports = {
         "react",
         "jsx-a11y",
         "import"
-    ]
+    ],
+    "rules" : {
+        "linebreak-style": 0
+    },
+    "globals": {
+        "fetch": false
+    }
 };

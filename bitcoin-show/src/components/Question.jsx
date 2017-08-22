@@ -14,8 +14,18 @@ const Question = props => (
   </div>
 );
 
-// Question.propTypes = {
-//   text: PropTypes.string.isRequired,
-// };
+Question.propTypes = {
+  question: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+  }).isRequired,
+  selectedOption: PropTypes.number,
+  checkAnswer: PropTypes.func.isRequired,
+};
+
+Question.defaultProps = {
+  selectedOption: 0,
+};
+
 
 export default Question;
