@@ -54,6 +54,7 @@ namespace WebAPI.Controllers
             for (byte i = 1; i < 5; i++)
             {
                 ops[i-1]= new Option {Number=i, Text=Guid.NewGuid().ToString()};
+                a.Answer = ops[i-1];
             }
             a.Options = ops;
             return a;

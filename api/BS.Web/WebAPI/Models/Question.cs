@@ -24,7 +24,7 @@
         /// <summary>
         /// { "number": "n" }
         /// </summary>
-        public byte Answer { get; set; }
+        public Option Answer { get; set; }
 
         /// <summary>
         /// <para>e: easy</para>
