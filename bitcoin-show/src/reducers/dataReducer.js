@@ -5,7 +5,8 @@ import {
   SELECT_OPTION,
   CHECKING_ANSWER,
   CHECKING_ANSWER_SUCCESS,
-  CHECKING_ANSWER_FAILURE,
+  CHECKING_ANSWER_FAIL,
+  CHECKING_ANSWER_ERROR,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -39,7 +40,12 @@ function questionReducer(state = initialState, action) {
         question: undefined,
       };
     case SELECT_OPTION:
+      return {
+        ...state,
+        selectedOption: action.data,
+      };
     case CHECKING_ANSWER:
+      console.log('verificando a reposta')
       return {
         ...state,
       };
@@ -48,8 +54,13 @@ function questionReducer(state = initialState, action) {
       return {
         ...state,
       };
-    case CHECKING_ANSWER_FAILURE:
+    case CHECKING_ANSWER_FAIL:
       console.log('resposta errada');
+      return {
+        ...state,
+      };
+    case CHECKING_ANSWER_ERROR:
+      console.log(action.data);
       return {
         ...state,
       };
