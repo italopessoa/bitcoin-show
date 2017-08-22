@@ -17,7 +17,6 @@ const Question = props => (
 Question.propTypes = {
   question: PropTypes.shape({
     text: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
   }).isRequired,
   selectedOption: PropTypes.number,
   checkAnswer: PropTypes.func.isRequired,

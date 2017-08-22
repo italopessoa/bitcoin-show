@@ -5,9 +5,9 @@ import Option from './Option';
 const OptionsList = props => (
   <ul>
     {
-      props.options.map(o => (
-        <li key={o.number} >
-          <Option onSelected={props.selectOption} number={o.number} text={o.text} />
+      props.options.map(option => (
+        <li key={option.number} >
+          <Option onSelected={props.selectOption} option={option} />
         </li>
       ))
     }
@@ -18,6 +18,7 @@ OptionsList.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({
     number: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
+    selected: PropTypes.bool,
   })).isRequired,
   selectOption: PropTypes.func.isRequired,
 };

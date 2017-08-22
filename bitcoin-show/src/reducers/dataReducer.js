@@ -18,6 +18,21 @@ const initialState = {
   selectedOption: undefined,
 };
 
+const setSelectedOption = (question, selectedOption) => {
+  const questionModified = question;
+  questionModified.options = question.options.map((option) => {
+    if (option.number === selectedOption) {
+      return Object.assign({}, option, {
+        selected: true,
+      });
+    }
+    const { selected: omit, ...res } = option;
+    return res;
+  });
+
+  return questionModified;
+};
+
 function questionReducer(state = initialState, action) {
   switch (action.type) {
     case FETCHING_DATA_QUESTION:
@@ -40,8 +55,10 @@ function questionReducer(state = initialState, action) {
         question: undefined,
       };
     case SELECT_OPTION:
+      console.log(state.question);
       return {
         ...state,
+        question: setSelectedOption(state.question, action.data),
         selectedOption: action.data,
       };
     case CHECKING_ANSWER:
