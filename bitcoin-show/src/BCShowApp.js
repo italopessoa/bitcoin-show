@@ -9,8 +9,8 @@ import Question from './containers/QuestionPanel';
 const App = props => (
   <div>
     <button onClick={() => props.fetchQuestion()}>Carregar</button>
-    {props.questionData.question && <Question />}
-    {props.questionData.question && <Options />}
+    {props.questionData.questionLoadCompleted && <Question />}
+    {props.questionData.questionLoadCompleted && <Options />}
   </div>
 );
 

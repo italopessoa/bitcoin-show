@@ -9,11 +9,10 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  data: [],
-  dataFetched: false,
+  question: { text: '', options: [] },
+  questionLoadCompleted: false,
   isFetching: false,
-  error: false,
-  question: undefined,
+  errorMessage: '',
 };
 
 function questionReducer(state = initialState, action) {
@@ -21,22 +20,25 @@ function questionReducer(state = initialState, action) {
     case FETCHING_DATA_QUESTION:
       return {
         ...state,
-        question: undefined,
+        question: { text: '', options: [] },
         isFetching: true,
+        questionLoadCompleted: false,
       };
     case FETCHING_DATA_QUESTION_SUCCESS:
       return {
         ...state,
         isFetching: false,
         question: action.data.question,
+        questionLoadCompleted: true,
       };
     case FETCHING_DATA_QUESTION_FAILURE:
       console.log(action.error);
       return {
         ...state,
         isFetching: false,
-        error: action.error,
+        errorMessage: action.error,
         question: undefined,
+        questionLoadCompleted: false,
       };
     case CHECKING_ANSWER:
       console.log('verificando a reposta');

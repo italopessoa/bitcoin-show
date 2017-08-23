@@ -1,7 +1,13 @@
-import { SELECT_OPTION } from '../actions/actionTypes';
+import {
+  SELECT_OPTION,
+  FETCHING_DATA_QUESTION,
+  CHECKING_ANSWER_SUCCESS,
+  CHECKING_ANSWER_FAIL,
+} from '../actions/actionTypes';
 
 const initialState = {
-  selectedOptionNumber: undefined,
+  selectedOptionNumber: 0,
+  hasASelectedOption: false,
 };
 
 function optionReducer(state = initialState, action) {
@@ -11,6 +17,15 @@ function optionReducer(state = initialState, action) {
       return {
         ...state,
         selectedOptionNumber: action.data,
+        hasASelectedOption: true,
+      };
+    case FETCHING_DATA_QUESTION:
+    case CHECKING_ANSWER_SUCCESS:
+    case CHECKING_ANSWER_FAIL:
+      return {
+        ...state,
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       };
     default:
       return state;

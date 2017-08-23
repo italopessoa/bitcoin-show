@@ -6,6 +6,7 @@ import checkAnswer from '../actions/questionActions';
 const mapStateToProps = state => ({
   question: state.questionData.question,
   selectedOptionNumber: state.optionData.selectedOptionNumber,
+  hasASelectedOption: state.optionData.hasASelectedOption,
 });
 
 const mapDispatchToProps = dispatch =>

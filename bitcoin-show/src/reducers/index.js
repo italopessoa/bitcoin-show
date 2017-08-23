@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import questionData from './dataReducer';
+import questionData from './questionReducer';
 import optionData from './optionReducer';
 
 const rootReducer = combineReducers({
