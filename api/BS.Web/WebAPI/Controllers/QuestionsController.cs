@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Cors;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,7 +42,22 @@ namespace WebAPI.Controllers
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult Get(LevelEnum level = LevelEnum.Easy)
         {
-            return Ok(new Question { Answer = 1, Options = "[{'number': '1', 'text': 'question 1'}]", Level = 'e', Text = "Question 1?" });
+            return Ok(
+                new { question = this.GenerateRandomQuestion() }
+            );
+        }
+
+        private Question GenerateRandomQuestion()
+        {
+            Question a = new Question { Id = 0,Level='e',Text = $"Question {DateTime.Now.ToLongDateString()}?"};
+            Option[] ops = new Option[4];
+            for (byte i = 1; i < 5; i++)
+            {
+                ops[i-1]= new Option {Number=i, Text=Guid.NewGuid().ToString()};
+                a.Answer = ops[i-1];
+            }
+            a.Options = ops;
+            return a;
         }
 
         //// POST api/values

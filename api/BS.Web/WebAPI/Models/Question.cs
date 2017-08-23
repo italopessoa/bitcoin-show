@@ -18,12 +18,13 @@
         ///     }
         /// ]
         /// </summary>
-        public string Options { get; set; }
+        public Option[] Options { get; set; }
+        // public string Options { get; set; }
 
         /// <summary>
         /// { "number": "n" }
         /// </summary>
-        public byte Answer { get; set; }
+        public Option Answer { get; set; }
 
         /// <summary>
         /// <para>e: easy</para>
