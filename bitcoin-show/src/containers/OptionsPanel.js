@@ -8,8 +8,8 @@ const questionOptionsFilter = question => (
 );
 
 const mapStateToProps = state => ({
-  options: questionOptionsFilter(state.questionReducer.question),
-  selectedOptionNumber: state.questionReducer.selectedOptionNumber,
+  options: questionOptionsFilter(state.questionData.question),
+  selectedOptionNumber: state.optionData.selectedOptionNumber,
 });
 
 const mapDispatchToProps = dispatch =>

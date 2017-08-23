@@ -9,14 +9,14 @@ import Question from './containers/QuestionPanel';
 const App = props => (
   <div>
     <button onClick={() => props.fetchQuestion()}>Carregar</button>
-    { props.appData.question && <Question /> }
-    { props.appData.question && <Options /> }
+    {props.questionData.question && <Question />}
+    {props.questionData.question && <Options />}
   </div>
 );
 
 function mapStateToProps(state) {
   return {
-    appData: state.questionReducer,
+    questionData: state.questionData,
   };
 }
 

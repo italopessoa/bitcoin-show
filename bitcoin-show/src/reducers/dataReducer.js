@@ -2,7 +2,6 @@ import {
   FETCHING_DATA_QUESTION,
   FETCHING_DATA_QUESTION_SUCCESS,
   FETCHING_DATA_QUESTION_FAILURE,
-  SELECT_OPTION,
   CHECKING_ANSWER,
   CHECKING_ANSWER_SUCCESS,
   CHECKING_ANSWER_FAIL,
@@ -15,7 +14,6 @@ const initialState = {
   isFetching: false,
   error: false,
   question: undefined,
-  selectedOptionNumber: undefined,
 };
 
 function questionReducer(state = initialState, action) {
@@ -39,12 +37,6 @@ function questionReducer(state = initialState, action) {
         isFetching: false,
         error: action.error,
         question: undefined,
-      };
-    case SELECT_OPTION:
-      console.log(state.question);
-      return {
-        ...state,
-        selectedOptionNumber: action.data,
       };
     case CHECKING_ANSWER:
       console.log('verificando a reposta');
