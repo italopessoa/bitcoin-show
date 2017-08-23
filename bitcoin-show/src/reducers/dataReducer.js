@@ -22,9 +22,7 @@ const setSelectedOption = (question, selectedOption) => {
   const questionModified = question;
   questionModified.options = question.options.map((option) => {
     if (option.number === selectedOption) {
-      return Object.assign({}, option, {
-        selected: true,
-      });
+      return { ...option, selected: true };
     }
     const { selected: omit, ...res } = option;
     return res;
