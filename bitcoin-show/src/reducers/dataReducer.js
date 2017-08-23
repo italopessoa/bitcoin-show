@@ -15,20 +15,7 @@ const initialState = {
   isFetching: false,
   error: false,
   question: undefined,
-  selectedOption: undefined,
-};
-
-const setSelectedOption = (question, selectedOption) => {
-  const questionModified = question;
-  questionModified.options = question.options.map((option) => {
-    if (option.number === selectedOption) {
-      return { ...option, selected: true };
-    }
-    const { selected: omit, ...res } = option;
-    return res;
-  });
-
-  return questionModified;
+  selectedOptionNumber: undefined,
 };
 
 function questionReducer(state = initialState, action) {
@@ -46,18 +33,18 @@ function questionReducer(state = initialState, action) {
         question: action.data.question,
       };
     case FETCHING_DATA_QUESTION_FAILURE:
+      console.log(action.error);
       return {
         ...state,
         isFetching: false,
-        error: true,
+        error: action.error,
         question: undefined,
       };
     case SELECT_OPTION:
       console.log(state.question);
       return {
         ...state,
-        question: setSelectedOption(state.question, action.data),
-        selectedOption: action.data,
+        selectedOptionNumber: action.data,
       };
     case CHECKING_ANSWER:
       console.log('verificando a reposta');

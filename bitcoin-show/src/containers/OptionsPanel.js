@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import OptionsList from '../components/OptionsList';
 import selectOption from '../actions/optionActions';
 
+const questionOptionsFilter = question => (
+  question ? question.options : []
+);
+
 const mapStateToProps = state => ({
-  options: state.questionReducer.question ?
-    state.questionReducer.question.options : [],
+  options: questionOptionsFilter(state.questionReducer.question),
+  selectedOptionNumber: state.questionReducer.selectedOptionNumber,
 });
 
 const mapDispatchToProps = dispatch =>

@@ -1,10 +1,10 @@
-export default function checkAnswerService(correctOption, selectedOption) {
+export default function checkAnswerService(correctOptionNumber, selectedOptionNumber) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (selectedOption === undefined || selectedOption < 1) {
+      if (selectedOptionNumber === undefined || selectedOptionNumber < 1) {
         reject('Select an option!');
       }
-      const isAnswerCorrect = (selectedOption === correctOption);
+      const isAnswerCorrect = (selectedOptionNumber === correctOptionNumber);
       resolve(isAnswerCorrect);
     }, 400);
   });

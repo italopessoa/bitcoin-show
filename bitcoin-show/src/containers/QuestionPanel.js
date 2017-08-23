@@ -5,7 +5,7 @@ import checkAnswer from '../actions/questionActions';
 
 const mapStateToProps = state => ({
   question: state.questionReducer.question,
-  selectedOption: state.questionReducer.selectedOption,
+  selectedOptionNumber: state.questionReducer.selectedOptionNumber,
 });
 
 const mapDispatchToProps = dispatch =>

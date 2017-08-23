@@ -6,7 +6,7 @@ const Question = props => (
     <h1>{props.question.text}</h1>
     <button
       onClick={
-        () => props.checkAnswer(props.question, props.selectedOption)
+        () => props.checkAnswer(props.question, props.selectedOptionNumber)
       }
     >
       Verificar resposta
@@ -18,12 +18,12 @@ Question.propTypes = {
   question: PropTypes.shape({
     text: PropTypes.string.isRequired,
   }).isRequired,
-  selectedOption: PropTypes.number,
+  selectedOptionNumber: PropTypes.number,
   checkAnswer: PropTypes.func.isRequired,
 };
 
 Question.defaultProps = {
-  selectedOption: 0,
+  selectedOptionNumber: 0,
 };
 
 

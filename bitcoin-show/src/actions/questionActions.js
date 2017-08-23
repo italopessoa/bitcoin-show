@@ -64,10 +64,10 @@ function checkingAnswer() {
   };
 }
 
-export default function checkAnswer(question, selectedOption) {
+export default function checkAnswer(question, selectedOptionNumber) {
   return (dispatch) => {
     dispatch(checkingAnswer());
-    checkAnswerService(question.answer.number, selectedOption)
+    checkAnswerService(question.answer.number, selectedOptionNumber)
     .then((isAnswerCorrect) => {
       if (isAnswerCorrect) {
         dispatch(checkAnswerSuccess());
