@@ -12,17 +12,36 @@ const App = props => (
     <button onClick={() => {
       props.fetchQuestion();
       props.fetchAwards();
-    }
-    }
-    >Carregar</button>
-    {props.questionData.questionLoadCompleted && <Question />}
-    {props.questionData.questionLoadCompleted && <Options />}
+    }}>Carregar</button>
+    <div>
+      {props.questionData.questionLoadCompleted && <Question />}
+      {props.questionData.questionLoadCompleted && <Options />}
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Right</th>
+            <th>Stop</th>
+            <th>Error</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{props.award.right}</td>
+            <td>{props.award.stop}</td>
+            <td>{props.award.wrong}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 );
 
 function mapStateToProps(state) {
   return {
     questionData: state.questionData,
+    award: state.awardData.value,
   };
 }
 
@@ -40,4 +59,9 @@ export default connect(
 App.propTypes = {
   fetchQuestion: PropTypes.func.isRequired,
   fetchAwards: PropTypes.func.isRequired,
+  award: PropTypes.shape({
+    right: PropTypes.number.isRequired,
+    stop: PropTypes.number.isRequired,
+    wrong: PropTypes.number.isRequired,
+  }).isRequired,
 };

@@ -29,7 +29,7 @@ export default function fetchAwards() {
     dispatch(getAwards());
     fetch('http://localhost:51203/api/questions/awards')
       .then(response => response.json())
-      .then(result => dispatch(getAwardsSuccess(result)))
+      .then(result => dispatch(getAwardsSuccess(result.awards)))
       .catch(err => dispatch(getAwardsError(err)));
   };
 }
