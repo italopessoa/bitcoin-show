@@ -29,10 +29,11 @@ function getQuestionFailure(err) {
   };
 }
 
-export function fetchQuestion() {
+export function fetchQuestion(level = 0) {
+  const url = 'http://localhost:51203/api/questions/';
   return (dispatch) => {
     dispatch(getQuestion());
-    fetch('http://localhost:51203/api/questions')
+    fetch(url.concat(level))
       .then(response => response.json())
       .then(result => dispatch(getQuestionSuccess(result)))
       .catch(err => dispatch(getQuestionFailure(err)));
@@ -68,13 +69,13 @@ export default function checkAnswer(question, selectedOptionNumber) {
   return (dispatch) => {
     dispatch(checkingAnswer());
     checkAnswerService(question.answer.number, selectedOptionNumber)
-    .then((isAnswerCorrect) => {
-      if (isAnswerCorrect) {
-        dispatch(checkAnswerSuccess());
-      } else {
-        dispatch(checkAnswerFail());
-      }
-    })
-    .catch(error => dispatch(checkAnswerError(error)));
+      .then((isAnswerCorrect) => {
+        if (isAnswerCorrect) {
+          dispatch(checkAnswerSuccess());
+        } else {
+          dispatch(checkAnswerFail());
+        }
+      })
+      .catch(error => dispatch(checkAnswerError(error)));
   };
 }
