@@ -6,10 +6,11 @@ import { fetchQuestion } from './actions/questionActions';
 import fetchAwards, { updateAward } from './actions/awardActions';
 import Options from './containers/OptionsPanel';
 import Question from './containers/QuestionPanel';
+import Tools from './containers/Tools';
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.willUserStop) {
+    if (nextProps.shouldStopProgress) {
       console.log('voce parou');
     }
     if (nextProps.shouldSkipQuestion) {
@@ -38,6 +39,7 @@ class App extends Component {
           {this.props.questionData.questionLoadCompleted && <Question />}
           {this.props.questionData.questionLoadCompleted && <Options />}
         </div>
+        <Tools />
         <div>
           <table>
             <thead>
@@ -66,6 +68,7 @@ function mapStateToProps(state) {
     questionData: state.questionData,
     award: state.awardData.value,
     shouldUpdateQuestion: state.questionData.shouldUpdateQuestion,
+    shouldStopProgress: state.tools.stopProgress,
   };
 }
 
@@ -94,13 +97,13 @@ App.propTypes = {
     wrong: PropTypes.number.isRequired,
     level: PropTypes.number.isRequired,
   }).isRequired,
-  willUserStop: PropTypes.bool,
+  shouldStopProgress: PropTypes.bool,
   shouldSkipQuestion: PropTypes.bool,
   userFailed: PropTypes.bool,
 };
 
 App.defaultProps = {
-  willUserStop: false,
+  shouldStopProgress: false,
   shouldSkipQuestion: false,
   userFailed: false,
 };
