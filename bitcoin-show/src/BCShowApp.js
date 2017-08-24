@@ -9,6 +9,15 @@ import Question from './containers/QuestionPanel';
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
+    if (nextProps.willUserStop) {
+      console.log('voce parou');
+    }
+    if (nextProps.shouldSkipQuestion) {
+      console.log('voce pulou');
+    }
+    if (nextProps.userFailed) {
+      console.log('voce errou');
+    }
     if (nextProps.shouldUpdateQuestion) {
       if (nextProps.award.number === this.props.award.number) {
         this.props.updateAward();
@@ -23,7 +32,8 @@ class App extends Component {
         <button onClick={() => {
           this.props.fetchQuestion(this.props.award.level);
           this.props.fetchAwards();
-        }}>Carregar</button>
+        }}
+        >Carregar</button>
         <div>
           {this.props.questionData.questionLoadCompleted && <Question />}
           {this.props.questionData.questionLoadCompleted && <Options />}
@@ -50,6 +60,7 @@ class App extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     questionData: state.questionData,
@@ -70,6 +81,7 @@ export default connect(
   mapDispatchToProps,
 )(App);
 
+
 App.propTypes = {
   fetchQuestion: PropTypes.func.isRequired,
   fetchAwards: PropTypes.func.isRequired,
@@ -82,4 +94,13 @@ App.propTypes = {
     wrong: PropTypes.number.isRequired,
     level: PropTypes.number.isRequired,
   }).isRequired,
+  willUserStop: PropTypes.bool,
+  shouldSkipQuestion: PropTypes.bool,
+  userFailed: PropTypes.bool,
+};
+
+App.defaultProps = {
+  willUserStop: false,
+  shouldSkipQuestion: false,
+  userFailed: false,
 };
