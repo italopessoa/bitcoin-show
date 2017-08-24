@@ -2,6 +2,7 @@ import {
   FETCHING_DATA_AWARDS,
   FETCHING_DATA_AWARDS_SUCCESS,
   FETCHING_DATA_AWARDS_ERROR,
+  UPDATE_AWARD,
 } from './actionTypes';
 
 function getAwardsSuccess(awards) {
@@ -21,6 +22,12 @@ function getAwardsError(err) {
 function getAwards() {
   return {
     type: FETCHING_DATA_AWARDS,
+  };
+}
+
+export function updateAward() {
+  return {
+    type: UPDATE_AWARD,
   };
 }
 
