@@ -9,7 +9,7 @@ import {
 const initialState = {
   awards: [],
   current: 0,
-  value: {},
+  value: { right: 0, stop: 0, wrong: 0, level: 0 },
 };
 
 export default function awardReducer(state = initialState, action) {
@@ -28,7 +28,7 @@ export default function awardReducer(state = initialState, action) {
       return {
         ...state,
         awards: [],
-        value: {},
+        value: { right: 0, stop: 0, wrong: 0, level: 0 },
       };
     case CHECKING_ANSWER_SUCCESS:
       return {

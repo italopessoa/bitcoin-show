@@ -13,6 +13,7 @@ const initialState = {
   questionLoadCompleted: false,
   isFetching: false,
   errorMessage: '',
+  shouldUpdateQuestion: false,
 };
 
 function questionReducer(state = initialState, action) {
@@ -23,6 +24,7 @@ function questionReducer(state = initialState, action) {
         question: { text: '', options: [] },
         isFetching: true,
         questionLoadCompleted: false,
+        shouldUpdateQuestion: false,
       };
     case FETCHING_DATA_QUESTION_SUCCESS:
       return {
@@ -49,6 +51,7 @@ function questionReducer(state = initialState, action) {
       console.log('certa resposta');
       return {
         ...state,
+        shouldUpdateQuestion: true,
       };
     case CHECKING_ANSWER_FAIL:
       console.log('resposta errada');
