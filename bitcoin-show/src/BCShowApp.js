@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchQuestion } from './actions/questionActions';
 import fetchAwards, { updateAward } from './actions/awardActions';
-import { skipCompleted } from './actions/toolsActions';
+import { skipCompleted, hideCards } from './actions/toolsActions';
 import Options from './containers/OptionsPanel';
 import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
@@ -15,6 +15,9 @@ class App extends Component {
     this.questionHasChanged = this.questionHasChanged.bind(this);
   }
   componentWillReceiveProps(nextProps) {
+    if (nextProps.mustDisplayCards) {
+      this.props.hideCards();
+    }
     if (nextProps.shouldStopProgress) {
       console.log('voce parou');
     }
@@ -88,6 +91,7 @@ function mapStateToProps(state) {
     shouldStopProgress: state.tools.stopProgress,
     shouldSkipQuestion: state.tools.skipQuestion,
     wasQuestionSkipped: state.tools.questionWasSkipped,
+    mustDisplayCards: state.tools.displayCards,
   };
 }
 
@@ -97,6 +101,7 @@ const mapDispatchToProps = dispatch =>
     fetchAwards,
     updateAward,
     skipCompleted,
+    hideCards,
   }, dispatch);
 
 export default connect(
