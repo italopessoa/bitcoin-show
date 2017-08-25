@@ -4,18 +4,32 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchQuestion } from './actions/questionActions';
 import fetchAwards, { updateAward } from './actions/awardActions';
+import { skipCompleted } from './actions/toolsActions';
 import Options from './containers/OptionsPanel';
 import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.questionHasChanged = this.questionHasChanged.bind(this);
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.shouldStopProgress) {
       console.log('voce parou');
     }
-    if (nextProps.shouldSkipQuestion) {
-      console.log('voce pulou');
+    if (!this.questionHasChanged(nextProps.questionData)) {
+      if (nextProps.shouldSkipQuestion) {
+        this.props.fetchQuestion(this.props.award.level);
+      }
+    } else if (nextProps.shouldSkipQuestion) {
+      this.props.skipCompleted();
     }
+    // if (nextProps.shouldSkipQuestion && !this.questionHasChanged(nextProps.questionData, this.props.questionData)) {
+    //   this.props.fetchQuestion(this.props.award.level);
+    // } else if (nextProps.shouldSkipQuestion && this.questionHasChanged(nextProps.questionData, this.props.questionData)) {
+    //   this.props.skipCompleted();
+    // }
     if (nextProps.userFailed) {
       console.log('voce errou');
     }
@@ -27,6 +41,9 @@ class App extends Component {
       }
     }
   }
+  questionHasChanged(nextData) {
+    return nextData.question.id !== this.props.questionData.question.id;
+  }
   render() {
     return (
       <div>
@@ -36,10 +53,10 @@ class App extends Component {
         }}
         >Carregar</button>
         <div>
-          {this.props.questionData.questionLoadCompleted && <Question />}
-          {this.props.questionData.questionLoadCompleted && <Options />}
+          {this.props.questionData.question.id > 0 && <Tools />}
+          <Question />
+          <Options />
         </div>
-        <Tools />
         <div>
           <table>
             <thead>
@@ -69,6 +86,8 @@ function mapStateToProps(state) {
     award: state.awardData.value,
     shouldUpdateQuestion: state.questionData.shouldUpdateQuestion,
     shouldStopProgress: state.tools.stopProgress,
+    shouldSkipQuestion: state.tools.skipQuestion,
+    wasQuestionSkipped: state.tools.questionWasSkipped,
   };
 }
 
@@ -77,6 +96,7 @@ const mapDispatchToProps = dispatch =>
     fetchQuestion,
     fetchAwards,
     updateAward,
+    skipCompleted,
   }, dispatch);
 
 export default connect(
@@ -89,6 +109,7 @@ App.propTypes = {
   fetchQuestion: PropTypes.func.isRequired,
   fetchAwards: PropTypes.func.isRequired,
   updateAward: PropTypes.func.isRequired,
+  skipCompleted: PropTypes.func.isRequired,
   shouldUpdateQuestion: PropTypes.bool.isRequired,
   award: PropTypes.shape({
     number: PropTypes.number.isRequired,

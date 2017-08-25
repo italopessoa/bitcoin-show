@@ -9,7 +9,7 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  question: { text: '', options: [] },
+  question: { id: 0, text: '', options: [] },
   questionLoadCompleted: false,
   isFetching: false,
   errorMessage: '',
@@ -21,7 +21,7 @@ function questionReducer(state = initialState, action) {
     case FETCHING_DATA_QUESTION:
       return {
         ...state,
-        question: { text: '', options: [] },
+        question: { id: 0, text: '', options: [] },
         isFetching: true,
         questionLoadCompleted: false,
         shouldUpdateQuestion: false,
