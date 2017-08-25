@@ -106,13 +106,13 @@ namespace WebAPI.Controllers
                     break;
             }
 
-            Question a = new Question { Id = 0, Level = 'e', Text = $"{level} {DateTime.Now.ToString()}?" };
+            Question a = new Question { Id = DateTime.Now.Millisecond, Level = 'e', Text = $"{level} {DateTime.Now.ToString()}?" };
             Option[] ops = new Option[4];
             for (byte i = 1; i < 5; i++)
             {
                 ops[i - 1] = new Option { Number = i, Text = Guid.NewGuid().ToString() };
             }
-            a.Answer = ops[new Random().Next(0, 4)];
+            a.Answer = ops[0];///new Random().Next(0, 4)];
             a.Options = ops;
             return a;
         }
