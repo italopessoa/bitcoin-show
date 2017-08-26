@@ -8,6 +8,7 @@ import { skipCompleted, hideCards } from './actions/toolsActions';
 import Options from './containers/OptionsPanel';
 import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
+import Cards from './components/Cards';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class App extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.mustDisplayCards) {
-      this.props.hideCards();
     }
     if (nextProps.shouldStopProgress) {
       console.log('voce parou');
@@ -50,6 +50,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {this.props.mustDisplayCards && <Cards onClick={this.props.hideCards} />}
         <button onClick={() => {
           this.props.fetchQuestion(this.props.award.level);
           this.props.fetchAwards();
