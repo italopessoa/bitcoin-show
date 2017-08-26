@@ -21,18 +21,12 @@ class App extends Component {
     if (nextProps.shouldStopProgress) {
       console.log('voce parou');
     }
-    if (!this.questionHasChanged(nextProps.questionData)) {
-      if (nextProps.shouldSkipQuestion) {
+    if (nextProps.shouldSkipQuestion) {
+      if (!this.questionHasChanged(nextProps.questionData)) {
         this.props.fetchQuestion(this.props.award.level);
       }
-    } else if (nextProps.shouldSkipQuestion) {
       this.props.skipCompleted();
     }
-    // if (nextProps.shouldSkipQuestion && !this.questionHasChanged(nextProps.questionData, this.props.questionData)) {
-    //   this.props.fetchQuestion(this.props.award.level);
-    // } else if (nextProps.shouldSkipQuestion && this.questionHasChanged(nextProps.questionData, this.props.questionData)) {
-    //   this.props.skipCompleted();
-    // }
     if (nextProps.userFailed) {
       console.log('voce errou');
     }

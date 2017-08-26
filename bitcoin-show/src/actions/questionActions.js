@@ -7,7 +7,7 @@ import {
   CHECKING_ANSWER_FAIL,
   CHECKING_ANSWER_ERROR,
 } from './actionTypes';
-import checkAnswerService from '../services/QuestionServices';
+import { checkAnswerService } from '../services/QuestionServices';
 
 function getQuestion() {
   return {
