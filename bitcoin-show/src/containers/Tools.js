@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Tools from '../components/Tools';
-import { stopProgress, skipQuestion, displayCards, hideCards } from '../actions/toolsActions';
+import { skipQuestion } from '../actions/questionActions';
 
 const mapStateToProps = state => ({
   mustDisplayCards: state.displayCards,
@@ -9,10 +9,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-    stopProgress,
     skipQuestion,
-    displayCards,
-    hideCards,
+    // skipQuestion,
+    // displayCards,
+    // hideCards,
   }, dispatch);
 
 export default connect(
