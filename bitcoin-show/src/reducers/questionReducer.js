@@ -27,6 +27,7 @@ const initialState = {
 
   skipAttemptsLeft: 3,
 
+  cardsWereUsed: false,
   mustDisplayCards: false,
 };
 
@@ -62,7 +63,7 @@ export function questionReducer(state = initialState, action) {
       return {
         ...state,
         mustUpdateQuestion: true,
-        curentAwardIndex: state.curentAwardIndex + 1,
+        currentAwardIndex: state.currentAwardIndex + 1,
         currentAwardValue: state.awards[state.currentAwardIndex + 1],
         isFetching: false,
       };
@@ -111,13 +112,14 @@ export function questionReducer(state = initialState, action) {
     case TOOLS_DISPLAY_CARDS:
       return {
         ...state,
-        mustDisplayCards: true,
+        mustDisplayCards: !state.cardsWereUsed,
+        cardsWereUsed: true,
       };
     case TOOLS_CARD_SELECTED:
       return {
         ...state,
         question: action.data,
-        mustDisplayCards: false,
+        mustDisplayCards: !state.cardsWereUsed,
       };
     default:
       return state;

@@ -32,7 +32,7 @@ class App extends Component {
         {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
         {this.props.mustDisplayCards && <Cards />}
         <div>
-          {this.props.questionData.question.id > 0 && <Tools />}
+          <Tools />
           <Question />
           <Options />
         </div>
@@ -94,12 +94,12 @@ App.propTypes = {
     level: PropTypes.number.isRequired,
   }).isRequired,
   isFetching: PropTypes.bool.isRequired,
+  mustDisplayCards: PropTypes.bool.isRequired,
   // shouldStopProgress: PropTypes.bool,
   // userFailed: PropTypes.bool,
 };
 
 App.defaultProps = {
   shouldStopProgress: false,
-  shouldSkipQuestion: false,
   userFailed: false,
 };
