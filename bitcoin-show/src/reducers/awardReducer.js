@@ -16,7 +16,6 @@ export default function awardReducer(state = initialState, action) {
     case FETCHING_DATA_AWARDS:
       return state;
     case FETCHING_DATA_AWARDS_SUCCESS:
-      console.log(action.data[0]);
       return {
         ...state,
         awards: action.data,

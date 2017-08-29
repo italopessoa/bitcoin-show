@@ -13,7 +13,6 @@ const initialState = {
 function optionReducer(state = initialState, action) {
   switch (action.type) {
     case SELECT_OPTION:
-      console.log('option selected')
       return {
         ...state,
         selectedOptionNumber: action.data,

@@ -4,13 +4,13 @@ import Tools from '../components/Tools';
 import { skipQuestion } from '../actions/questionActions';
 
 const mapStateToProps = state => ({
-  mustDisplayCards: state.displayCards,
+  // mustDisplayCards: state.displayCards,
+  skipAttemptsLeft: state.questionData.skipAttemptsLeft,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     skipQuestion,
-    // skipQuestion,
     // displayCards,
     // hideCards,
   }, dispatch);

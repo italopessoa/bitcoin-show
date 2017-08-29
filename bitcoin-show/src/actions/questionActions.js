@@ -10,7 +10,7 @@ import {
   FETCHING_DATA_AWARDS,
   FETCHING_DATA_AWARDS_SUCCESS,
   FETCHING_DATA_AWARDS_ERROR,
-  UPDATE_AWARD,
+  TOOLS_SKIP_QUESTION_SUCCESS,
 } from './actionTypes';
 import { checkAnswerService } from '../services/QuestionServices';
 
@@ -85,11 +85,22 @@ export default function checkAnswer(question, selectedOptionNumber) {
   };
 }
 
-export function skipQuestion(level = 0) {
-  return fetchQuestion(level);
+function skipingQuestion() {
+  return { type: TOOLS_SKIP_QUESTION };
+}
+function skipQuestionSuccess(data) {
+  return { type: TOOLS_SKIP_QUESTION_SUCCESS, data };
 }
 
-
+export function skipQuestion(level = 0) {
+  const url = 'http://localhost:51203/api/questions/';
+  return (dispatch) => {
+    dispatch(skipingQuestion());
+    fetch(url.concat(level))
+      .then(response => response.json())
+      .then(result => dispatch(skipQuestionSuccess(result)));
+  };
+}
 function getAwardsSuccess(awards) {
   return {
     type: FETCHING_DATA_AWARDS_SUCCESS,

@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchQuestion, fetchAwards } from './actions/questionActions';
-// import fetchAwards, { updateAward } from './actions/awardActions';
-// import { skipCompleted, hideCards } from './actions/toolsActions';
 import Options from './containers/OptionsPanel';
 import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
@@ -31,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
         {/* {this.props.mustDisplayCards && <Cards onClick={this.props.hideCards} />} */}
         <div>
           {this.props.questionData.question.id > 0 && <Tools />}
@@ -65,6 +64,7 @@ function mapStateToProps(state) {
     questionData: state.questionData,
     award: state.questionData.currentAwardValue,
     mustUpdateQuestion: state.questionData.mustUpdateQuestion,
+    isFetching: state.questionData.isFetching,
     // shouldStopProgress: state.tools.stopProgress,
     // mustDisplayCards: state.tools.displayCards,
   };
@@ -74,7 +74,6 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({
     fetchQuestion,
     fetchAwards,
-    // hideCards,
   }, dispatch);
 
 export default connect(
@@ -94,8 +93,8 @@ App.propTypes = {
     wrong: PropTypes.number.isRequired,
     level: PropTypes.number.isRequired,
   }).isRequired,
+  isFetching: PropTypes.bool.isRequired,
   // shouldStopProgress: PropTypes.bool,
-  // shouldSkipQuestion: PropTypes.bool,
   // userFailed: PropTypes.bool,
 };
 
