@@ -14,7 +14,7 @@ class Cards extends Component {
           this.state.cards.map((c, index) => (
             <button
               key={index}
-              onClick={() => this.props.onClick()}
+              onClick={() => this.props.cardSelected(index, this.props.currentQuestion)}
             >Card: {index}
             </button>),
           )

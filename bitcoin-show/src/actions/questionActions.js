@@ -11,8 +11,10 @@ import {
   FETCHING_DATA_AWARDS_SUCCESS,
   FETCHING_DATA_AWARDS_ERROR,
   TOOLS_SKIP_QUESTION_SUCCESS,
+  TOOLS_DISPLAY_CARDS,
+  TOOLS_CARD_SELECTED,
 } from './actionTypes';
-import { checkAnswerService } from '../services/QuestionServices';
+import { checkAnswerService, removeWrongOptionsService } from '../services/QuestionServices';
 
 function getQuestion() {
   return {
@@ -128,5 +130,21 @@ export function fetchAwards() {
       .then(response => response.json())
       .then(result => dispatch(getAwardsSuccess(result.awards)))
       .catch(err => dispatch(getAwardsError(err)));
+  };
+}
+
+export function displayCards() {
+  return { type: TOOLS_DISPLAY_CARDS };
+}
+
+export function cardSelectedSuccess(question) {
+  return { type: TOOLS_CARD_SELECTED, data: question };
+}
+
+export function cardSelected(cardNumber, currentQuestion) {
+  return (dispatch) => {
+    dispatch({ type: 'REMOVENDO_OPCOES' });
+    removeWrongOptionsService(currentQuestion, cardNumber)
+      .then(result => dispatch(cardSelectedSuccess(result.question)));
   };
 }

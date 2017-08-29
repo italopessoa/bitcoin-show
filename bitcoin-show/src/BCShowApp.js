@@ -6,7 +6,7 @@ import { fetchQuestion, fetchAwards } from './actions/questionActions';
 import Options from './containers/OptionsPanel';
 import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
-// import Cards from './components/Cards';
+import Cards from './containers/Cards';
 
 class App extends Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div>
         {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
-        {/* {this.props.mustDisplayCards && <Cards onClick={this.props.hideCards} />} */}
+        {this.props.mustDisplayCards && <Cards />}
         <div>
           {this.props.questionData.question.id > 0 && <Tools />}
           <Question />
@@ -66,7 +66,7 @@ function mapStateToProps(state) {
     mustUpdateQuestion: state.questionData.mustUpdateQuestion,
     isFetching: state.questionData.isFetching,
     // shouldStopProgress: state.tools.stopProgress,
-    // mustDisplayCards: state.tools.displayCards,
+    mustDisplayCards: state.questionData.mustDisplayCards,
   };
 }
 

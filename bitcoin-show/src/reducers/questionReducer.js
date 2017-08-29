@@ -11,6 +11,8 @@ import {
   FETCHING_DATA_AWARDS,
   FETCHING_DATA_AWARDS_SUCCESS,
   FETCHING_DATA_AWARDS_ERROR,
+  TOOLS_DISPLAY_CARDS,
+  TOOLS_CARD_SELECTED,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -24,6 +26,8 @@ const initialState = {
   currentAwardValue: { number: 0, right: 0, stop: 0, wrong: 0, level: 0 },
 
   skipAttemptsLeft: 3,
+
+  mustDisplayCards: false,
 };
 
 
@@ -103,6 +107,17 @@ export function questionReducer(state = initialState, action) {
         awards: [],
         currentAwardValue: { number: 0, right: 0, stop: 0, wrong: 0, level: 0 },
         isFetching: false,
+      };
+    case TOOLS_DISPLAY_CARDS:
+      return {
+        ...state,
+        mustDisplayCards: true,
+      };
+    case TOOLS_CARD_SELECTED:
+      return {
+        ...state,
+        question: action.data,
+        mustDisplayCards: false,
       };
     default:
       return state;
