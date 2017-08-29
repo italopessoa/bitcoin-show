@@ -6,6 +6,7 @@ import { skipQuestion, displayCards } from '../actions/questionActions';
 const mapStateToProps = state => ({
   // mustDisplayCards: state.displayCards,
   skipAttemptsLeft: state.questionData.skipAttemptsLeft,
+  cardsWereUsed: state.questionData.cardsWereUsed,
 });
 
 const mapDispatchToProps = dispatch =>
