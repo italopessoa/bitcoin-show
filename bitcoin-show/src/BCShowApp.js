@@ -14,8 +14,6 @@ class App extends Component {
     this.props.fetchQuestion(this.props.award.level);
   }
   componentWillReceiveProps(nextProps) {
-    // if (nextProps.mustDisplayCards) {
-    // }
     // if (nextProps.shouldStopProgress) {
     //   console.log('voce parou');
     // }
