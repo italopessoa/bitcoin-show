@@ -127,6 +127,9 @@ namespace WebAPI.Controllers
                 case LevelEnum.Hard:
                     level = "Hard";
                     break;
+                default:
+                    level = "Easy";
+                    break;
             }
 
             Question a = new Question { Id = DateTime.Now.Millisecond, Level = 'e', Text = $"{level} {DateTime.Now.ToString()}?" };
