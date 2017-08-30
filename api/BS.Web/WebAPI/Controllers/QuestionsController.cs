@@ -7,6 +7,8 @@ using WebAPI.Models;
 using System.ComponentModel;
 using Microsoft.AspNetCore.Cors;
 using System.Text;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,9 +25,9 @@ namespace WebAPI.Controllers
     public class Award
     {
         public byte Number { get; set; }
-        public int Right { get; set; }
-        public int Stop { get; set; }
-        public int Wrong { get; set; }
+        public double Right { get; set; }
+        public double Stop { get; set; }
+        public double Wrong { get; set; }
         public LevelEnum Level { get; set; }
     }
 
@@ -51,14 +53,26 @@ namespace WebAPI.Controllers
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult Get(LevelEnum level = LevelEnum.Easy)
         {
-            return Ok(
-                new { question = this.GenerateRandomQuestion(level) }
-            );
+            return Ok(this.GenerateRandomQuestion(level));
         }
 
         [HttpGet("awards")]
-        public IActionResult GetAwards()
+        public async Task<IActionResult> GetAwards()
         {
+            double bitcoinBRLValue = 1;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://min-api.cryptocompare.com");
+                var response = await client.GetAsync("/data/pricemulti?fsyms=BTC&tsyms=USD,BRL");
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    JToken token = JObject.Parse(result);
+                    JToken brl = token.SelectToken("BTC.BRL");
+                    bitcoinBRLValue = brl != null ? double.Parse(brl.ToString()) : bitcoinBRLValue;
+                }
+            }
+
             List<Award> awards = new List<Award>
             {
                 new Award {Number= 1,Right= 500,Stop= 0,Wrong= 0},
@@ -87,7 +101,16 @@ namespace WebAPI.Controllers
                 new Award {Number= 24,Right= 1000000,Stop= 600000,Wrong= 0}
             };
 
-            return Ok(new { awards = awards });
+            foreach (var item in awards)
+            {
+                if (bitcoinBRLValue > 1)
+                {
+                    item.Right = Math.Round((item.Right / bitcoinBRLValue), 3);
+                    item.Stop = Math.Round((item.Stop > 0 ? (item.Stop / bitcoinBRLValue) : 0), 3);
+                    item.Wrong = Math.Round((item.Wrong > 0 ? (item.Wrong / bitcoinBRLValue) : 0), 3);
+                }
+            }
+            return Ok(awards);
         }
 
         private Question GenerateRandomQuestion(LevelEnum levelEnum)
@@ -116,25 +139,5 @@ namespace WebAPI.Controllers
             a.Options = ops;
             return a;
         }
-
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
-
-
 }
