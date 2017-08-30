@@ -14,7 +14,6 @@ using Newtonsoft.Json.Linq;
 
 namespace WebAPI.Controllers
 {
-
     public enum LevelEnum : byte
     {
         Easy = 0,

@@ -19,7 +19,6 @@
         /// ]
         /// </summary>
         public Option[] Options { get; set; }
-        // public string Options { get; set; }
 
         /// <summary>
         /// { "number": "n" }
@@ -29,7 +28,7 @@
         /// <summary>
         /// <para>e: easy</para>
         /// <para>m: medium</para>
-        /// <para>h: hard</para><
+        /// <para>h: hard</para>
         /// </summary>
         public char Level { get; set; }
     }
