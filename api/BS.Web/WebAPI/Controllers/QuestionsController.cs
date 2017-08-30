@@ -49,9 +49,9 @@ namespace WebAPI.Controllers
         /// <remarks>Get a random question based on the level parameter.</remarks>
         /// <response code="200">Returns a Question</response>
         /// <returns>Question</returns>
-        [HttpGet("{level?}")]
+        [HttpGet]
         [ProducesResponseType(typeof(Question), 200)]
-        public IActionResult Get(LevelEnum level = LevelEnum.Easy)
+        public IActionResult Get(LevelEnum level)
         {
             return Ok(this.GenerateRandomQuestion(level));
         }
