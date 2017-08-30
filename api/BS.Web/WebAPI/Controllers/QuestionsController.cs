@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Cors;
 using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,7 +53,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult Get(LevelEnum level)
         {
-            return Ok(this.GenerateRandomQuestion(level));
+            return Ok(GenerateRandomQuestion(level));
         }
 
         [HttpGet("awards")]
@@ -112,7 +113,7 @@ namespace WebAPI.Controllers
             return Ok(awards);
         }
 
-        private Question GenerateRandomQuestion(LevelEnum levelEnum)
+        private static Question GenerateRandomQuestion(LevelEnum levelEnum)
         {
             string level = String.Empty;
             switch (levelEnum)
@@ -131,7 +132,7 @@ namespace WebAPI.Controllers
                     break;
             }
 
-            Question a = new Question { Id = DateTime.Now.Millisecond, Level = 'e', Text = $"{level} {DateTime.Now.ToString()}?" };
+            Question a = new Question { Id = DateTime.Now.Millisecond, Level = 'e', Text = $"{level} {DateTime.Now.ToString(CultureInfo.CurrentCulture)}?" };
             Option[] ops = new Option[4];
             for (byte i = 1; i < 5; i++)
             {
