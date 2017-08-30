@@ -13,6 +13,7 @@ import {
   FETCHING_DATA_AWARDS_ERROR,
   TOOLS_DISPLAY_CARDS,
   TOOLS_CARD_SELECTED,
+  TOOLS_STOP_PLAYING,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   currentAwardValue: { number: 0, right: 0, stop: 0, wrong: 0, level: 0 },
 
   skipAttemptsLeft: 3,
+  gameOver: false,
 
   cardsWereUsed: false,
   mustDisplayCards: false,
@@ -120,6 +122,11 @@ export function questionReducer(state = initialState, action) {
         ...state,
         question: action.data,
         mustDisplayCards: !state.cardsWereUsed,
+      };
+    case TOOLS_STOP_PLAYING:
+      return {
+        ...state,
+        gameOver: true,
       };
     default:
       return state;

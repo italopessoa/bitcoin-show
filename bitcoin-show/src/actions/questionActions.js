@@ -13,6 +13,7 @@ import {
   TOOLS_SKIP_QUESTION_SUCCESS,
   TOOLS_DISPLAY_CARDS,
   TOOLS_CARD_SELECTED,
+  TOOLS_STOP_PLAYING,
 } from './actionTypes';
 import { checkAnswerService, removeWrongOptionsService } from '../services/QuestionServices';
 
@@ -103,6 +104,11 @@ export function skipQuestion(level = 0) {
       .then(result => dispatch(skipQuestionSuccess(result)));
   };
 }
+
+export function stopPlaying() {
+  return { type: TOOLS_STOP_PLAYING };
+}
+
 function getAwardsSuccess(awards) {
   return {
     type: FETCHING_DATA_AWARDS_SUCCESS,

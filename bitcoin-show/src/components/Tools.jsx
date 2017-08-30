@@ -10,6 +10,7 @@ const Tools = props => (
     >Pular: {props.skipAttemptsLeft}
     </button>
     <button disabled={props.cardsWereUsed} onClick={() => props.displayCards()} >Cartas</button>
+    <button onClick={() => props.stopPlaying()}>Parar</button>
   </div>
 );
 
@@ -17,6 +18,7 @@ Tools.propTypes = {
   // stopProgress: PropTypes.func.isRequired,
   skipQuestion: PropTypes.func.isRequired,
   displayCards: PropTypes.func.isRequired,
+  stopPlaying: PropTypes.func.isRequired,
   skipAttemptsLeft: PropTypes.number.isRequired,
   cardsWereUsed: PropTypes.bool.isRequired,
 };
