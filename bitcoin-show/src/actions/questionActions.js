@@ -22,10 +22,10 @@ function getQuestion() {
   };
 }
 
-function getQuestionSuccess(data) {
+function getQuestionSuccess(question) {
   return {
     type: FETCHING_DATA_QUESTION_SUCCESS,
-    data,
+    data: question,
   };
 }
 
@@ -128,7 +128,7 @@ export function fetchAwards() {
     dispatch(getAwards());
     fetch('http://localhost:51203/api/questions/awards')
       .then(response => response.json())
-      .then(result => dispatch(getAwardsSuccess(result.awards)))
+      .then(result => dispatch(getAwardsSuccess(result)))
       .catch(err => dispatch(getAwardsError(err)));
   };
 }

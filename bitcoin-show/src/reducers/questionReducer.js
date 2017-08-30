@@ -45,7 +45,7 @@ export function questionReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        question: action.data.question,
+        question: action.data,
       };
     case FETCHING_DATA_QUESTION_FAILURE:
       return {
@@ -87,7 +87,7 @@ export function questionReducer(state = initialState, action) {
         ...state,
         isFetching: false,
         skipAttemptsLeft: state.skipAttemptsLeft - 1,
-        question: action.data.question,
+        question: action.data,
       };
     case FETCHING_DATA_AWARDS:
       return {
