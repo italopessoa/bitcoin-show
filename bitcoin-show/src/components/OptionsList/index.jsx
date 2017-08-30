@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Option from './Option';
+import Option from '../../components/Option';
 
 const styles = {
   selected: {

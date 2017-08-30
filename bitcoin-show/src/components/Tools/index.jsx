@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Tools = props => (
   <div>
-    {/* <button onClick={() => props.stopProgress()} >Parar</button> */}
     <button
       disabled={props.skipAttemptsLeft <= 0}
       onClick={() => props.skipQuestion()}
