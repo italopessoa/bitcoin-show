@@ -14,12 +14,6 @@ class App extends Component {
     this.props.fetchQuestion(this.props.award.level);
   }
   componentWillReceiveProps(nextProps) {
-    // if (nextProps.shouldStopProgress) {
-    //   console.log('voce parou');
-    // }
-    // if (nextProps.userFailed) {
-    //   console.log('voce errou');
-    // }
     if (nextProps.mustUpdateQuestion) {
       this.props.fetchQuestion(this.props.award.level);
     }
@@ -27,31 +21,41 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
-        {this.props.mustDisplayCards && <Cards />}
-        <div>
-          <Tools />
-          <Question />
-          <Options />
-        </div>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Right</th>
-                <th>Stop</th>
-                <th>Error</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{this.props.award.right}</td>
-                <td>{this.props.award.stop}</td>
-                <td>{this.props.award.wrong}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <header>
+          <nav className="blue darken-3">
+            <div className="nav-wrapper">
+              <div className="container">
+                <Tools />
+              </div>
+            </div>
+          </nav>
+        </header>
+        <main>
+          {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
+          {this.props.mustDisplayCards && <Cards />}
+          <div>
+            <Question />
+            <Options />
+          </div>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Right</th>
+                  <th>Stop</th>
+                  <th>Error</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{this.props.award.right}</td>
+                  <td>{this.props.award.stop}</td>
+                  <td>{this.props.award.wrong}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
       </div>
     );
   }
@@ -63,7 +67,6 @@ function mapStateToProps(state) {
     award: state.questionData.currentAwardValue,
     mustUpdateQuestion: state.questionData.mustUpdateQuestion,
     isFetching: state.questionData.isFetching,
-    // shouldStopProgress: state.tools.stopProgress,
     mustDisplayCards: state.questionData.mustDisplayCards,
   };
 }
@@ -79,7 +82,6 @@ export default connect(
   mapDispatchToProps,
 )(App);
 
-
 App.propTypes = {
   fetchQuestion: PropTypes.func.isRequired,
   fetchAwards: PropTypes.func.isRequired,
@@ -93,8 +95,6 @@ App.propTypes = {
   }).isRequired,
   isFetching: PropTypes.bool.isRequired,
   mustDisplayCards: PropTypes.bool.isRequired,
-  // shouldStopProgress: PropTypes.bool,
-  // userFailed: PropTypes.bool,
 };
 
 App.defaultProps = {

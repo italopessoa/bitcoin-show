@@ -2,19 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Tools = props => (
-  <div>
-    <button
-      disabled={props.skipAttemptsLeft <= 0}
-      onClick={() => props.skipQuestion()}
-    >Pular: {props.skipAttemptsLeft}
-    </button>
-    <button disabled={props.cardsWereUsed} onClick={() => props.displayCards()} >Cartas</button>
-    <button onClick={() => props.stopPlaying()}>Parar</button>
-  </div>
+  <ul className={'right'}>
+    <li>
+      <a onClick={() => (props.skipAttemptsLeft > 0) && props.skipQuestion()}>
+        <i className={'material-icons'}>cached</i>
+      </a></li>
+    <li>
+      <a onClick={() => !props.cardsWereUsed && props.displayCards()}>
+        <i className={'material-icons'}>view_carousel</i>
+      </a>
+    </li>
+    <li>
+      <a onClick={() => props.stopPlaying()}>
+        <i className={'material-icons'}>cancel</i>
+      </a>
+    </li>
+  </ul>
 );
 
 Tools.propTypes = {
-  // stopProgress: PropTypes.func.isRequired,
   skipQuestion: PropTypes.func.isRequired,
   displayCards: PropTypes.func.isRequired,
   stopPlaying: PropTypes.func.isRequired,

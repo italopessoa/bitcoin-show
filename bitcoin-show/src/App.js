@@ -6,5 +6,5 @@ import HomePage from './components/pages/HomePage/HomePage';
 const App = () => (<HomePage />);
 
 const t = [1, 2, 2,
-  3, 5 ];
+  3, 5];
 export default App;
