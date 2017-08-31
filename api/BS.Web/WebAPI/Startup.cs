@@ -27,10 +27,10 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddCors(o=> o.AddPolicy("MP",builder =>
-            {
-                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-            }));
+            services.AddCors(o => o.AddPolicy("MP", builder =>
+              {
+                  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+              }));
 
             services.AddMvc().AddJsonOptions(options =>
             {
@@ -69,14 +69,9 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc(routes =>
-            {
-                //routes.MapRoute("blog", "questions/*",
-                //   defaults: new { controller = "Questions", action = "Get", level = 1 });
-                //"default", "{controller=Questions}/{action=Get}/easy");
-            });
+            app.UseMvc();
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            //Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.

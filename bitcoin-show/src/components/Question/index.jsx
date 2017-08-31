@@ -2,18 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardPanel from '../CardPanel';
 
+const styles = {
+  rightAlign: {
+    float: 'right',
+  },
+};
+
+const scaleInOut = (scaleIn) => {
+  const classesValue = 'btn-floating btn-large waves-effect waves-light green scale-out scale-transition ';
+  return classesValue.concat(scaleIn ? 'scale-in' : 'scale-out');
+};
+
 const Question = props => (
   <div>
     <CardPanel
       content={
         <div>
-          <h5>{props.question.text}</h5>
-          <button
-            hidden={!props.hasASelectedOption}
-            onClick={() => props.checkAnswer(props.question, props.selectedOptionNumber)}
-          >
-            Verificar resposta
-      </button>
+          <div>
+            <h5>{props.question.text}</h5>
+          </div>
+          <div style={styles.rightAlign}>
+            <a
+              onClick={() => props.checkAnswer(props.question, props.selectedOptionNumber)}
+              className={scaleInOut(props.hasASelectedOption)}
+            >
+              <i className="material-icons">done</i>
+            </a>
+          </div>
         </div>
       }
     />
