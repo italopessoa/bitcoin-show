@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 const Tools = props => (
   <ul className={'right'}>
     <li>
-      <a onClick={() => (props.skipAttemptsLeft > 0) && props.skipQuestion()}>
+      <a
+        className={'numberBadge'}
+        data-badge={props.skipAttemptsLeft}
+        onClick={() => (props.skipAttemptsLeft > 0) && props.skipQuestion()}
+      >
         <i className={'material-icons'}>cached</i>
-      </a></li>
+      </a>
+    </li>
     <li>
       <a onClick={() => !props.cardsWereUsed && props.displayCards()}>
         <i className={'material-icons'}>view_carousel</i>
