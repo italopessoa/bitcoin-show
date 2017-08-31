@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Option from './Option';
+import Option from '../../components/Option';
+import CardPanel from '../../components/CardPanel';
 
 const styles = {
   selected: {
@@ -19,8 +20,15 @@ const OptionsList = props => (
   <ul>
     {
       props.options.map(option => (
-        <li key={option.number} style={getStyle(props.selectedOptionNumber, option.number)} >
-          <Option onSelected={props.selectOption} number={option.number} text={option.text} />
+        <li key={option.number} >
+          <CardPanel
+            onClick={props.selectOption}
+            onClickArgs={option.number}
+            style={getStyle(props.selectedOptionNumber, option.number)}
+            content={
+              <Option number={option.number} text={option.text} />
+            }
+          />
         </li>
       ))
     }
@@ -33,7 +41,7 @@ OptionsList.propTypes = {
     text: PropTypes.string.isRequired,
     selected: PropTypes.bool,
   })).isRequired,
-  selectOption: PropTypes.func.isRequired,
+  selectedOptionNumber: PropTypes.number.isRequired,
 };
 
 export default OptionsList;

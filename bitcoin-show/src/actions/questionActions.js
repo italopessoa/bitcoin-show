@@ -38,7 +38,7 @@ function getQuestionFailure(err) {
 }
 
 export function fetchQuestion(level = 0) {
-  const url = 'http://localhost:51203/api/questions/';
+  const url = 'http://localhost:51203/api/questions/RandomQuestionByLevel/';
   return (dispatch) => {
     dispatch(getQuestion());
     fetch(url.concat(level))
@@ -96,7 +96,7 @@ function skipQuestionSuccess(data) {
 }
 
 export function skipQuestion(level = 0) {
-  const url = 'http://localhost:51203/api/questions/';
+  const url = 'http://localhost:51203/api/questions/RandomQuestionByLevel/';
   return (dispatch) => {
     dispatch(skipingQuestion());
     fetch(url.concat(level))

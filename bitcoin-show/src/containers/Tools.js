@@ -4,7 +4,6 @@ import Tools from '../components/Tools';
 import { skipQuestion, displayCards, stopPlaying } from '../actions/questionActions';
 
 const mapStateToProps = state => ({
-  // mustDisplayCards: state.displayCards,
   skipAttemptsLeft: state.questionData.skipAttemptsLeft,
   cardsWereUsed: state.questionData.cardsWereUsed,
 });
