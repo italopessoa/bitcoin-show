@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
         /// <remarks>Get a random question based on the level parameter.</remarks>
         /// <response code="200">Returns a Question</response>
         /// <returns>Question</returns>
-        [HttpGet]
+        [HttpGet("RandomQuestionByLevel/{level}")]
         [ProducesResponseType(typeof(Question), 200)]
         public IActionResult Get(LevelEnum level)
         {
