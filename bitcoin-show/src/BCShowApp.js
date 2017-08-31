@@ -7,6 +7,7 @@ import Options from './containers/OptionsPanel';
 import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
 import Cards from './containers/Cards';
+import CardPanel from './components/CardPanel';
 
 class App extends Component {
   componentDidMount() {
@@ -33,9 +34,20 @@ class App extends Component {
         <main>
           {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
           {this.props.mustDisplayCards && <Cards />}
-          <div>
-            <Question />
-            <Options />
+          <div className="row">
+            <div className="col l8 push-l2">
+              <CardPanel
+                className="blue darken-3 zero-padding-left"
+                content={
+                  <div className="row">
+                    <div className="col m12 zero-padding-left">
+                      <Question />
+                    </div>
+                  </div>
+                }
+              />
+              <Options />
+            </div>
           </div>
           <div>
             <table>
@@ -56,7 +68,7 @@ class App extends Component {
             </table>
           </div>
         </main>
-      </div>
+      </div >
     );
   }
 }

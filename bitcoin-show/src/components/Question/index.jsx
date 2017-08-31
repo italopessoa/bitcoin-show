@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CardPanel from '../CardPanel';
 
 const Question = props => (
   <div>
-    <h1>{props.question.text}</h1>
-    {props.hasASelectedOption &&
-      <button
-        onClick={
-          () => props.checkAnswer(props.question, props.selectedOptionNumber)
-        }
-      >
-        Verificar resposta
+    <CardPanel
+      className="red white-text"
+      content={
+        <div>
+          <h5>{props.question.text}</h5>
+          <button
+            hidden={!props.hasASelectedOption}
+            onClick={() => props.checkAnswer(props.question, props.selectedOptionNumber)}
+          >
+            Verificar resposta
       </button>
-    }
+        </div>
+      }
+    />
   </div >
 );
 
