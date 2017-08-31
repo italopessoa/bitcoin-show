@@ -5,7 +5,6 @@ import CardPanel from '../CardPanel';
 const Question = props => (
   <div>
     <CardPanel
-      className="red white-text"
       content={
         <div>
           <h5>{props.question.text}</h5>

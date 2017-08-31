@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class CardPanel extends Component {
-  render() {
-    return (
-      <div
-        className={`card-panel  ${this.props.className}`}
-      >
-        {this.props.content}
-      </div>);
-  }
-}
+const CardPanel = props => (
+  <div className={`card-panel  ${props.className}`}>
+    {props.content}
+  </div>
+);
 
 export default CardPanel;
 
@@ -22,6 +17,4 @@ CardPanel.propTypes = {
 CardPanel.defaultProps = {
   id: '',
   className: '',
-  onClickHandler: null,
-  onClickArgs: {},
 };

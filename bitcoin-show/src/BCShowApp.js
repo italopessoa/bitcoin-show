@@ -42,11 +42,11 @@ class App extends Component {
                   <div className="row">
                     <div className="col m12 zero-padding-left">
                       <Question />
+                      <Options />
                     </div>
                   </div>
                 }
               />
-              <Options />
             </div>
           </div>
           <div>
