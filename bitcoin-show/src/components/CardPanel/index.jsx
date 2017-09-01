@@ -14,7 +14,7 @@ class CardPanel extends Component {
       <div
         onClick={() => this.onClickEvent()}
         style={this.props.style}
-        className={`card-panel  ${this.props.className}`}
+        className={`card-panel ${this.props.className}`}
       >
         {this.props.content}
       </div>

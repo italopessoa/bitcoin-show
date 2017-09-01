@@ -8,6 +8,7 @@ import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
 import Cards from './containers/Cards';
 import CardPanel from './components/CardPanel';
+import './index.css';
 
 class App extends Component {
   componentDidMount() {
@@ -37,12 +38,19 @@ class App extends Component {
           <div className="row">
             <div className="col l8 push-l2">
               <CardPanel
+                style={{ paddingTop: '10px' }}
                 className="blue darken-3 zero-padding-left"
                 content={
-                  <div className="row">
-                    <div className="col m12 zero-padding-left">
-                      <Question />
-                      <Options />
+                  <div>
+                    <div className="row">
+                      <div className="col m12 zero-padding-left">
+                        <Question />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col m9">
+                        <Options />
+                      </div>
                     </div>
                   </div>
                 }
