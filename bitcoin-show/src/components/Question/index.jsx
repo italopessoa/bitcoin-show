@@ -9,13 +9,14 @@ const styles = {
 };
 
 const scaleInOut = (scaleIn) => {
-  const classesValue = 'btn-floating btn-large waves-effect waves-light green scale-out scale-transition ';
+  const classesValue = 'btn-floating btn-large waves-effect waves-light green scale-transition ';
   return classesValue.concat(scaleIn ? 'scale-in' : 'scale-out');
 };
 
 const Question = props => (
   <div>
     <CardPanel
+      className="red white-text"
       content={
         <div>
           <div>
