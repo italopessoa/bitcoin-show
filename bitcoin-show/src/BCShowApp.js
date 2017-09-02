@@ -8,6 +8,8 @@ import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
 import Cards from './containers/Cards';
 import CardPanel from './components/CardPanel';
+import Loading from './components/Loading';
+
 import './index.css';
 
 class App extends Component {
@@ -33,10 +35,11 @@ class App extends Component {
           </nav>
         </header>
         <main>
-          {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
+          {/* {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />} */}
           {this.props.mustDisplayCards && <Cards />}
           <div className="row">
             <div className="col l8 push-l2">
+              {<Loading />}
               <CardPanel
                 style={{ paddingTop: '10px' }}
                 className="blue darken-3 zero-padding-left"
