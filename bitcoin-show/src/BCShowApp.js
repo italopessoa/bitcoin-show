@@ -20,6 +20,20 @@ class App extends Component {
       this.props.fetchQuestion(this.props.award.level);
     }
   }
+  createAwardCard = value => (
+    // TODO: add padding settins as default values to CardPanel
+    <CardPanel
+      style={{ paddingTop: '10px', paddingBottom: '10px', textAlign: 'center' }}
+      className="yellow"
+      content={
+        <span>
+          <h6>
+            <i className="fa fa-btc" aria-hidden="true" /> {value}
+          </h6>
+        </span>
+      }
+    />
+  );
   render() {
     return (
       <div>
@@ -42,14 +56,28 @@ class App extends Component {
                 className="blue darken-3 zero-padding-left"
                 content={
                   <div>
+                    {/* question */}
                     <div className="row">
                       <div className="col m12 zero-padding-left">
                         <Question />
                       </div>
                     </div>
+                    {/* options */}
                     <div className="row">
                       <div className="col m9">
                         <Options />
+                      </div>
+                    </div>
+                    {/* awards */}
+                    <div className="row">
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.right)}
+                      </div>
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.stop)}
+                      </div>
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.wrong)}
                       </div>
                     </div>
                   </div>
@@ -57,26 +85,8 @@ class App extends Component {
               />
             </div>
           </div>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Right</th>
-                  <th>Stop</th>
-                  <th>Error</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{this.props.award.right}</td>
-                  <td>{this.props.award.stop}</td>
-                  <td>{this.props.award.wrong}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </main>
-      </div >
+      </div>
     );
   }
 }

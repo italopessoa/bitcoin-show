@@ -19,3 +19,6 @@ main {
 .col.zero-padding-left{
   padding-left: 0;
 }
+.row{
+  margin-bottom: 0;
+}
