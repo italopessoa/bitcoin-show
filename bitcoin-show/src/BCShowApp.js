@@ -53,7 +53,7 @@ class App extends Component {
           {this.props.mustDisplayCards && <Cards />}
           <div className="row">
             <div className="col l8 push-l2">
-              {<Loading />}
+              {this.props.isFetching && <Loading />}
               <CardPanel
                 style={{ paddingTop: '10px' }}
                 className="blue darken-3 zero-padding-left"
