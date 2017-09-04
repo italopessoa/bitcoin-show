@@ -5,6 +5,14 @@ class Cards extends Component {
   constructor(props) {
     super(props);
     this.state = { cards: [{}, {}, {}, {}] };
+    this.style = {
+      backgroundColor: 'grey',
+      height: '100%',
+      width: '100%',
+      position: 'absolute',
+      zIndex: '800',
+    }
+    this.nipes = [];
   }
   componentWillMount() {
     const array = ['spades', 'clubs', 'diamonds', 'heart'];
@@ -18,17 +26,9 @@ class Cards extends Component {
     }
     this.nipes = array;
   }
-  style = {
-    backgroundColor: 'grey',
-    height: '100%',
-    width: '100%',
-    position: 'absolute',
-    zIndex: '800',
+  getRandomNumber(min, max) {
+    return (Math.random() * (max - min) + min)
   }
-  nipes = [];
-  getRandomNumber = (min, max) => (
-    Math.random() * (max - min) + min
-  )
   render() {
     return (
       <div style={this.style} className="row center">

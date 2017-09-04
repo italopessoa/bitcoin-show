@@ -8,7 +8,7 @@ import Question from './containers/QuestionPanel';
 import Tools from './containers/Tools';
 import Cards from './containers/Cards';
 import CardPanel from './components/CardPanel';
-import Loading from './components/Loading';
+import Loading from './components/Loading'
 
 import './index.css';
 
@@ -19,12 +19,12 @@ class App extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.mustUpdateQuestion) {
-      this.props.fetchQuestion(this.props.award.level);
+      this.props.fetchQuestion(this.props.award.level)
     }
   }
-  createAwardCard = value => (
+  createAwardCard(value) {
     // TODO: add padding settins as default values to CardPanel
-    <CardPanel
+    return (<CardPanel
       style={{ paddingTop: '10px', paddingBottom: '10px', textAlign: 'center' }}
       className="yellow"
       content={
@@ -35,7 +35,8 @@ class App extends Component {
         </span>
       }
     />
-  );
+    )
+  }
   render() {
     return (
       <div>
