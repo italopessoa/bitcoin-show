@@ -13,11 +13,15 @@ class CardPanel extends Component {
     return (
       <div
         onClick={() => this.onClickEvent()}
-        style={this.props.style}
-        className={`card-panel ${this.props.className}`}
+        style={{
+          cursor: (this.props.touch && 'pointer'),
+          ...this.props.style,
+        }}
+        className={`card-panel ${this.props.className}`
+        }
       >
         {this.props.content}
-      </div>
+      </div >
     );
   }
 }

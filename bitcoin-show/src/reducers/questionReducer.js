@@ -13,6 +13,7 @@ import {
   FETCHING_DATA_AWARDS_ERROR,
   TOOLS_DISPLAY_CARDS,
   TOOLS_CARD_SELECTED,
+  TOOLS_CARD_FILTERING,
   TOOLS_STOP_PLAYING,
 } from '../actions/actionTypes';
 
@@ -122,6 +123,12 @@ export function questionReducer(state = initialState, action) {
         ...state,
         question: action.data,
         mustDisplayCards: !state.cardsWereUsed,
+        isFetching: false,
+      };
+    case TOOLS_CARD_FILTERING:
+      return {
+        ...state,
+        isFetching: true,
       };
     case TOOLS_STOP_PLAYING:
       return {

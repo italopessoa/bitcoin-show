@@ -13,6 +13,7 @@ import {
   TOOLS_SKIP_QUESTION_SUCCESS,
   TOOLS_DISPLAY_CARDS,
   TOOLS_CARD_SELECTED,
+  TOOLS_CARD_FILTERING,
   TOOLS_STOP_PLAYING,
 } from './actionTypes';
 import { checkAnswerService, removeWrongOptionsService } from '../services/QuestionServices';
@@ -149,8 +150,10 @@ export function cardSelectedSuccess(question) {
 
 export function cardSelected(cardNumber, currentQuestion) {
   return (dispatch) => {
-    dispatch({ type: 'REMOVENDO_OPCOES' });
-    removeWrongOptionsService(currentQuestion, cardNumber)
-      .then(result => dispatch(cardSelectedSuccess(result.question)));
+    dispatch({ type: TOOLS_CARD_FILTERING });
+    setTimeout(() => {
+      removeWrongOptionsService(currentQuestion, cardNumber)
+        .then(result => dispatch(cardSelectedSuccess(result.question)));
+    }, 300);
   };
 }

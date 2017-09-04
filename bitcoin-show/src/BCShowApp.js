@@ -49,11 +49,10 @@ class App extends Component {
           </nav>
         </header>
         <main>
-          {/* {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />} */}
-          {this.props.mustDisplayCards && <Cards />}
           <div className="row">
             <div className="col l8 push-l2">
               {this.props.isFetching && <Loading />}
+              {this.props.mustDisplayCards && <Cards />}
               <CardPanel
                 style={{ paddingTop: '10px' }}
                 className="blue darken-3 zero-padding-left"
