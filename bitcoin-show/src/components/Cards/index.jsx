@@ -16,8 +16,7 @@ class Cards extends Component {
   }
   componentWillMount() {
     const array = ['spades', 'clubs', 'diamonds', 'heart']
-    for (let i = array.length - 1 i >= 0 i--) {
-
+    for (let i = array.length - 1; i >= 0; i -= 1) {
       const randomIndex = Math.floor(Math.random() * (i + 1))
       const itemAtIndex = array[randomIndex]
 
