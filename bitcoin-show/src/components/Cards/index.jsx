@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import CardPanel from '../CardPanel'
 
 class Cards extends Component {
   constructor(props) {
-    super(props);
-    this.state = { cards: [{}, {}, {}, {}] };
+    super(props)
+    this.state = { cards: [{}, {}, {}, {}] }
     this.style = {
       backgroundColor: 'grey',
       height: '100%',
@@ -12,19 +12,19 @@ class Cards extends Component {
       position: 'absolute',
       zIndex: '800',
     }
-    this.nipes = [];
+    this.nipes = []
   }
   componentWillMount() {
-    const array = ['spades', 'clubs', 'diamonds', 'heart'];
-    for (let i = array.length - 1; i >= 0; i--) {
+    const array = ['spades', 'clubs', 'diamonds', 'heart']
+    for (let i = array.length - 1 i >= 0 i--) {
 
-      const randomIndex = Math.floor(Math.random() * (i + 1));
-      const itemAtIndex = array[randomIndex];
+      const randomIndex = Math.floor(Math.random() * (i + 1))
+      const itemAtIndex = array[randomIndex]
 
-      array[randomIndex] = array[i];
-      array[i] = itemAtIndex;
+      array[randomIndex] = array[i]
+      array[i] = itemAtIndex
     }
-    this.nipes = array;
+    this.nipes = array
   }
   getRandomNumber(min, max) {
     return (Math.random() * (max - min) + min)
@@ -50,8 +50,8 @@ class Cards extends Component {
           )
         }
       </div>
-    );
+    )
   }
 }
 
-export default Cards;
+export default Cards

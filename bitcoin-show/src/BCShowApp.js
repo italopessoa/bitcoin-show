@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { fetchQuestion, fetchAwards } from './actions/questionActions';
-import Options from './containers/OptionsPanel';
-import Question from './containers/QuestionPanel';
-import Tools from './containers/Tools';
-import Cards from './containers/Cards';
-import CardPanel from './components/CardPanel';
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { fetchQuestion, fetchAwards } from './actions/questionActions'
+import Options from './containers/OptionsPanel'
+import Question from './containers/QuestionPanel'
+import Tools from './containers/Tools'
+import Cards from './containers/Cards'
+import CardPanel from './components/CardPanel'
 import Loading from './components/Loading'
 
-import './index.css';
+import './index.css'
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchAwards();
-    this.props.fetchQuestion(this.props.award.level);
+    this.props.fetchAwards()
+    this.props.fetchQuestion(this.props.award.level)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.mustUpdateQuestion) {
@@ -90,7 +90,7 @@ class App extends Component {
           </div>
         </main>
       </div>
-    );
+    )
   }
 }
 
@@ -101,19 +101,19 @@ function mapStateToProps(state) {
     mustUpdateQuestion: state.questionData.mustUpdateQuestion,
     isFetching: state.questionData.isFetching,
     mustDisplayCards: state.questionData.mustDisplayCards,
-  };
+  }
 }
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     fetchQuestion,
     fetchAwards,
-  }, dispatch);
+  }, dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(App)
 
 App.propTypes = {
   fetchQuestion: PropTypes.func.isRequired,
@@ -128,9 +128,9 @@ App.propTypes = {
   }).isRequired,
   isFetching: PropTypes.bool.isRequired,
   mustDisplayCards: PropTypes.bool.isRequired,
-};
+}
 
 App.defaultProps = {
   shouldStopProgress: false,
   userFailed: false,
-};
+}

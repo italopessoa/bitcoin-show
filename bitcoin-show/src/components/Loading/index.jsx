@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Loading = () => (
   <div className="center" style={{ width: '100%', height: '100%', backgroundColor: '#ecdede', opacity: '0.8', position: 'absolute', zIndex: '1000' }}>
@@ -44,6 +44,6 @@ const Loading = () => (
       </div>
     </div>
   </div>
-);
+)
 
-export default Loading;
+export default Loading

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Option from '../../components/Option';
-import CardPanel from '../../components/CardPanel';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Option from '../../components/Option'
+import CardPanel from '../../components/CardPanel'
 
 const styles = {
   selected: {
@@ -19,10 +19,10 @@ const styles = {
     marginBottom: '0',
     display: 'block',
   },
-};
+}
 
 const getStyle = (selectedOptionNumber, actualOptionNumber) => (
-  (selectedOptionNumber === actualOptionNumber) ? styles.selected : styles.unselected);
+  (selectedOptionNumber === actualOptionNumber) ? styles.selected : styles.unselected)
 
 const OptionsList = props => (
   <ul>
@@ -42,7 +42,7 @@ const OptionsList = props => (
       ))
     }
   </ul>
-);
+)
 
 OptionsList.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({
@@ -51,6 +51,6 @@ OptionsList.propTypes = {
     selected: PropTypes.bool,
   })).isRequired,
   selectedOptionNumber: PropTypes.number.isRequired,
-};
+}
 
-export default OptionsList;
+export default OptionsList

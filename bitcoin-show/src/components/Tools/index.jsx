@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './style.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './style.css'
 
 const Tools = props => (
   <ul className={'right'}>
@@ -24,7 +24,7 @@ const Tools = props => (
       </a>
     </li>
   </ul>
-);
+)
 
 Tools.propTypes = {
   skipQuestion: PropTypes.func.isRequired,
@@ -32,6 +32,6 @@ Tools.propTypes = {
   stopPlaying: PropTypes.func.isRequired,
   skipAttemptsLeft: PropTypes.number.isRequired,
   cardsWereUsed: PropTypes.bool.isRequired,
-};
+}
 
-export default Tools;
+export default Tools
