@@ -133,7 +133,7 @@ export function questionReducer(state = initialState, action) {
     case TOOLS_DISPLAY_CARDS:
       return {
         ...state,
-        mustDisplayCards: !state.cardsWereUsed,
+        mustDisplayCards: (state.question.id > 0 && !state.cardsWereUsed),
         cardsWereUsed: true,
       }
     case TOOLS_CARD_SELECTED:
