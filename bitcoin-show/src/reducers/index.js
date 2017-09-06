@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import questionData from './questionReducer';
-import optionData from './optionReducer';
+import { combineReducers } from 'redux'
+import questionData from './questionReducer'
+import optionData from './optionReducer'
 
 const rootReducer = combineReducers({
   questionData,
   optionData,
-});
+})
 
-export default rootReducer;
+export default rootReducer

@@ -1,24 +1,41 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { fetchQuestion, fetchAwards } from './actions/questionActions';
-import Options from './containers/OptionsPanel';
-import Question from './containers/QuestionPanel';
-import Tools from './containers/Tools';
-import Cards from './containers/Cards';
-import CardPanel from './components/CardPanel';
-import './index.css';
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { fetchQuestion, fetchAwards } from './actions/questionActions'
+import Options from './containers/OptionsPanel'
+import Question from './containers/QuestionPanel'
+import Tools from './containers/Tools'
+import Cards from './containers/Cards'
+import CardPanel from './components/CardPanel'
+import Loading from './components/Loading'
+
+import './index.css'
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchAwards();
-    this.props.fetchQuestion(this.props.award.level);
+    this.props.fetchAwards()
+    this.props.fetchQuestion(this.props.award.level)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.mustUpdateQuestion) {
-      this.props.fetchQuestion(this.props.award.level);
+      this.props.fetchQuestion(this.props.award.level)
     }
+  }
+  createAwardCard(value) {
+    // TODO: add padding settins as default values to CardPanel
+    return (<CardPanel
+      style={{ paddingTop: '10px', paddingBottom: '10px', textAlign: 'center' }}
+      className="yellow"
+      content={
+        <span>
+          <h6>
+            <i className="fa fa-btc" aria-hidden="true" /> {value}
+          </h6>
+        </span>
+      }
+    />
+    )
   }
   render() {
     return (
@@ -33,23 +50,37 @@ class App extends Component {
           </nav>
         </header>
         <main>
-          {this.props.isFetching && <img src={'loading.gif'} alt="carregando..." />}
-          {this.props.mustDisplayCards && <Cards />}
           <div className="row">
             <div className="col l8 push-l2">
+              {this.props.isFetching && <Loading />}
+              {this.props.mustDisplayCards && <Cards />}
               <CardPanel
                 style={{ paddingTop: '10px' }}
                 className="blue darken-3 zero-padding-left"
                 content={
                   <div>
+                    {/* question */}
                     <div className="row">
                       <div className="col m12 zero-padding-left">
                         <Question />
                       </div>
                     </div>
+                    {/* options */}
                     <div className="row">
                       <div className="col m9">
                         <Options />
+                      </div>
+                    </div>
+                    {/* awards */}
+                    <div className="row">
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.right)}
+                      </div>
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.stop)}
+                      </div>
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.wrong)}
                       </div>
                     </div>
                   </div>
@@ -57,27 +88,9 @@ class App extends Component {
               />
             </div>
           </div>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Right</th>
-                  <th>Stop</th>
-                  <th>Error</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{this.props.award.right}</td>
-                  <td>{this.props.award.stop}</td>
-                  <td>{this.props.award.wrong}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </main>
-      </div >
-    );
+      </div>
+    )
   }
 }
 
@@ -88,19 +101,19 @@ function mapStateToProps(state) {
     mustUpdateQuestion: state.questionData.mustUpdateQuestion,
     isFetching: state.questionData.isFetching,
     mustDisplayCards: state.questionData.mustDisplayCards,
-  };
+  }
 }
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     fetchQuestion,
     fetchAwards,
-  }, dispatch);
+  }, dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(App)
 
 App.propTypes = {
   fetchQuestion: PropTypes.func.isRequired,
@@ -115,9 +128,9 @@ App.propTypes = {
   }).isRequired,
   isFetching: PropTypes.bool.isRequired,
   mustDisplayCards: PropTypes.bool.isRequired,
-};
+}
 
 App.defaultProps = {
   shouldStopProgress: false,
   userFailed: false,
-};
+}

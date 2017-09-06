@@ -6,8 +6,9 @@ module.exports = {
         "jsx-a11y",
         "import"
     ],
-    "rules" : {
-        "linebreak-style": 0
+    "rules": {
+        "linebreak-style": 0,
+        "semi": 0,
     },
     "globals": {
         "fetch": false

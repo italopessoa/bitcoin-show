@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CardPanel from '../CardPanel';
+import React from 'react'
+import PropTypes from 'prop-types'
+import CardPanel from '../CardPanel'
 
 const styles = {
   rightAlign: {
     float: 'right',
   },
-};
+}
 
 const scaleInOut = (scaleIn) => {
-  const classesValue = 'btn-floating btn-large waves-effect waves-light green scale-transition ';
-  return classesValue.concat(scaleIn ? 'scale-in' : 'scale-out');
-};
+  const classesValue = 'btn-floating btn-large waves-effect waves-light green scale-transition '
+  return classesValue.concat(scaleIn ? 'scale-in' : 'scale-out')
+}
 
 const Question = props => (
   <div>
@@ -34,7 +34,7 @@ const Question = props => (
       }
     />
   </div >
-);
+)
 
 Question.propTypes = {
   question: PropTypes.shape({
@@ -43,11 +43,11 @@ Question.propTypes = {
   selectedOptionNumber: PropTypes.number,
   hasASelectedOption: PropTypes.bool.isRequired,
   checkAnswer: PropTypes.func.isRequired,
-};
+}
 
 Question.defaultProps = {
   selectedOptionNumber: 0,
-};
+}
 
 
-export default Question;
+export default Question

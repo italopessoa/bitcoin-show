@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 
 const Option = props => (
@@ -9,10 +9,10 @@ const Option = props => (
       </button> */}
     <h6>{props.text}</h6>
   </div>
-);
+)
 
 Option.propTypes = {
   text: PropTypes.string.isRequired,
-};
+}
 
-export default Option;
+export default Option
