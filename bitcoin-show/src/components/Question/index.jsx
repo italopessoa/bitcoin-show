@@ -15,24 +15,21 @@ const scaleInOut = (scaleIn) => {
 
 const Question = props => (
   <div>
-    <CardPanel
-      className="red white-text"
-      content={
+    <CardPanel className="red white-text">
+      <div>
         <div>
-          <div>
-            <h5>{props.question.text}</h5>
-          </div>
-          <div style={styles.rightAlign}>
-            <a
-              onClick={() => props.checkAnswer(props.question, props.selectedOptionNumber)}
-              className={scaleInOut(props.hasASelectedOption)}
-            >
-              <i className="material-icons">done</i>
-            </a>
-          </div>
+          <h5>{props.question.text}</h5>
         </div>
-      }
-    />
+        <div style={styles.rightAlign}>
+          <a
+            onClick={() => props.checkAnswer(props.question, props.selectedOptionNumber)}
+            className={scaleInOut(props.hasASelectedOption)}
+          >
+            <i className="material-icons">done</i>
+          </a>
+        </div>
+      </div>
+    </CardPanel>
   </div >
 )
 

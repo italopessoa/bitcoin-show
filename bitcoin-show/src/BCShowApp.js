@@ -26,15 +26,13 @@ class App extends Component {
     // TODO: add padding settins as default values to CardPanel
     return (<CardPanel
       style={{ paddingTop: '10px', paddingBottom: '10px', textAlign: 'center' }}
-      className="yellow"
-      content={
-        <span>
-          <h6>
-            <i className="fa fa-btc" aria-hidden="true" /> {value}
-          </h6>
-        </span>
-      }
-    />
+      className="yellow">
+      <span>
+        <h6>
+          <i className="fa fa-btc" aria-hidden="true" /> {value}
+        </h6>
+      </span>
+    </CardPanel>
     )
   }
   render() {
@@ -57,35 +55,35 @@ class App extends Component {
               <CardPanel
                 style={{ paddingTop: '10px' }}
                 className="blue darken-3 zero-padding-left"
-                content={
-                  <div>
-                    {/* question */}
-                    <div className="row">
-                      <div className="col m12 zero-padding-left">
-                        <Question />
-                      </div>
-                    </div>
-                    {/* options */}
-                    <div className="row">
-                      <div className="col m9">
-                        <Options />
-                      </div>
-                    </div>
-                    {/* awards */}
-                    <div className="row">
-                      <div className="col m2">
-                        {this.createAwardCard(this.props.award.right)}
-                      </div>
-                      <div className="col m2">
-                        {this.createAwardCard(this.props.award.stop)}
-                      </div>
-                      <div className="col m2">
-                        {this.createAwardCard(this.props.award.wrong)}
-                      </div>
+              >
+                <div>
+                  {/* question */}
+                  <div className="row">
+                    <div className="col m12 zero-padding-left">
+                      <Question />
                     </div>
                   </div>
-                }
-              />
+                  {/* options */}
+                  <div className="row">
+                    <div className="col m9">
+                      <Options />
+                    </div>
+                  </div>
+                  {/* awards */}
+                  <div className="row">
+                    <div className="col m2">
+                      {this.createAwardCard(this.props.award.right)}
+                    </div>
+                    <div className="col m2">
+                      {this.createAwardCard(this.props.award.stop)}
+                    </div>
+                    <div className="col m2">
+                      {this.createAwardCard(this.props.award.wrong)}
+                    </div>
+                  </div>
+                </div>
+
+              </CardPanel>
             </div>
           </div>
         </main>

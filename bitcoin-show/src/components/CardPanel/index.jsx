@@ -18,9 +18,8 @@ class CardPanel extends Component {
           ...this.props.style,
         }}
         className={`card-panel ${this.props.className}`
-        }
-      >
-        {this.props.content}
+        }>
+        {this.props.children}
       </div >
     )
   }

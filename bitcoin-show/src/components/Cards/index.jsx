@@ -36,14 +36,12 @@ class Cards extends Component {
             <div key={index} className="col l6 m6 s6"
               onClick={() => this.props.cardSelected(this.getRandomNumber(0, 4), this.props.currentQuestion)}
             >
-              <CardPanel
-                touch
-                content={
-                  <h1 >
-                    <span className={`icon-${this.nipes[index]}`} />
-                  </h1>
-                }
-              />
+              <CardPanel touch>
+                <h1 >
+                  <span className={`icon-${this.nipes[index]}`} />
+                </h1>
+
+              </CardPanel>
             </div>
           ),
           )
