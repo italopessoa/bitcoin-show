@@ -28,7 +28,6 @@ class CardPanel extends Component {
 export default CardPanel
 
 CardPanel.propTypes = {
-  content: PropTypes.element.isRequired,
   className: PropTypes.string,
   onClick: PropTypes.func,
 }

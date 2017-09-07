@@ -8,8 +8,7 @@ import Question from './containers/QuestionPanel'
 import Tools from './containers/Tools'
 import Cards from './containers/Cards'
 import CardPanel from './components/CardPanel'
-import Loading from './components/Loading'
-
+import LoadingPanel from './components/LoadingPanel'
 import './index.css'
 
 class App extends Component {
@@ -24,15 +23,16 @@ class App extends Component {
   }
   createAwardCard(value) {
     // TODO: add padding settins as default values to CardPanel
-    return (<CardPanel
-      style={{ paddingTop: '10px', paddingBottom: '10px', textAlign: 'center' }}
-      className="yellow">
-      <span>
-        <h6>
-          <i className="fa fa-btc" aria-hidden="true" /> {value}
-        </h6>
-      </span>
-    </CardPanel>
+    return (
+      <CardPanel
+        style={{ paddingTop: '10px', paddingBottom: '10px', textAlign: 'center' }}
+        className="yellow">
+        <span>
+          <h6>
+            <i className="fa fa-btc" aria-hidden="true" /> {value}
+          </h6>
+        </span>
+      </CardPanel>
     )
   }
   render() {
@@ -50,40 +50,40 @@ class App extends Component {
         <main>
           <div className="row">
             <div className="col l8 push-l2">
-              {this.props.isFetching && <Loading />}
-              {this.props.mustDisplayCards && <Cards />}
-              <CardPanel
-                style={{ paddingTop: '10px' }}
-                className="blue darken-3 zero-padding-left"
-              >
-                <div>
-                  {/* question */}
-                  <div className="row">
-                    <div className="col m12 zero-padding-left">
-                      <Question />
+              <LoadingPanel backgroundColor={'#ecdede'} opacity={0.8} loading={this.props.isFetching}>
+                {this.props.mustDisplayCards && <Cards />}
+                <CardPanel
+                  style={{ paddingTop: '10px' }}
+                  className="blue darken-3 zero-padding-left"
+                >
+                  <div>
+                    {/* question */}
+                    <div className="row">
+                      <div className="col m12 zero-padding-left">
+                        <Question />
+                      </div>
+                    </div>
+                    {/* options */}
+                    <div className="row">
+                      <div className="col m9">
+                        <Options />
+                      </div>
+                    </div>
+                    {/* awards */}
+                    <div className="row">
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.right)}
+                      </div>
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.stop)}
+                      </div>
+                      <div className="col m2">
+                        {this.createAwardCard(this.props.award.wrong)}
+                      </div>
                     </div>
                   </div>
-                  {/* options */}
-                  <div className="row">
-                    <div className="col m9">
-                      <Options />
-                    </div>
-                  </div>
-                  {/* awards */}
-                  <div className="row">
-                    <div className="col m2">
-                      {this.createAwardCard(this.props.award.right)}
-                    </div>
-                    <div className="col m2">
-                      {this.createAwardCard(this.props.award.stop)}
-                    </div>
-                    <div className="col m2">
-                      {this.createAwardCard(this.props.award.wrong)}
-                    </div>
-                  </div>
-                </div>
-
-              </CardPanel>
+                </CardPanel>
+              </LoadingPanel>
             </div>
           </div>
         </main>
