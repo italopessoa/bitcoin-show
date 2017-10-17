@@ -72,13 +72,13 @@ class App extends Component {
                     {/* awards */}
                     <div className="row">
                       <div className="col m2">
-                        {this.createAwardCard(this.props.award.right)}
+                        {this.createAwardCard(this.props.award.success)}
                       </div>
                       <div className="col m2">
-                        {this.createAwardCard(this.props.award.stop)}
+                        {this.createAwardCard(this.props.award.quit)}
                       </div>
                       <div className="col m2">
-                        {this.createAwardCard(this.props.award.wrong)}
+                        {this.createAwardCard(this.props.award.fail)}
                       </div>
                     </div>
                   </div>
@@ -118,10 +118,10 @@ App.propTypes = {
   fetchAwards: PropTypes.func.isRequired,
   mustUpdateQuestion: PropTypes.bool.isRequired,
   award: PropTypes.shape({
-    number: PropTypes.number.isRequired,
-    right: PropTypes.number.isRequired,
-    stop: PropTypes.number.isRequired,
-    wrong: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    success: PropTypes.number.isRequired,
+    fail: PropTypes.number.isRequired,
+    quit: PropTypes.number.isRequired,
     level: PropTypes.number.isRequired,
   }).isRequired,
   isFetching: PropTypes.bool.isRequired,

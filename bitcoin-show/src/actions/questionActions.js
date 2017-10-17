@@ -16,7 +16,10 @@ import {
   TOOLS_CARD_FILTERING,
   TOOLS_STOP_PLAYING,
 } from './actionTypes'
-import { checkAnswerService, removeWrongOptionsService } from '../services/QuestionServices'
+import {
+  checkAnswerService,
+  removeWrongOptionsService
+} from '../services/QuestionServices'
 
 function getQuestion() {
   return {
@@ -90,10 +93,16 @@ export default function checkAnswer(question, selectedOptionNumber) {
 }
 
 function skipingQuestion() {
-  return { type: TOOLS_SKIP_QUESTION }
+  return {
+    type: TOOLS_SKIP_QUESTION
+  }
 }
+
 function skipQuestionSuccess(data) {
-  return { type: TOOLS_SKIP_QUESTION_SUCCESS, data }
+  return {
+    type: TOOLS_SKIP_QUESTION_SUCCESS,
+    data
+  }
 }
 
 export function skipQuestion(level = 0) {
@@ -107,7 +116,9 @@ export function skipQuestion(level = 0) {
 }
 
 export function stopPlaying() {
-  return { type: TOOLS_STOP_PLAYING }
+  return {
+    type: TOOLS_STOP_PLAYING,
+  }
 }
 
 function getAwardsSuccess(awards) {
@@ -133,7 +144,7 @@ function getAwards() {
 export function fetchAwards() {
   return (dispatch) => {
     dispatch(getAwards())
-    fetch('http://localhost:51203/api/questions/awards')
+    fetch('http://localhost:5000/Award/List')
       .then(response => response.json())
       .then(result => dispatch(getAwardsSuccess(result)))
       .catch(err => dispatch(getAwardsError(err)))
@@ -141,16 +152,23 @@ export function fetchAwards() {
 }
 
 export function displayCards() {
-  return { type: TOOLS_DISPLAY_CARDS }
+  return {
+    type: TOOLS_DISPLAY_CARDS,
+  }
 }
 
 export function cardSelectedSuccess(question) {
-  return { type: TOOLS_CARD_SELECTED, data: question }
+  return {
+    type: TOOLS_CARD_SELECTED,
+    data: question,
+  }
 }
 
 export function cardSelected(cardNumber, currentQuestion) {
   return (dispatch) => {
-    dispatch({ type: TOOLS_CARD_FILTERING })
+    dispatch({
+      type: TOOLS_CARD_FILTERING,
+    })
     setTimeout(() => {
       removeWrongOptionsService(currentQuestion, cardNumber)
         .then(result => dispatch(cardSelectedSuccess(result.question)))

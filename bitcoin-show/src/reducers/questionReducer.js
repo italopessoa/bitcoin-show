@@ -26,7 +26,7 @@ const initialState = {
 
   awards: [],
   currentAwardIndex: 0,
-  currentAwardValue: { number: 0, right: 0, stop: 0, wrong: 0, level: 0 },
+  currentAwardValue: { id: 0, success: 0.0, fail: 0.0, quit: 0.0, level: 2, levelName: 'Hard' },
 
   skipAttemptsLeft: 3,
   gameOver: false,
@@ -127,7 +127,7 @@ export function questionReducer(state = initialState, action) {
       return {
         ...state,
         awards: [],
-        currentAwardValue: { number: 0, right: 0, stop: 0, wrong: 0, level: 0 },
+        currentAwardValue: { id: 0, success: 0.0, fail: 0.0, quit: 0.0, level: 2, levelName: 'Hard' },
         isFetching: false,
       }
     case TOOLS_DISPLAY_CARDS:
