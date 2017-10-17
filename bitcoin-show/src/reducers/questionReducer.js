@@ -15,6 +15,7 @@ import {
   TOOLS_CARD_SELECTED,
   TOOLS_CARD_FILTERING,
   TOOLS_STOP_PLAYING,
+  SELECT_OPTION,
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -32,6 +33,9 @@ const initialState = {
 
   cardsWereUsed: false,
   mustDisplayCards: false,
+
+  selectedOptionNumber: 0,
+  hasASelectedOption: false,
 }
 
 
@@ -43,12 +47,16 @@ export function questionReducer(state = initialState, action) {
         question: { id: 0, text: '', options: [] },
         isFetching: true,
         mustUpdateQuestion: false,
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       }
     case FETCHING_DATA_QUESTION_SUCCESS:
       return {
         ...state,
         isFetching: false,
         question: action.data,
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       }
     case FETCHING_DATA_QUESTION_FAILURE:
       return {
@@ -56,6 +64,8 @@ export function questionReducer(state = initialState, action) {
         isFetching: false,
         errorMessage: action.error,
         question: { id: 0, text: '', options: [] },
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       }
     case CHECKING_ANSWER:
       return {
@@ -69,21 +79,29 @@ export function questionReducer(state = initialState, action) {
         currentAwardIndex: state.currentAwardIndex + 1,
         currentAwardValue: state.awards[state.currentAwardIndex + 1],
         isFetching: false,
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       }
     case CHECKING_ANSWER_FAIL:
       return {
         ...state,
         isFetching: false,
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       }
     case CHECKING_ANSWER_ERROR:
       return {
         ...state,
         isFetching: false,
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       }
     case TOOLS_SKIP_QUESTION:
       return {
         ...state,
         isFetching: true,
+        hasASelectedOption: false,
+        selectedOptionNumber: 0,
       }
     case TOOLS_SKIP_QUESTION_SUCCESS:
       return {
@@ -115,7 +133,7 @@ export function questionReducer(state = initialState, action) {
     case TOOLS_DISPLAY_CARDS:
       return {
         ...state,
-        mustDisplayCards: !state.cardsWereUsed,
+        mustDisplayCards: (state.question.id > 0 && !state.cardsWereUsed),
         cardsWereUsed: true,
       }
     case TOOLS_CARD_SELECTED:
@@ -134,6 +152,12 @@ export function questionReducer(state = initialState, action) {
       return {
         ...state,
         gameOver: true,
+      }
+    case SELECT_OPTION:
+      return {
+        ...state,
+        selectedOptionNumber: action.data,
+        hasASelectedOption: true,
       }
     default:
       return state

@@ -18,9 +18,8 @@ class CardPanel extends Component {
           ...this.props.style,
         }}
         className={`card-panel ${this.props.className}`
-        }
-      >
-        {this.props.content}
+        }>
+        {this.props.children}
       </div >
     )
   }
@@ -29,7 +28,6 @@ class CardPanel extends Component {
 export default CardPanel
 
 CardPanel.propTypes = {
-  content: PropTypes.element.isRequired,
   className: PropTypes.string,
   onClick: PropTypes.func,
 }

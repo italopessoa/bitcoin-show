@@ -33,11 +33,9 @@ const OptionsList = props => (
             className="waves-effect waves-light"
             onClick={props.selectOption}
             onClickArgs={option.number}
-            style={{ ...styles.default, ...getStyle(props.selectedOptionNumber, option.number) }}
-            content={
-              <Option number={option.number} text={option.text} />
-            }
-          />
+            style={{ ...styles.default, ...getStyle(props.selectedOptionNumber, option.number) }}>
+            <Option number={option.number} text={option.text} />
+          </CardPanel>
         </li>
       ))
     }

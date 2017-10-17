@@ -9,7 +9,7 @@ const questionOptionsFilter = question => (
 
 const mapStateToProps = state => ({
   options: questionOptionsFilter(state.questionData.question),
-  selectedOptionNumber: state.optionData.selectedOptionNumber,
+  selectedOptionNumber: state.questionData.selectedOptionNumber,
 })
 
 const mapDispatchToProps = dispatch =>
