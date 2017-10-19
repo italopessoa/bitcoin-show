@@ -14,11 +14,11 @@ import './index.css'
 class App extends Component {
   componentDidMount() {
     this.props.fetchAwards()
-    this.props.fetchQuestion(this.props.award.level)
+    this.props.fetchQuestion(this.props.award.level, this.props.previousQuestions)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.mustUpdateQuestion) {
-      this.props.fetchQuestion(this.props.award.level)
+      this.props.fetchQuestion(this.props.award.level, this.props.previousQuestions)
     }
   }
   createAwardCard(value) {
@@ -99,6 +99,7 @@ function mapStateToProps(state) {
     mustUpdateQuestion: state.questionData.mustUpdateQuestion,
     isFetching: state.questionData.isFetching,
     mustDisplayCards: state.questionData.mustDisplayCards,
+    previousQuestions: state.questionData.previousQuestions,
   }
 }
 
@@ -126,6 +127,7 @@ App.propTypes = {
   }).isRequired,
   isFetching: PropTypes.bool.isRequired,
   mustDisplayCards: PropTypes.bool.isRequired,
+  previousQuestions: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 
 App.defaultProps = {

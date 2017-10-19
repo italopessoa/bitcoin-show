@@ -41,8 +41,14 @@ function getQuestionFailure(err) {
   }
 }
 
-export function fetchQuestion(level = 0) {
-  const url = `http://localhost:5000/Question/RandomQuestionByLevel?level=${level}`
+export function fetchQuestion(level = 0, exclude) {
+  let excludeIdsQueryString = '';
+  if (exclude) {
+    exclude.forEach((id) => {
+      excludeIdsQueryString = excludeIdsQueryString.concat(`&excludeIds=${id}`)
+    });
+  }
+  const url = `http://localhost:5000/Question/RandomQuestionByLevel?level=${level}${excludeIdsQueryString}`
   return (dispatch) => {
     dispatch(getQuestion())
     fetch(url)
@@ -105,8 +111,14 @@ function skipQuestionSuccess(data) {
   }
 }
 
-export function skipQuestion(level = 0) {
-  const url = `http://localhost:5000/Question/RandomQuestionByLevel?level=${level}`
+export function skipQuestion(level = 0, exclude) {
+  let excludeIdsQueryString = '';
+  if (exclude) {
+    exclude.forEach((id) => {
+      excludeIdsQueryString = excludeIdsQueryString.concat(`&excludeIds=${id}`)
+    });
+  }
+  const url = `http://localhost:5000/Question/RandomQuestionByLevel?level=${level}${excludeIdsQueryString}`
   return (dispatch) => {
     dispatch(skipingQuestion())
     fetch(url)

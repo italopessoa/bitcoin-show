@@ -23,6 +23,7 @@ const initialState = {
   isFetching: false,
   errorMessage: '',
   mustUpdateQuestion: false,
+  previousQuestions: [],
 
   awards: [],
   currentAwardIndex: 0,
@@ -57,6 +58,7 @@ export function questionReducer(state = initialState, action) {
         question: action.data,
         hasASelectedOption: false,
         selectedOptionNumber: 0,
+        previousQuestions: [action.data.id, ...state.previousQuestions],
       }
     case FETCHING_DATA_QUESTION_FAILURE:
       return {
@@ -109,6 +111,7 @@ export function questionReducer(state = initialState, action) {
         isFetching: false,
         skipAttemptsLeft: state.skipAttemptsLeft - 1,
         question: action.data,
+        previousQuestions: [action.data.id, ...state.previousQuestions],
       }
     case FETCHING_DATA_AWARDS:
       return {

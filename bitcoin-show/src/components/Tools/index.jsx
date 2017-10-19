@@ -8,7 +8,7 @@ const Tools = props => (
       <a
         className={'numberBadge'}
         data-badge={props.skipAttemptsLeft}
-        onClick={() => (props.skipAttemptsLeft > 0) && props.skipQuestion()}
+        onClick={() => (props.skipAttemptsLeft > 0) && props.skipQuestion(props.awardLevel, props.previousQuestions)}
       >
         <i className={'material-icons'}>cached</i>
       </a>
@@ -32,6 +32,8 @@ Tools.propTypes = {
   stopPlaying: PropTypes.func.isRequired,
   skipAttemptsLeft: PropTypes.number.isRequired,
   cardsWereUsed: PropTypes.bool.isRequired,
+  awardLevel: PropTypes.number.isRequired,
+  previousQuestions: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 
 export default Tools

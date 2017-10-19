@@ -6,6 +6,8 @@ import { skipQuestion, displayCards, stopPlaying } from '../actions/questionActi
 const mapStateToProps = state => ({
   skipAttemptsLeft: state.questionData.skipAttemptsLeft,
   cardsWereUsed: state.questionData.cardsWereUsed,
+  awardLevel: state.questionData.currentAwardValue.level,
+  previousQuestions: state.questionData.previousQuestions,
 })
 
 const mapDispatchToProps = dispatch =>
