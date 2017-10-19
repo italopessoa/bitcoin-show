@@ -18,7 +18,7 @@ const Question = props => (
     <CardPanel className="red white-text">
       <div>
         <div>
-          <h5>{props.question.text}</h5>
+          <h5>{props.question.title}</h5>
         </div>
         <div style={styles.rightAlign}>
           <a
@@ -35,7 +35,7 @@ const Question = props => (
 
 Question.propTypes = {
   question: PropTypes.shape({
-    text: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
   selectedOptionNumber: PropTypes.number,
   hasASelectedOption: PropTypes.bool.isRequired,

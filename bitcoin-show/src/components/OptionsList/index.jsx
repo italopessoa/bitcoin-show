@@ -28,12 +28,12 @@ const OptionsList = props => (
   <ul>
     {
       props.options.map(option => (
-        <li key={option.number} >
+        <li key={option.id} >
           <CardPanel
             className="waves-effect waves-light"
             onClick={props.selectOption}
-            onClickArgs={option.number}
-            style={{ ...styles.default, ...getStyle(props.selectedOptionNumber, option.number) }}>
+            onClickArgs={option.id}
+            style={{ ...styles.default, ...getStyle(props.selectedOptionNumber, option.id) }}>
             <Option number={option.number} text={option.text} />
           </CardPanel>
         </li>
@@ -44,7 +44,7 @@ const OptionsList = props => (
 
 OptionsList.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({
-    number: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
     selected: PropTypes.bool,
   })).isRequired,

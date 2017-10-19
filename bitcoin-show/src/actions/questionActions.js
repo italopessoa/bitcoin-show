@@ -18,7 +18,7 @@ import {
 } from './actionTypes'
 import {
   checkAnswerService,
-  removeWrongOptionsService
+  removeWrongOptionsService,
 } from '../services/QuestionServices'
 
 function getQuestion() {
@@ -42,10 +42,10 @@ function getQuestionFailure(err) {
 }
 
 export function fetchQuestion(level = 0) {
-  const url = 'http://localhost:51203/api/questions/RandomQuestionByLevel/'
+  const url = `http://localhost:5000/Question/RandomQuestionByLevel?level=${level}`
   return (dispatch) => {
     dispatch(getQuestion())
-    fetch(url.concat(level))
+    fetch(url)
       .then(response => response.json())
       .then(result => dispatch(getQuestionSuccess(result)))
       .catch(err => dispatch(getQuestionFailure(err)))
@@ -80,7 +80,7 @@ function checkingAnswer() {
 export default function checkAnswer(question, selectedOptionNumber) {
   return (dispatch) => {
     dispatch(checkingAnswer())
-    checkAnswerService(question.answer.number, selectedOptionNumber)
+    checkAnswerService(question.answer.id, selectedOptionNumber)
       .then((isAnswerCorrect) => {
         if (isAnswerCorrect) {
           dispatch(checkAnswerSuccess())
@@ -94,22 +94,22 @@ export default function checkAnswer(question, selectedOptionNumber) {
 
 function skipingQuestion() {
   return {
-    type: TOOLS_SKIP_QUESTION
+    type: TOOLS_SKIP_QUESTION,
   }
 }
 
 function skipQuestionSuccess(data) {
   return {
     type: TOOLS_SKIP_QUESTION_SUCCESS,
-    data
+    data,
   }
 }
 
 export function skipQuestion(level = 0) {
-  const url = 'http://localhost:51203/api/questions/RandomQuestionByLevel/'
+  const url = `http://localhost:5000/Question/RandomQuestionByLevel?level=${level}`
   return (dispatch) => {
     dispatch(skipingQuestion())
-    fetch(url.concat(level))
+    fetch(url)
       .then(response => response.json())
       .then(result => dispatch(skipQuestionSuccess(result)))
   }
