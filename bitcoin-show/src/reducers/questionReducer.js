@@ -26,7 +26,7 @@ const initialState = {
 
   awards: [],
   currentAwardIndex: 0,
-  currentAwardValue: { id: 0, success: 0.0, fail: 0.0, quit: 0.0, level: 2, levelName: 'Hard' },
+  currentAwardValue: { id: 0, success: 0.0, fail: 0.0, quit: 0.0, level: 0, levelName: 'Hard' },
 
   skipAttemptsLeft: 3,
   gameOver: false,
