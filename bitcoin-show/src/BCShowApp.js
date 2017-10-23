@@ -18,7 +18,7 @@ class App extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.mustUpdateQuestion) {
-      this.props.fetchQuestion(this.props.award.level, this.props.previousQuestions)
+      this.props.fetchQuestion(nextProps.award.level, nextProps.previousQuestions)
     }
   }
   createAwardCard(value) {
